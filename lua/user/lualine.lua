@@ -31,6 +31,20 @@ local bubbles_theme = {
     },
 }
 
+local ft_fmt = function(str)
+    if str == "" then
+        return "none"
+    else
+        return str
+    end
+end
+
+local filetype = {
+    "filetype",
+    icons_enabled = false,
+    fmt = ft_fmt,
+}
+
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
@@ -73,7 +87,7 @@ lualine.setup({
         lualine_b = { diagnostics, branch },
         lualine_c = {  },
         lualine_x = {},
-        lualine_y = { 'filename', progress },
+        lualine_y = { filetype, progress },
         lualine_z = {
             { "location", separator = { right = '' }, left_padding = 2 },
         },
@@ -85,7 +99,7 @@ lualine.setup({
         lualine_b = { diagnostics, branch },
         lualine_c = {  },
         lualine_x = {},
-        lualine_y = { 'filename', progress },
+        lualine_y = { filetype, progress },
         lualine_z = {
             { "location", separator = { right = '' }, left_padding = 2 },
         },
