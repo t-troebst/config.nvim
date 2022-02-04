@@ -56,6 +56,7 @@ return packer.startup(function(use)
     use "phaazon/hop.nvim" -- Character jumping ala EasyMotion
     use "akinsho/toggleterm.nvim" -- Terminal support
     use "nvim-telescope/telescope.nvim" -- Fuzzy searching
+    use "lewis6991/gitsigns.nvim" -- Git integration
 
     -- Colorschemes
     use "lunarvim/darkplus.nvim"

@@ -68,3 +68,9 @@ keymap("n", "<LEADER>ff", ":lua require('telescope.builtin').find_files()<CR>", 
 keymap("n", "<LEADER>fg", ":lua require('telescope.builtin').live_grep()<CR>", opts)
 keymap("n", "<LEADER>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
 keymap("n", "<LEADER>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)
+
+-- Git
+
+keymap("n", "<LEADER>gs", ":Gitsigns stage_buffer<CR>", opts)
+keymap("n", "<LEADER>gr", ":Gitsigns reset_buffer<CR>", opts)
+
