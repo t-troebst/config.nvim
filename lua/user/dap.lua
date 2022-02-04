@@ -6,10 +6,28 @@ end
 
 vim.cmd([[highlight Breakpoint guifg=#eb4034]])
 vim.cmd([[highlight Continue guifg=#34eb61]])
--- vim.cmd([[highlight ContinueBackground guibg=#0b3315]])
 
 vim.fn.sign_define("DapBreakpoint", {text='', texthl='Breakpoint', linehl='', numhl='Breakpoint'})
 vim.fn.sign_define("DapStopped", {text='', texthl='Continue', linehl='', numhl=''})
+
+local lldb_executable = function()
+    local args = vim.fn.findfile(".debug_args.lua", ".;")
+    if args == "" then
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    else
+        return dofile(args).program
+    end
+end
+
+local lldb_args = function()
+    local args = vim.fn.findfile(".debug_args.lua", ".;")
+    if args == "" then
+        -- We could ask the user for args but for now lets assume there are none
+        return {}
+    else
+        return dofile(args).args
+    end
+end
 
 -- C++/C/Rust
 
@@ -24,12 +42,10 @@ dap.configurations.cpp = {
         name = "Launch",
         type = "lldb",
         request = "launch",
-        program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
+        program = lldb_executable,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
-        args = {},
+        args = lldb_args,
         runInTerminal = false,
     },
 }
