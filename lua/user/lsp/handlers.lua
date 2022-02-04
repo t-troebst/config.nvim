@@ -60,31 +60,7 @@ local function lsp_highlight_document(client)
     end
 end
 
-local function lsp_keymaps(bufnr)
-    local opts = { noremap = true, silent = true }
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<LEADER>D", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<LEADER>d", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<LEADER>h", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<LEADER>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<LEADER>r", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<LEADER>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-    vim.api.nvim_buf_set_keymap(
-        bufnr,
-        "n",
-        "<LEADER>l",
-        '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>',
-        opts
-    )
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-end
-
 M.on_attach = function(client, bufnr)
-    lsp_keymaps(bufnr)
     lsp_highlight_document(client)
 end
 

@@ -62,12 +62,26 @@ keymap("n", "<LEADER>bq", ":lua require('dap').terminate()<CR>:DapVirtualTextFor
 keymap("n", "<LEADER>bh", ":lua require('dap.ui.widgets').hover()<CR>", opts)
 keymap("n", "<LEADER>br", ":lua require('dap').repl.open()<CR>", opts)
 
+-- LSP
+
+keymap("n", "<LEADER>h", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+keymap("n", "<LEADER>d", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
+keymap("n", "<LEADER>ln", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+keymap("n", "<LEADER>la", ":lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
+keymap("n", "<LEADER>lb", ":lua require('telescope.builtin').lsp_buffer_symbols()<CR>", opts)
+keymap("n", "<LEADER>ls", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>", opts)
+keymap("n", "<LEADER>lr", ":lua require('telescope.builtin').lsp_references()<CR>", opts)
+keymap("n", "<LEADER>ld", ":lua require('telescope.builtin').lsp_definitions()<CR>", opts)
+keymap("n", "<LEADER>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
 -- Fuzzy searching
 
+keymap("n", "<LEADER>fd", ":lua require('telescope.builtin').diagnostics()<CR>", opts)
 keymap("n", "<LEADER>ff", ":lua require('telescope.builtin').find_files()<CR>", opts)
 keymap("n", "<LEADER>fg", ":lua require('telescope.builtin').live_grep()<CR>", opts)
 keymap("n", "<LEADER>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
 keymap("n", "<LEADER>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)
+keymap("n", "<LEADER>ft", ":lua require('telescope.builtin').treesitter()<CR>", opts)
 
 -- Git
 
