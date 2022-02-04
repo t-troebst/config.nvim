@@ -52,7 +52,7 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua" -- Nvim file tree / explorer
     use "kyazdani42/nvim-web-devicons" -- Nice icons for Nvim tree
     use "numToStr/Comment.nvim" -- Automatic commenting
-    use "bronson/vim-trailing-whitespace" -- Show trailing whitespace
+    -- use "bronson/vim-trailing-whitespace" -- Show trailing whitespace
     use "phaazon/hop.nvim" -- Character jumping ala EasyMotion
     use "akinsho/toggleterm.nvim" -- Terminal support
     use "nvim-telescope/telescope.nvim" -- Fuzzy searching
