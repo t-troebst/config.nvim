@@ -4,9 +4,6 @@ if not status_ok then
     return
 end
 
-vim.cmd([[highlight Breakpoint guifg=#eb4034]])
-vim.cmd([[highlight Continue guifg=#34eb61]])
-
 vim.fn.sign_define("DapBreakpoint", {text='', texthl='Breakpoint', linehl='', numhl='Breakpoint'})
 vim.fn.sign_define("DapStopped", {text='', texthl='Continue', linehl='', numhl=''})
 

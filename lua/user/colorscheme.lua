@@ -1,5 +1,10 @@
 -- colorscheme
 
+-- Custom highlights
+
+vim.highlight.create("Breakpoint", {guifg = "#eb4034"}, false)
+vim.highlight.create("Continue", {guifg = "#34eb61"}, false)
+
 -- Nordfox
 
 -- local status_ok, nightfox = pcall(require, "nightfox")
