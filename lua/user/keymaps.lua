@@ -64,22 +64,24 @@ keymap("n", "<LEADER>br", ":lua require('dap').repl.open()<CR>", opts)
 
 -- LSP
 
-keymap("n", "<LEADER>h", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-keymap("n", "<LEADER>d", '<cmd>lua vim.diagnostic.open_float({ border = "rounded", focus = false })<CR>', opts)
-keymap("n", "<LEADER>ln", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+keymap("n", "<LEADER>h", ":lua vim.lsp.buf.hover()<CR>", opts)
+keymap("n", "<LEADER>d", ':lua vim.diagnostic.open_float({ border = "rounded", focus = false })<CR>', opts)
+keymap("n", "<LEADER>ln", ":lua vim.lsp.buf.rename()<CR>", opts)
 keymap("n", "<LEADER>la", ":lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
-keymap("n", "<LEADER>lb", ":lua require('telescope.builtin').lsp_buffer_symbols()<CR>", opts)
+keymap("n", "<LEADER>lb", ":lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
 keymap("n", "<LEADER>ls", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>", opts)
 keymap("n", "<LEADER>lr", ":lua require('telescope.builtin').lsp_references()<CR>", opts)
+keymap("n", "<LEADER>li", ":lua require('telescope.builtin').lsp_implementations()<CR>", opts)
 keymap("n", "<LEADER>ld", ":lua require('telescope.builtin').lsp_definitions()<CR>", opts)
-keymap("n", "<LEADER>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+keymap("n", "<LEADER>lt", ":lua require('telescope.builtin').lsp_type_definitions()<CR>", opts)
+keymap("n", "<LEADER>lf", ":lua vim.lsp.buf.formatting()<CR>", opts)
 
 -- Fuzzy searching
 
 keymap("n", "<LEADER>fd", ":lua require('telescope.builtin').diagnostics()<CR>", opts)
 keymap("n", "<LEADER>ff", ":lua require('telescope.builtin').find_files()<CR>", opts)
 keymap("n", "<LEADER>fg", ":lua require('telescope.builtin').live_grep()<CR>", opts)
-keymap("n", "<LEADER>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
+keymap("n", "<LEADER>fb", ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", opts)
 keymap("n", "<LEADER>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)
 keymap("n", "<LEADER>ft", ":lua require('telescope.builtin').treesitter()<CR>", opts)
 
@@ -94,10 +96,9 @@ keymap("n", "<LEADER>plf", ":PerfLoadFlat<CR>", opts)
 keymap("n", "<LEADER>plg", ":PerfLoadCallGraph<CR>", opts)
 
 keymap("n", "<LEADER>pe", ":PerfPickEvent<CR>", opts)
-keymap("n", "<LEADER>pf", ":PerfCycleFormat<CR>", opts)
 
 keymap("n", "<LEADER>pa", ":PerfAnnotate<CR>", opts)
-keymap("n", "<LEADER>paf", ":PerfAnnotateFunction<CR>", opts)
+keymap("n", "<LEADER>pf", ":PerfAnnotateFunction<CR>", opts)
 keymap("v", "<LEADER>pa", ":PerfAnnotateSelection<CR>", opts)
 
 keymap("n", "<LEADER>pt", ":PerfToggleAnnotations<CR>", opts)
