@@ -65,7 +65,7 @@ keymap("n", "<LEADER>br", ":lua require('dap').repl.open()<CR>", opts)
 -- LSP
 
 keymap("n", "<LEADER>h", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-keymap("n", "<LEADER>d", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
+keymap("n", "<LEADER>d", '<cmd>lua vim.diagnostic.open_float({ border = "rounded", focus = false })<CR>', opts)
 keymap("n", "<LEADER>ln", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 keymap("n", "<LEADER>la", ":lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
 keymap("n", "<LEADER>lb", ":lua require('telescope.builtin').lsp_buffer_symbols()<CR>", opts)
@@ -87,4 +87,22 @@ keymap("n", "<LEADER>ft", ":lua require('telescope.builtin').treesitter()<CR>", 
 
 keymap("n", "<LEADER>gs", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "<LEADER>gr", ":Gitsigns reset_buffer<CR>", opts)
+
+-- Perf Annotations
+
+keymap("n", "<LEADER>plf", ":PerfLoadFlat<CR>", opts)
+keymap("n", "<LEADER>plg", ":PerfLoadCallGraph<CR>", opts)
+
+keymap("n", "<LEADER>pe", ":PerfPickEvent<CR>", opts)
+keymap("n", "<LEADER>pf", ":PerfCycleFormat<CR>", opts)
+
+keymap("n", "<LEADER>pa", ":PerfAnnotate<CR>", opts)
+keymap("n", "<LEADER>paf", ":PerfAnnotateFunction<CR>", opts)
+keymap("v", "<LEADER>pa", ":PerfAnnotateSelection<CR>", opts)
+
+keymap("n", "<LEADER>pt", ":PerfToggleAnnotations<CR>", opts)
+
+keymap("n", "<LEADER>ph", ":PerfHottest<CR>", opts)
+keymap("n", "<LEADER>pc", ":PerfHottestCallersFunction<CR>", opts)
+keymap("v", "<LEADER>pc", ":PerfHottestCallersSelection<CR>", opts)
 

@@ -57,6 +57,7 @@ return packer.startup(function(use)
     use "akinsho/toggleterm.nvim" -- Terminal support
     use "nvim-telescope/telescope.nvim" -- Fuzzy searching
     use "lewis6991/gitsigns.nvim" -- Git integration
+    use "stevearc/dressing.nvim" -- Nicer select / input windows
 
     -- Colorschemes
     use "lunarvim/darkplus.nvim"
@@ -76,11 +77,12 @@ return packer.startup(function(use)
     use "L3MON4D3/LuaSnip" --snippet engine
     -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-    -- LSP & DAP
+    -- Language features
     use "neovim/nvim-lspconfig" -- Enable native LSP (language servers)
     use "williamboman/nvim-lsp-installer" -- Simple to use language server installer
     use "mfussenegger/nvim-dap" -- DAP (debugging servers)
     use "theHamsta/nvim-dap-virtual-text" -- Local variables are displayed through virtual text comments
+    -- use "t-troebst/perfanno.nvim" -- Annotate source code with profiling information from perf
 
     -- Treesitter (syntax highlighting)
     use {
@@ -89,6 +91,9 @@ return packer.startup(function(use)
     }
     use "p00f/nvim-ts-rainbow" -- Rainbow brackets
     use "JoosepAlviste/nvim-ts-context-commentstring" -- Correct comments for sub-languages
+
+    -- Local plugins (development)
+    use "~/Documents/Projects/perfanno.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
