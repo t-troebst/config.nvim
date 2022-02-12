@@ -39,25 +39,29 @@ packer.init {
     },
 }
 
--- Install your plugins here
 return packer.startup(function(use)
     -- Basic plugins
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
 
-    -- Editor functionality
+    -- Basic editor functionality
     use "nvim-lualine/lualine.nvim" -- Fancy status line
     use "akinsho/bufferline.nvim" -- Buffer line
     use "kyazdani42/nvim-tree.lua" -- Nvim file tree / explorer
     use "kyazdani42/nvim-web-devicons" -- Nice icons for Nvim tree
     use "numToStr/Comment.nvim" -- Automatic commenting
-    -- use "bronson/vim-trailing-whitespace" -- Show trailing whitespace
     use "phaazon/hop.nvim" -- Character jumping ala EasyMotion
     use "akinsho/toggleterm.nvim" -- Terminal support
-    use "nvim-telescope/telescope.nvim" -- Fuzzy searching
     use "lewis6991/gitsigns.nvim" -- Git integration
     use "stevearc/dressing.nvim" -- Nicer select / input windows
+
+    -- Fuzzy searching
+    use "nvim-telescope/telescope.nvim" -- Telescope
+    use {
+        "nvim-telescope/telescope-fzf-native.nvim", -- Super fast fuzzy sorter written in C
+        run = "make"
+    }
 
     -- Colorschemes
     use "lunarvim/darkplus.nvim"
@@ -95,8 +99,7 @@ return packer.startup(function(use)
     -- Local plugins (development)
     use "~/Documents/Projects/perfanno.nvim"
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
+    -- Automatically set up configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end

@@ -42,7 +42,9 @@ keymap("n", "<LEADER><SPACE>", ":nohlsearch<CR>", opts)
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 keymap("n", "s", ":HopChar1<CR>", opts)
+keymap("n", "<S-s>", ":HopChar2<CR>", opts)
 keymap("v", "s", ":HopChar1<CR>", opts)
+keymap("v", "<S-s>", ":HopChar2<CR>", opts)
 
 -- Debugging keybinds
 
@@ -103,7 +105,7 @@ keymap("v", "<LEADER>pa", ":PerfAnnotateSelection<CR>", opts)
 
 keymap("n", "<LEADER>pt", ":PerfToggleAnnotations<CR>", opts)
 
-keymap("n", "<LEADER>ph", ":PerfHottest<CR>", opts)
+keymap("n", "<LEADER>ph", ":PerfHottestLines<CR>", opts)
 keymap("n", "<LEADER>pc", ":PerfHottestCallersFunction<CR>", opts)
 keymap("v", "<LEADER>pc", ":PerfHottestCallersSelection<CR>", opts)
 
