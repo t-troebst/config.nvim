@@ -3,34 +3,6 @@ if not status_ok then
 	return
 end
 
-local colors = {
-    blue   = "#569CD6",
-    green  = "#6A9955",
-    rust   = "#CE9178",
-    violet = "#C586C0",
-    bg     = "#252525",
-    dark   = "#101010",
-    grey   = "#303030",
-}
-
-local bubbles_theme = {
-    normal = {
-        a = { fg = colors.black, bg = colors.blue, gui = "bold" },
-        b = { fg = colors.white, bg = colors.grey },
-        c = { fg = colors.black, bg = colors.bg },
-    },
-
-    insert = { a = { fg = colors.black, bg = colors.rust, gui = "bold" } },
-    visual = { a = { fg = colors.black, bg = colors.green, gui = "bold" } },
-    replace = { a = { fg = colors.black, bg = colors.violet, gui = "bold" } },
-
-    inactive = {
-        a = { fg = colors.black, bg = colors.bg, gui = "bold" },
-        b = { fg = colors.white, bg = colors.grey },
-        c = { fg = colors.black, bg = colors.dark },
-    },
-}
-
 local ft_fmt = function(str)
     if str == "" then
         return "none"
@@ -76,32 +48,32 @@ lualine.setup({
 		icons_enabled = true,
 		theme = "auto",
 		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},
 	sections = {
         lualine_a = {
-            { 'mode', separator = { left = '' }, right_padding = 2 },
+            { "mode", separator = { left = "" }, right_padding = 2 },
         },
         lualine_b = { diagnostics, branch },
         lualine_c = {  },
         lualine_x = {},
         lualine_y = { filetype, progress },
         lualine_z = {
-            { "location", separator = { right = '' }, left_padding = 2 },
+            { "location", separator = { right = "" }, left_padding = 2 },
         },
 	},
 	inactive_sections = {
         lualine_a = {
-            { 'mode', separator = { left = '' }, right_padding = 2 },
+            { "mode", separator = { left = "" }, right_padding = 2 },
         },
         lualine_b = { diagnostics, branch },
         lualine_c = {  },
         lualine_x = {},
         lualine_y = { filetype, progress },
         lualine_z = {
-            { "location", separator = { right = '' }, left_padding = 2 },
+            { "location", separator = { right = "" }, left_padding = 2 },
         },
 	},
 	tabline = {},
