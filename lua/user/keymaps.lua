@@ -96,6 +96,7 @@ keymap("n", "<LEADER>gr", ":Gitsigns reset_buffer<CR>", opts)
 
 keymap("n", "<LEADER>plf", ":PerfLoadFlat<CR>", opts)
 keymap("n", "<LEADER>plg", ":PerfLoadCallGraph<CR>", opts)
+keymap("n", "<LEADER>plo", ":PerfLoadFlameGraph<CR>", opts)
 
 keymap("n", "<LEADER>pe", ":PerfPickEvent<CR>", opts)
 
