@@ -53,7 +53,8 @@ return packer.startup(function(use)
     use "numToStr/Comment.nvim" -- Automatic commenting
     use "phaazon/hop.nvim" -- Character jumping ala EasyMotion
     use "akinsho/toggleterm.nvim" -- Terminal support
-    use "lewis6991/gitsigns.nvim" -- Git integration
+    use "lewis6991/gitsigns.nvim" -- Git signs
+    use "tpope/vim-fugitive" -- Git integration
     use "stevearc/dressing.nvim" -- Nicer select / input windows
 
     -- Fuzzy searching
@@ -67,6 +68,7 @@ return packer.startup(function(use)
     use "lunarvim/darkplus.nvim"
     use "EdenEast/nightfox.nvim"
     use "folke/tokyonight.nvim"
+    use "ful1e5/onedark.nvim"
 
     -- Completion
     use "hrsh7th/nvim-cmp" -- Basic completions

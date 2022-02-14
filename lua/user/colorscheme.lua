@@ -1,24 +1,13 @@
--- colorscheme
+-- Colorscheme
 
--- Custom highlights
-
-vim.highlight.create("Breakpoint", {guifg = "#eb4034"}, false)
-vim.highlight.create("Continue", {guifg = "#34eb61"}, false)
-
--- Nordfox
-
--- local status_ok, nightfox = pcall(require, "nightfox")
--- if not status_ok then
---     return
--- end
---
--- nightfox.load("nordfox")
-
--- Tokyo night
-
-vim.g.tokyonight_lualine_bold = true
-
-local status_ok, _ = pcall(vim.cmd, "colorscheme tokyonight")
+local status_ok, onedark = pcall(require, "onedark")
 if not status_ok then
     return
 end
+
+onedark.setup{}
+
+-- Custom highlights for DAP
+
+vim.highlight.create("Breakpoint", {guifg = "#eb4034"}, false)
+vim.highlight.create("Continue", {guifg = "#34eb61"}, false)
