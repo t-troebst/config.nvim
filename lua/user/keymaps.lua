@@ -64,6 +64,15 @@ keymap("n", "<LEADER>bq", ":lua require('dap').terminate()<CR>:DapVirtualTextFor
 keymap("n", "<LEADER>bh", ":lua require('dap.ui.widgets').hover()<CR>", opts)
 keymap("n", "<LEADER>br", ":lua require('dap').repl.open()<CR>", opts)
 
+-- Snippets
+
+keymap("i", "<C-k>", "<Plug>luasnip-expand-or-jump", opts)
+keymap("s", "<C-k>", "<Plug>luasnip-expand-or-jump", opts)
+keymap("i", "<C-j>", "<Plug>luasnip-jump-prev", opts)
+keymap("s", "<C-j>", "<Plug>luasnip-jump-prev", opts)
+keymap("i", "<C-l>", "<Plug>luasnip-next-choice", opts)
+keymap("i", "<C-l>", "<Plug>luasnip-next-choice", opts)
+
 -- LSP
 
 keymap("n", "<LEADER>h", ":lua vim.lsp.buf.hover()<CR>", opts)
@@ -107,6 +116,7 @@ keymap("v", "<LEADER>pa", ":PerfAnnotateSelection<CR>", opts)
 keymap("n", "<LEADER>pt", ":PerfToggleAnnotations<CR>", opts)
 
 keymap("n", "<LEADER>ph", ":PerfHottestLines<CR>", opts)
+keymap("n", "<LEADER>ps", ":PerfHottestSymbols<CR>", opts)
 keymap("n", "<LEADER>pc", ":PerfHottestCallersFunction<CR>", opts)
 keymap("v", "<LEADER>pc", ":PerfHottestCallersSelection<CR>", opts)
 

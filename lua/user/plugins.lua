@@ -75,16 +75,15 @@ return packer.startup(function(use)
     use "hrsh7th/nvim-cmp" -- Basic completions
     use "hrsh7th/cmp-buffer" -- Buffer completions
     use "hrsh7th/cmp-path" -- Path completions
-    use "hrsh7th/cmp-cmdline" -- Command line completions
     use "hrsh7th/cmp-nvim-lsp" -- LSP completions
     use "hrsh7th/cmp-nvim-lua" -- Lua completions
     use "hrsh7th/cmp-nvim-lsp-signature-help" -- Display signature while typing
     use "saadparwaiz1/cmp_luasnip" -- Snippet completions
-    use "hrsh7th/cmp-cmdline" -- Command line completions
+    -- TODO: look into this one
+    -- use "hrsh7th/cmp-cmdline" -- Command line completions
 
     -- Snippets
     use "L3MON4D3/LuaSnip" --snippet engine
-    -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
     -- Language features
     use "neovim/nvim-lspconfig" -- Enable native LSP (language servers)
@@ -99,6 +98,7 @@ return packer.startup(function(use)
         run = ":TSUpdate",
     }
     use "p00f/nvim-ts-rainbow" -- Rainbow brackets
+    -- TODO: check that this actually works...
     use "JoosepAlviste/nvim-ts-context-commentstring" -- Correct comments for sub-languages
 
     -- Local plugins (development)
