@@ -107,6 +107,7 @@ keymap("n", "<LEADER>ft", ":lua require('telescope.builtin').treesitter()<CR>", 
 
 keymap("n", "<LEADER>gb", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "<LEADER>gh", ":Gitsigns stage_hunk<CR>", opts)
+keymap("n", "<LEADER>gc", ":Git commit<CR>", opts)
 keymap("n", "<LEADER>gr", ":Gitsigns reset_buffer<CR>", opts)
 
 -- Perf Annotations
