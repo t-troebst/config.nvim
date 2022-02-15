@@ -8,40 +8,15 @@ if not snip_status_ok then
     return
 end
 
---   פּ ﯟ   some other good icons
-local kind_icons = {
-    Text = "",
-    Method = "m",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
-}
--- find more here: https://www.nerdfonts.com/cheat-sheet
+local lspkind_ok, lspkind = pcall(require, "lspkind")
+if not lspkind_ok then
+    return
+end
 
 cmp.setup {
     mapping = {
-        ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-e>"] = cmp.mapping.close(),
         ["<C-y>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
@@ -67,18 +42,17 @@ cmp.setup {
     },
 
     formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            vim_item.menu = ({
+        format = lspkind.cmp_format {
+            mode = "symbol_text",
+
+            menu = {
+                buffer = "[buf]",
+                path = "[path]",
+                luasnip = "[snip]",
+                nvim_lsp = "[lsp]",
                 nvim_lua = "[api]",
-                nvim_lsp = "[LSP]",
-                luasnip = "[Snip]",
-                path = "[Path]",
-                buffer = "[Buf]",
-            })[entry.source.name]
-            return vim_item
-        end,
+            }
+        }
     },
 
     documentation = {
