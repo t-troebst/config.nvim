@@ -69,6 +69,7 @@ return packer.startup(function(use)
     use "EdenEast/nightfox.nvim"
     use "folke/tokyonight.nvim"
     use "ful1e5/onedark.nvim"
+    use "aktersnurra/no-clown-fiesta.nvim"
 
     -- Completion
     use "hrsh7th/nvim-cmp" -- Basic completions

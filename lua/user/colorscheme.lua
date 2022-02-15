@@ -1,13 +1,8 @@
 -- Colorscheme
 
-local status_ok, onedark = pcall(require, "onedark")
-if not status_ok then
-    return
-end
-
-onedark.setup{}
+vim.cmd[[colorscheme no-clown-fiesta]]
 
 -- Custom highlights for DAP
 
-vim.highlight.create("Breakpoint", {guifg = "#eb4034"}, false)
-vim.highlight.create("Continue", {guifg = "#34eb61"}, false)
+vim.highlight.create("Breakpoint", {guifg = "#AC4142"}, false)
+vim.highlight.create("Continue", {guifg = "#90A959"}, false)
