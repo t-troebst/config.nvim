@@ -117,13 +117,7 @@ ls.snippets = {
     },
 
     cpp = {
-        ls.parser.parse_snippet("main", "int main(${1|,int const argc\\, char const* const* const argv}) {\n\t$0\n}"),
-        snippet("inc", {
-            t("#include "), c(1, {
-                s(nil, {t("<"), r(1, "header"), t(">")}),
-                s(nil, {t("\""), r(1, "header"), t("\"")}),
-            }),
-        }, {stored = {header = i(1, "header")}}),
+        -- Main control flow
         snippet("for", {
             t("for ("),
             c(1, {
@@ -135,7 +129,6 @@ ls.snippets = {
         }, {stored = {elem = i(1, "elem"), range = i(2, "range")}}),
         ls.parser.parse_snippet("while", "while (${1:cond}) {\n\t$0\n}"),
         ls.parser.parse_snippet("do", "do {\n\t$0\n} while (${1:cond});"),
-        ls.parser.parse_snippet("print", "std::cout << $1 << '\\n';"),
         snippet("if", {
             t("if ("),
             c(1, {
@@ -155,12 +148,33 @@ ls.snippets = {
         ls.parser.parse_snippet("e", "else {\n\t$0\n}"),
         ls.parser.parse_snippet("ei", "else if ($1) {\n\t$0\n}"),
         ls.parser.parse_snippet("eic", "else if constexpr ($1) {\n\t$0\n}"),
-        ls.parser.parse_snippet("cinit", "auto const $1 = [&] {\n\t$0\n}();"),
+
+        -- Standard library types / containers
+        ls.parser.parse_snippet("vec", "std::vector<${1:T}>"),
+        ls.parser.parse_snippet("map", "std::unordered_map<${1:Key}, ${2:Value}>"),
+        ls.parser.parse_snippet("imap", "std::map<${1:Key}, ${2:Value}>"),
+        ls.parser.parse_snippet("str", "std::string"),
+        ls.parser.parse_snippet("up", "std:unique_ptr<${1:T}>"),
+        ls.parser.parse_snippet("sp", "std:shared_ptr<${1:T}>"),
+
+        -- Special member functions
+        -- TODO
+
+        -- Other
+        ls.parser.parse_snippet("ip", "${1:range}.begin(), $1.end()"),
+        ls.parser.parse_snippet("print", "std::cout << $1 << '\\n';"),
         snippet("bind", {c(1, {
             s(nil, {t("auto const& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";")}),
             s(nil, {t("auto&& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";")}),
-        })}, {stored = {bindings = i(1, "bindings"), value = i(2, "value")}})
-
+        })}, {stored = {bindings = i(1, "bindings"), value = i(2, "value")}}),
+        ls.parser.parse_snippet("main", "int main(${1|,int const argc\\, char const* const* const argv}) {\n\t$0\n}"),
+        snippet("inc", {
+            t("#include "), c(1, {
+                s(nil, {t("<"), r(1, "header"), t(">")}),
+                s(nil, {t("\""), r(1, "header"), t("\"")}),
+            }),
+        }, {stored = {header = i(1, "header")}}),
+        ls.parser.parse_snippet("cinit", "auto const $1 = [&] {\n\t$0\n}();"),
     },
 
     markdown = {
