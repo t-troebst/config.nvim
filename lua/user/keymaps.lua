@@ -75,7 +75,7 @@ keymap("i", "<C-j>", "<Plug>luasnip-jump-prev", ls_opts)
 keymap("s", "<C-j>", "<Plug>luasnip-jump-prev", ls_opts)
 
 keymap("i", "<C-l>", "<Plug>luasnip-next-choice", ls_opts)
-keymap("i", "<C-l>", "<Plug>luasnip-next-choice", ls_opts)
+keymap("s", "<C-l>", "<Plug>luasnip-next-choice", ls_opts)
 
 keymap("n", "<LEADER>se", ":edit ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
 keymap("n", "<LEADER>ss", ":source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
