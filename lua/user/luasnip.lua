@@ -44,31 +44,22 @@ local query = pcall(require, "vim.treesitter.query")
 -- @return List of parameters, in the order that they appear in the function.
 local function next_fun_parms(linenr)
     local bufnr = vim.api.nvim_get_current_buf()
-    local lang = parsers.get_buf_lang(bufnr)
 
-    if not parsers.has_parser(lang) then
-        return {}
-    end
+    local lang = parsers.get_buf_lang(bufnr)
+    if not parsers.has_parser(lang) then return {} end
 
     local root_tree = parsers.get_parser(bufnr)
-
-    if not root_tree then
-        return {}
-    end
+    if not root_tree then return {} end
 
     local root = ts_utils.get_root_for_position(linenr - 1, 0, root_tree)
+    if not root then return {} end
 
-    if not root then
-        return {}
-    end
-
-    local q = vim.treesitter.parse_query("lua", "(function_declaration parameters: (parameters) @parms)")
+    local q = vim.treesitter.parse_query("lua",
+        "(function_declaration parameters: (parameters) @parms)")
     local parms = {}
 
     local _, captures, _ = q:iter_matches(root, bufnr, linenr, linenr + 100)()
-    if not captures then
-        return {}
-    end
+    if not captures then return {} end
 
     for parm, node_type in captures[1]:iter_children() do
         if node_type == "name" then
