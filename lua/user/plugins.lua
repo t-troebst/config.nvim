@@ -99,7 +99,6 @@ return packer.startup(function(use)
         run = ":TSUpdate",
     }
     use "p00f/nvim-ts-rainbow" -- Rainbow brackets
-    -- TODO: check that this actually works...
     use "JoosepAlviste/nvim-ts-context-commentstring" -- Correct comments for sub-languages
 
     -- Local plugins (development)
