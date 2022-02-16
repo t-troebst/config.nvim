@@ -34,6 +34,7 @@ keymap("n", "<TAB>", "%", opts)
 keymap("v", "<TAB>", "%", opts)
 
 keymap("i", "jk", "<ESC>", opts)
+keymap("s", "jk", "<ESC>", opts)
 
 keymap("n", "<LEADER><SPACE>", ":nohlsearch<CR>", opts)
 
