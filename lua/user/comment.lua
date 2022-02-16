@@ -19,11 +19,4 @@ comment.setup {
             location = location,
         }
     end,
-    toggler = {
-        line = "<LEADER>cc",
-        block = "<LEADER>cb",
-    }
 }
-
-vim.api.nvim_set_keymap("v", "<LEADER>cc", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("v", "<LEADER>cb", "<ESC><CMD>lua require('Comment.api').toggle_blockwise_op(vim.fn.visualmode())<CR>", {noremap = true, silent = true})
