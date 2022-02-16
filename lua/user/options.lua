@@ -37,4 +37,6 @@ vo.shiftwidth = 4
 vo.tabstop = 4
 vo.expandtab = true
 
+vim.g.tex_flavor = "latex"
+
 vim.cmd([[hi! link NonText Normal]])

@@ -25,7 +25,7 @@ ls.config.set_config {
 ls.snippets = {
     all = require("user.snippets.all"),
     cpp = require("user.snippets.cpp"),
-    latex = require("user.snippets.latex"),
+    tex = require("user.snippets.tex"),
     lua = require("user.snippets.lua"),
     markdown = require("user.snippets.markdown"),
     python = require("user.snippets.python")
