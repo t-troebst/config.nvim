@@ -4,6 +4,7 @@ local vo = vim.opt
 
 vo.signcolumn = "yes"
 vo.number = true
+vo.relativenumber = true
 vo.cursorline = true
 
 vo.mouse = "a"
