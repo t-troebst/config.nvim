@@ -1,16 +1,20 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-    return
-end
-
 local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
+local lspkind_ok, lspkind = pcall(require, "lspkind")
+
+if not (cmp_status_ok and snip_status_ok and lspkind_ok) then
     return
 end
 
-local lspkind_ok, lspkind = pcall(require, "lspkind")
-if not lspkind_ok then
-    return
+local timer = vim.loop.new_timer()
+
+--- Starts autocompletion after the given delay.
+-- @param delay Delay in milliseconds.
+function DebounceCMP(delay)
+    timer:stop()
+    timer:start(delay, 0, vim.schedule_wrap(function()
+        cmp.complete({ reason = cmp.ContextReason.Auto })
+    end))
 end
 
 cmp.setup {
@@ -62,5 +66,16 @@ cmp.setup {
     experimental = {
         ghost_text = true,
         native_menu = false,
+    },
+
+    completion = {
+        autocomplete = false  -- We use the debouncing method.
     }
 }
+
+vim.cmd([[
+    augroup CmpDebounceAuGroup
+        au!
+        au TextChangedI * lua DebounceCMP(1000)
+    augroup end
+]])
