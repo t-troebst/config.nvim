@@ -13,8 +13,8 @@ keymap("n", "k", "gk", opts)
 
 keymap("n", "<S-b>", "^", opts)
 keymap("n", "<S-e>", "$", opts)
-keymap("v", "<S-b>", "^", opts)
-keymap("v", "<S-e>", "$", opts)
+keymap("x", "<S-b>", "^", opts)
+keymap("x", "<S-e>", "$", opts)
 
 keymap("n", "<S-j>", "10j", opts)
 keymap("n", "<S-k>", "10k", opts)
