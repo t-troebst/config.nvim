@@ -37,8 +37,7 @@ if not ts_utils_ok then
 end
 
 local query = require("vim.treesitter.query")
-local next_fun_q = vim.treesitter.parse_query("lua",
-    "(function_declaration parameters: (parameters) @parms)")
+local next_fun_q = vim.treesitter.parse_query("lua", "(parameters) @parms")
 
 --- Obtains list of parameter names for the next lua function via treesitter.
 -- @param linenr Line number at which we start searching.
