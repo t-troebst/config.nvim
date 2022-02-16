@@ -32,33 +32,28 @@ local s = ls.snippet_node
 
 -- Needed for fancy snippets
 local ts_utils_ok, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
-local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
-if not (ts_utils_ok and parsers_ok) then
+if not ts_utils_ok then
     return
 end
 
-local query = pcall(require, "vim.treesitter.query")
+local query = require("vim.treesitter.query")
+local next_fun_q = vim.treesitter.parse_query("lua",
+    "(function_declaration parameters: (parameters) @parms)")
 
---- Obtains list of parameter names for the next function via treesitter.
+--- Obtains list of parameter names for the next lua function via treesitter.
 -- @param linenr Line number at which we start searching.
 -- @return List of parameters, in the order that they appear in the function.
 local function next_fun_parms(linenr)
     local bufnr = vim.api.nvim_get_current_buf()
 
-    local lang = parsers.get_buf_lang(bufnr)
-    if not parsers.has_parser(lang) then return {} end
-
-    local root_tree = parsers.get_parser(bufnr)
-    if not root_tree then return {} end
-
-    local root = ts_utils.get_root_for_position(linenr - 1, 0, root_tree)
+    -- TODO: Why is linenr + 1 necessary here?
+    local root = ts_utils.get_root_for_position(linenr + 1, 0)
     if not root then return {} end
 
-    local q = vim.treesitter.parse_query("lua",
-        "(function_declaration parameters: (parameters) @parms)")
     local parms = {}
 
-    local _, captures, _ = q:iter_matches(root, bufnr, linenr, linenr + 100)()
+    local endline = vim.api.nvim_buf_line_count(bufnr)
+    local _, captures, _ = next_fun_q:iter_matches(root, bufnr, linenr - 1, endline - 1)()
     if not captures then return {} end
 
     for parm, node_type in captures[1]:iter_children() do
