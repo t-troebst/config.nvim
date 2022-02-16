@@ -43,8 +43,8 @@ keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 keymap("n", "s", ":HopChar1<CR>", opts)
 keymap("n", "<S-s>", ":HopChar2<CR>", opts)
-keymap("v", "s", ":HopChar1<CR>", opts)
-keymap("v", "<S-s>", ":HopChar2<CR>", opts)
+keymap("x", "s", "<CMD>HopChar1<CR>", opts)
+keymap("x", "<S-s>", "<CMD>HopChar2<CR>", opts)
 
 -- Debugging keybinds
 
