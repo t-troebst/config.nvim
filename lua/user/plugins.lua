@@ -100,6 +100,7 @@ return packer.startup(function(use)
     }
     use "p00f/nvim-ts-rainbow" -- Rainbow brackets
     use "JoosepAlviste/nvim-ts-context-commentstring" -- Correct comments for sub-languages
+    use "nvim-treesitter/playground" -- Useful for debugging / development
 
     -- Local plugins (development)
     use "~/Documents/Projects/perfanno.nvim"
