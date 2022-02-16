@@ -24,10 +24,14 @@ ls.config.set_config {
 
 local snippet = ls.snippet
 local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
 local l = require("luasnip.extras").lambda
+local rep = require("luasnip.extras").rep
 local i = ls.insert_node
 local d = ls.dynamic_node
 local t = ls.text_node
+local r = ls.restore_node
+local c = ls.choice_node
 local s = ls.snippet_node
 
 -- Needed for fancy snippets
@@ -113,9 +117,50 @@ ls.snippets = {
     },
 
     cpp = {
-        ls.parser.parse_snippet("main", "int main() {\n\t$0\n}"),
-        ls.parser.parse_snippet("for", "for (std::size_t ${1:i} = ${2:0}; $1 < ${3:n}; ++$1) {\n\t$0\n}"),
-        ls.parser.parse_snippet("print", "std::cout << $1 << '\\n';")
+        ls.parser.parse_snippet("main", "int main(${1|,int const argc\\, char const* const* const argv}) {\n\t$0\n}"),
+        snippet("inc", {
+            t("#include "), c(1, {
+                s(nil, {t("<"), r(1, "header"), t(">")}),
+                s(nil, {t("\""), r(1, "header"), t("\"")}),
+            }),
+        }, {stored = {header = i(1, "header")}}),
+        snippet("for", {
+            t("for ("),
+            c(1, {
+                s(nil, {t("std::size_t "), i(1, "i"), t(" = "), i(2, "0"), t("; "), rep(1), t(" < "), i(3, "n"), t("; "), rep(1)}),
+                s(nil, {t("const auto& "), r(1, "elem"), t(" : "), r(2, "range")}),
+                s(nil, {t("auto&& "), r(1, "elem"), t(" : "), r(2, "range")})
+            }),
+            t({") {", "\t"}), i(0), t({"", "}"})
+        }, {stored = {elem = i(1, "elem"), range = i(2, "range")}}),
+        ls.parser.parse_snippet("while", "while (${1:cond}) {\n\t$0\n}"),
+        ls.parser.parse_snippet("do", "do {\n\t$0\n} while (${1:cond});"),
+        ls.parser.parse_snippet("print", "std::cout << $1 << '\\n';"),
+        snippet("if", {
+            t("if ("),
+            c(1, {
+                r(1, "cond"),
+                s(nil, {i(1, "init"), t("; "), r(2, "cond")})
+            }),
+            t({") {", "\t"}), i(0), t({"", "}"})
+        }, {stored = {cond = i(1, "cond")}}),
+        snippet("ifc", {
+            t("if constexpr ("),
+            c(1, {
+                r(1, "cond"),
+                s(nil, {i(1, "init"), t("; "), r(2, "cond")})
+            }),
+            t({") {", "\t"}), i(0), t({"", "}"})
+        }, {stored = {cond = i(1, "cond")}}),
+        ls.parser.parse_snippet("e", "else {\n\t$0\n}"),
+        ls.parser.parse_snippet("ei", "else if ($1) {\n\t$0\n}"),
+        ls.parser.parse_snippet("eic", "else if constexpr ($1) {\n\t$0\n}"),
+        ls.parser.parse_snippet("cinit", "auto const $1 = [&] {\n\t$0\n}();"),
+        snippet("bind", {c(1, {
+            s(nil, {t("auto const& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";")}),
+            s(nil, {t("auto&& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";")}),
+        })}, {stored = {bindings = i(1, "bindings"), value = i(2, "value")}})
+
     },
 
     markdown = {
