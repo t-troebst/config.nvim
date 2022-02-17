@@ -59,10 +59,7 @@ return packer.startup(function(use)
 
     -- Fuzzy searching
     use "nvim-telescope/telescope.nvim" -- Telescope
-    use {
-        "nvim-telescope/telescope-fzf-native.nvim", -- Super fast fuzzy sorter written in C
-        run = "make"
-    }
+    use "natecraddock/telescope-zf-native.nvim" -- Better matches for files
 
     -- Colorschemes
     use "lunarvim/darkplus.nvim"
