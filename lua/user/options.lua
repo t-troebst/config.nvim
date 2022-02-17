@@ -38,5 +38,6 @@ vo.tabstop = 4
 vo.expandtab = true
 
 vim.g.tex_flavor = "latex"
+vim.g.python3_host_prog = "/usr/bin/python3"
 
 vim.cmd([[hi! link NonText Normal]])

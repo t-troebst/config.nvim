@@ -100,10 +100,11 @@ return packer.startup(function(use)
     }
     use "p00f/nvim-ts-rainbow" -- Rainbow brackets
     use "JoosepAlviste/nvim-ts-context-commentstring" -- Correct comments for sub-languages
-    use "nvim-treesitter/playground" -- Useful for debugging / development
 
-    -- Local plugins (development)
+    -- Plugin Development
     use "~/Documents/Projects/perfanno.nvim"
+    use "nvim-treesitter/playground" -- Useful for debugging of treesitter
+    use "dstein64/vim-startuptime" -- Measure startup time of neovim
 
     -- Automatically set up configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
