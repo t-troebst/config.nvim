@@ -3,6 +3,7 @@
 local ls = require("luasnip")
 local query = require("vim.treesitter.query")
 local snippet = ls.snippet
+local l = require("luasnip.extras").lambda
 local rep = require("luasnip.extras").rep
 local i = ls.insert_node
 local d = ls.dynamic_node
@@ -19,7 +20,12 @@ if not ts_utils_ok then
     return {}
 end
 
-local cpp_classes = vim.treesitter.parse_query("cpp", "[(struct_specifier name: (type_identifier) @name) (class_specifier name: (type_identifier) @name)] @class")
+local cpp_classes = vim.treesitter.parse_query("cpp", [[
+    [
+        (struct_specifier name: [((type_identifier) @name) (template_type name: (type_identifier) @name)])
+        (class_specifier name: [((type_identifier) @name) (template_type name: (type_identifier) @name)])
+    ] @class
+]])
 
 --- Returns list of all C++ classes or structs in the language tree that contains a given line.
 -- @param linenr Line number that will be used to get the language tree.
@@ -151,7 +157,7 @@ return {
         if cname then
             return s(nil, {t({cname .. "(" .. cname .. " const& other) {", "\t"}), i(1), t({"", "}"})})
         else
-            return s(nil, {i(1, "Class"), t("::"), rep(1), t("("), rep(1), t({" const& other) {", "\t"}), i(2), t({"", "}"})})
+            return s(nil, {i(1, "Class"), t("::"), l(l._1:match("([^<]*)"), 1), t("("), l(l._1:match("([^<]*)"),1), t({" const& other) {", "\t"}), i(2), t({"", "}"})})
         end
     end)}),
     snippet("mconsi", {d(1, function(_, snip)
@@ -160,7 +166,7 @@ return {
         if cname then
             return s(nil, {t({cname .. "(" .. cname .. "&& other) noexcept {", "\t"}), i(1), t({"", "}"})})
         else
-            return s(nil, {i(1, "Class"), t("::"), rep(1), t("("), rep(1), t({"&& other) noexcept {", "\t"}), i(2), t({"", "}"})})
+            return s(nil, {i(1, "Class"), t("::"), l(l._1:match("([^<]*)"), 1), t("("), l(l._1:match("([^<]*)"), 1), t({"&& other) noexcept {", "\t"}), i(2), t({"", "}"})})
         end
     end)}),
     snippet("cassi", {d(1, function(_, snip)
@@ -169,7 +175,7 @@ return {
         if cname then
             return s(nil, {t({cname .. "& operator=(" .. cname .. " const& other) {", "\t"}), i(1), t({"", "\treturn *this;", "}"})})
         else
-            return s(nil, {i(1, "Class"), t("& "), rep(1), t("::operator=("), rep(1), t({" const& other) {", "\t"}), i(2), t({"", "\treturn *this;", "}"})})
+            return s(nil, {i(1, "Class"), t("& "), rep(1), t("::operator=("), l(l._1:match("([^<*])"), 1), t({" const& other) {", "\t"}), i(2), t({"", "\treturn *this;", "}"})})
         end
     end)}),
     snippet("massi", {d(1, function(_, snip)
@@ -178,7 +184,7 @@ return {
         if cname then
             return s(nil, {t({cname .. "& operator=(" .. cname .. "&& other) noexcept {", "\t"}), i(1), t({"", "\treturn *this;", "}"})})
         else
-            return s(nil, {i(1, "Class"), t("& "), rep(1), t("::operator=("), rep(1), t({"&& other) noexcept {", "\t"}), i(2), t({"", "\treturn *this;", "}"})})
+            return s(nil, {i(1, "Class"), t("& "), rep(1), t("::operator=("), l(l._1:match("([^<]*)"), 1), t({"&& other) noexcept {", "\t"}), i(2), t({"", "\treturn *this;", "}"})})
         end
     end)}),
     snippet("desi", {d(1, function(_, snip)
@@ -187,7 +193,7 @@ return {
         if cname then
             return s(nil, {t({"~" .. cname .. "() {", "\t"}), i(1), t({"", "}"})})
         else
-            return s(nil, {i(1, "Class"), t("::~"), rep(1), t({"() {", "\t"}), i(2), t({"", "}"})})
+            return s(nil, {i(1, "Class"), t("::~"), l(l._1:match("([^<]*)"), 1), t({"() {", "\t"}), i(2), t({"", "}"})})
         end
     end)}),
 
@@ -206,4 +212,5 @@ return {
         }),
     }, {stored = {header = i(1, "header")}}),
     ls.parser.parse_snippet("cinit", "auto const $1 = [&] {\n\t$0\n}();"),
+
 }
