@@ -21,7 +21,8 @@ item_rec = function(_, _, _, depth)
 end
 
 return {
-    ls.parser.parse_snippet("env", "\\begin{$1}\n\t${0:\\TODO}\n\\end{$1}"),
+    ls.parser.parse_snippet("env", "\\begin{$1}$2\n\t${0:\\TODO}\n\\end{$1}"),
+
     ls.parser.parse_snippet("ct", "\\cite{$1}"),
     ls.parser.parse_snippet("r", "\\ref{$1}"),
     ls.parser.parse_snippet("l", "\\label{$1}"),
