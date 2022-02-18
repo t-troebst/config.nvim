@@ -16,31 +16,48 @@ if not ts_utils_ok then
 end
 
 local query = require("vim.treesitter.query")
-local next_fun_q = vim.treesitter.parse_query("lua", "(parameters) @parms")
+local function_q = vim.treesitter.parse_query("lua",[[
+    [
+        (function_declaration parameters: (parameters) @parms)
+        (function_definition parameters: (parameters) @parms)
+    ] @fun
+]])
+-- This only matches returns that actually return something, so early return can still be used for
+-- control flow!
+local return_q = vim.treesitter.parse_query("lua", "(return_statement (expression_list)) @ret")
 
---- Obtains list of parameter names for the next lua function via treesitter.
+--- Obtains list of parameter names for the next lua function and whether it returns something.
 -- @param linenr Line number at which we start searching.
--- @return List of parameters, in the order that they appear in the function.
+-- @return parms, ret where parms is a list of parameters, in the order that they appear in the
+--         function and ret is true if the function ever returns something.
 local function next_fun_parms(linenr)
     local bufnr = vim.api.nvim_get_current_buf()
 
-    -- TODO: Why is linenr + 1 necessary here?
+    -- TODO: Why is linenr + 1 necessary here? Without this, the code doesn't work if we're in the
+    -- first non-empty line of the document. But treesitter does 0-indexed lines??
     local root = ts_utils.get_root_for_position(linenr + 1, 0)
-    if not root then return {} end
+    if not root then return end
+
+    -- TODO: For some strange reason we cannot find functions that are entirely on the last line of
+    -- the file, no matter what we input for the end of the range. :/
+    local _, captures, _ = function_q:iter_matches(root, bufnr, linenr - 1, root:end_())()
+    if not captures then return end
 
     local parms = {}
-
-    local endline = vim.api.nvim_buf_line_count(bufnr)
-    local _, captures, _ = next_fun_q:iter_matches(root, bufnr, linenr - 1, endline - 1)()
-    if not captures then return {} end
-
     for parm, node_type in captures[1]:iter_children() do
+        -- Parameters are given via "name" nodes, other nodes might be comments etc.
         if node_type == "name" then
             table.insert(parms, query.get_node_text(parm, bufnr))
         end
     end
 
-    return parms
+    local returns = return_q:iter_matches(captures[2], bufnr)()
+
+    if returns then
+        return parms, true
+    end
+
+    return parms, false
 end
 
 return {
@@ -64,19 +81,24 @@ return {
         })
     ),
     snippet("doc", {
-        t("--- "),
+        t"--- ",
         i(1, "Function description."),
         d(2, function(_, snip)
-            local parm_nodes = {}
+            local parms, ret = next_fun_parms(tonumber(snip.env.TM_LINE_NUMBER))
+            assert(parms, "Did not find a function!")
 
-            for j, parm in ipairs(next_fun_parms(tonumber(snip.env.TM_LINE_NUMBER))) do
-                table.insert(parm_nodes, t({"", "-- @param " .. parm .. " "}))
+            local parm_nodes = {}
+            for j, parm in ipairs(parms) do
+                table.insert(parm_nodes, t{"", "-- @param " .. parm .. " "})
                 table.insert(parm_nodes, i(j, "Parameter description."))
             end
 
+            if ret then
+                table.insert(parm_nodes, t{"", "-- @return "})
+                table.insert(parm_nodes, i(#parms + 1, "Return description."))
+            end
+
             return s(1, parm_nodes)
-        end, {}),
-        t({"", "-- @return "}),
-        i(3, "Return description.")
+        end),
     })
 }
