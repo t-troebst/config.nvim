@@ -1,8 +1,8 @@
 -- Colorscheme
 
-vim.cmd[[colorscheme no-clown-fiesta]]
+vim.cmd[[colorscheme rose-pine]]
 
 -- Custom highlights for DAP
 
-vim.highlight.create("Breakpoint", {guifg = "#AC4142"}, false)
-vim.highlight.create("Continue", {guifg = "#90A959"}, false)
+vim.highlight.create("Breakpoint", {guifg = "#eb6f92"}, false)
+vim.highlight.create("Continue", {guifg = "#31748f"}, false)

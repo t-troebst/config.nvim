@@ -61,12 +61,8 @@ return packer.startup(function(use)
     use "natecraddock/telescope-zf-native.nvim" -- Better matches for files
     use "nvim-telescope/telescope-file-browser.nvim" -- Nice file browser for Telescope
 
-    -- Colorschemes
-    use "lunarvim/darkplus.nvim"
-    use "EdenEast/nightfox.nvim"
-    use "folke/tokyonight.nvim"
-    use "ful1e5/onedark.nvim"
-    use "aktersnurra/no-clown-fiesta.nvim"
+    -- Colorscheme
+    use {"catppuccin/nvim", as = "catppuccin"}
 
     -- Completion
     use "hrsh7th/nvim-cmp" -- Basic completions
