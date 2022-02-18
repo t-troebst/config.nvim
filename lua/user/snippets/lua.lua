@@ -56,11 +56,11 @@ local function next_fun_parms(linenr)
 end
 
 return {
-    ls.parser.parse_snippet("for", "for ${1:i} = ${2:0}, ${3:n} do\n\t$0\nend"),
+    ls.parser.parse_snippet("for", "for ${1:i} = ${2:1}, ${3:n} do\n\t$0\nend"),
     ls.parser.parse_snippet("fun", "local function ${1:name}($2)\n\t$0\nend"),
     ls.parser.parse_snippet("mfun", "function M.${1:name}($2)\n\t$0\nend"),
-    ls.parser.parse_snippet("pairs", "for ${2:key}, ${3:value} in pairs($1) do\n\t$0\nend"),
-    ls.parser.parse_snippet("ipairs", "for ${2:i}, ${3:value} in pairs($1) do\n\t$0\nend"),
+    ls.parser.parse_snippet("pairs", "for ${1:key}, ${2:value} in pairs($3) do\n\t$0\nend"),
+    ls.parser.parse_snippet("ipairs", "for ${1:i}, ${2:value} in ipairs($3) do\n\t$0\nend"),
     ls.parser.parse_snippet("if", "if ${1:cond} then\n\t$0\nend"),
     ls.parser.parse_snippet("ifn", "if not ${1:cond} then\n\t$0\nend"),
     snippet("req",
