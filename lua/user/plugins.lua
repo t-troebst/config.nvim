@@ -48,8 +48,7 @@ return packer.startup(function(use)
     -- Basic editor functionality
     use "nvim-lualine/lualine.nvim" -- Fancy status line
     use "akinsho/bufferline.nvim" -- Buffer line
-    use "kyazdani42/nvim-tree.lua" -- Nvim file tree / explorer
-    use "kyazdani42/nvim-web-devicons" -- Nice icons for Nvim tree
+    use "kyazdani42/nvim-web-devicons" -- Nice icons for Nvim tree and other plugins
     use "numToStr/Comment.nvim" -- Automatic commenting
     use "phaazon/hop.nvim" -- Character jumping ala EasyMotion
     use "akinsho/toggleterm.nvim" -- Terminal support
@@ -60,6 +59,7 @@ return packer.startup(function(use)
     -- Fuzzy searching
     use "nvim-telescope/telescope.nvim" -- Telescope
     use "natecraddock/telescope-zf-native.nvim" -- Better matches for files
+    use "nvim-telescope/telescope-file-browser.nvim" -- Nice file browser for Telescope
 
     -- Colorschemes
     use "lunarvim/darkplus.nvim"
