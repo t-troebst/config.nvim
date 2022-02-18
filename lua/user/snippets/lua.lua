@@ -29,7 +29,7 @@ local return_q = vim.treesitter.parse_query("lua", "(return_statement (expressio
 --- Obtains list of parameter names for the next lua function and whether it returns something.
 -- @param linenr Line number at which we start searching.
 -- @return parms, ret where parms is a list of parameters, in the order that they appear in the
---         function and ret is true if the function ever returns something.
+--         function and ret is truthy if the function ever returns something.
 local function next_fun_parms(linenr)
     local bufnr = vim.api.nvim_get_current_buf()
 
@@ -52,12 +52,7 @@ local function next_fun_parms(linenr)
     end
 
     local returns = return_q:iter_matches(captures[2], bufnr)()
-
-    if returns then
-        return parms, true
-    end
-
-    return parms, false
+    return parms, returns
 end
 
 return {
