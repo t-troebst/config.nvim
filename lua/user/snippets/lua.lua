@@ -59,6 +59,7 @@ end
 return {
     ls.parser.parse_snippet("for", "for ${1:i} = ${2:1}, ${3:n} do\n\t$0\nend"),
     ls.parser.parse_snippet("fun", "local function ${1:name}($2)\n\t$0\nend"),
+    ls.parser.parse_snippet("while", "while ${1:cond} do\n\t$0\nend"),
     ls.parser.parse_snippet("mfun", "function M.${1:name}($2)\n\t$0\nend"),
     ls.parser.parse_snippet("pairs", "for ${1:key}, ${2:value} in pairs($3) do\n\t$0\nend"),
     ls.parser.parse_snippet("ipairs", "for ${1:i}, ${2:value} in ipairs($3) do\n\t$0\nend"),
@@ -71,7 +72,7 @@ return {
         })
     ),
     snippet("preq",
-        fmt("local {1}_ok, {1} = pcall(require, \"{}\")\nif not {1}_ok then\n\treturn\nend", {
+        fmt("local {1}_ok, {1} = pcall(require, \"{}\")\nif not {1}_ok then return end", {
             l(l._1:match("[^.]*$"):gsub("[^%a]+", "_"), 1),
             i(1, "module")
         })

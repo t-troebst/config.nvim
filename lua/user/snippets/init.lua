@@ -22,12 +22,20 @@ ls.config.set_config {
 
 -- Set up actual snippets, TODO: lazy loading
 
+--- Reloads snippets for a given language, useful for editing snippets without restarting.
+-- @param lang Language / filetype name.
+-- @return Module containing the snippets.
+local function reload_snips(lang)
+    package.loaded["user.snippets." .. lang] = nil
+    return require("user.snippets." .. lang)
+end
+
 ls.snippets = {
-    all = require("user.snippets.all"),
-    cpp = require("user.snippets.cpp"),
-    latex = require("user.snippets.tex"),
-    lua = require("user.snippets.lua"),
-    markdown = require("user.snippets.markdown"),
-    python = require("user.snippets.python")
+    all = reload_snips("all"),
+    cpp = reload_snips("cpp"),
+    latex = reload_snips("tex"),
+    lua = reload_snips("lua"),
+    markdown = reload_snips("markdown"),
+    python = reload_snips("python")
 }
 
