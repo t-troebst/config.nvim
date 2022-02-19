@@ -34,25 +34,34 @@ local function next_fun_parms(linenr)
     local bufnr = vim.api.nvim_get_current_buf()
 
     -- TODO: Why is linenr + 1 necessary here? Without this, the code doesn't work if we're in the
-    -- first non-empty line of the document. But treesitter does 0-indexed lines??
+    -- first non-empty line of the document. Initial thought: get_root_for_position only works if
+    -- we're actually *inside* some treesitter node. However, this doesn't seem to be the case: this
+    -- code now works even if there are many empty lines...
+    -- TODO: Doesn't work if we land inside of a comment block because that's a different
+    -- "language".
     local root = ts_utils.get_root_for_position(linenr + 1, 0)
     if not root then return end
 
     -- TODO: For some strange reason we cannot find functions that are entirely on the last line of
-    -- the file, no matter what we input for the end of the range. :/
-    local _, captures, _ = function_q:iter_matches(root, bufnr, linenr - 1, root:end_())()
-    if not captures then return end
+    -- the file, no matter what we input for the end of the range. Seems like a bug?
+    for _, captures, _ in function_q:iter_matches(root, bufnr, linenr - 1, root:end_()) do
+        local sline = captures[1]:range()
 
-    local parms = {}
-    for parm, node_type in captures[1]:iter_children() do
-        -- Parameters are given via "name" nodes, other nodes might be comments etc.
-        if node_type == "name" then
-            table.insert(parms, query.get_node_text(parm, bufnr))
+        -- TODO: Why is this sometimes *not* true? Isn't that what the third argument in
+        -- iter_matches is supposed to *guarantee*?
+        if sline >= linenr - 1 then
+            local parms = {}
+            for parm, node_type in captures[1]:iter_children() do
+                -- Parameters are given via "name" nodes, other nodes might be comments etc.
+                if node_type == "name" then
+                    table.insert(parms, query.get_node_text(parm, bufnr))
+                end
+            end
+
+            local returns = return_q:iter_matches(captures[2], bufnr)()
+            return parms, returns
         end
     end
-
-    local returns = return_q:iter_matches(captures[2], bufnr)()
-    return parms, returns
 end
 
 return {
