@@ -33,13 +33,9 @@ local return_q = vim.treesitter.parse_query("lua", "(return_statement (expressio
 local function next_fun_parms(linenr)
     local bufnr = vim.api.nvim_get_current_buf()
 
-    -- TODO: Why is linenr + 1 necessary here? Without this, the code doesn't work if we're in the
-    -- first non-empty line of the document. Initial thought: get_root_for_position only works if
-    -- we're actually *inside* some treesitter node. However, this doesn't seem to be the case: this
-    -- code now works even if there are many empty lines...
     -- TODO: Doesn't work if we land inside of a comment block because that's a different
     -- "language".
-    local root = ts_utils.get_root_for_position(linenr + 1, 0)
+    local root = ts_utils.get_root_for_position(linenr - 1, 0)
     if not root then return end
 
     -- TODO: For some strange reason we cannot find functions that are entirely on the last line of
