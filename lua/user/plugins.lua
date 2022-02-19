@@ -62,7 +62,7 @@ return packer.startup(function(use)
     use "nvim-telescope/telescope-file-browser.nvim" -- Nice file browser for Telescope
 
     -- Colorscheme
-    use {"catppuccin/nvim", as = "catppuccin"}
+    use {"rose-pine/neovim", as = "rose-pine.nvim"}
 
     -- Completion
     use "hrsh7th/nvim-cmp" -- Basic completions
