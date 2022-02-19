@@ -38,13 +38,9 @@ local function next_fun_parms(linenr)
     local root = ts_utils.get_root_for_position(linenr - 1, 0)
     if not root then return end
 
-    -- TODO: For some strange reason we cannot find functions that are entirely on the last line of
-    -- the file, no matter what we input for the end of the range. Seems like a bug?
-    for _, captures, _ in function_q:iter_matches(root, bufnr, linenr - 1, root:end_()) do
+    for _, captures, _ in function_q:iter_matches(root, bufnr) do
         local sline = captures[1]:range()
 
-        -- TODO: Why is this sometimes *not* true? Isn't that what the third argument in
-        -- iter_matches is supposed to *guarantee*?
         if sline >= linenr - 1 then
             local parms = {}
             for parm, node_type in captures[1]:iter_children() do
