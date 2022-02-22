@@ -1,4 +1,4 @@
--- plugins
+-- Plugins
 
 local fn = vim.fn
 
@@ -34,7 +34,7 @@ end
 packer.init {
     display = {
         open_fn = function()
-            return require("packer.util").float { border = "rounded" }
+            return require("packer.util").float{border = "rounded"}
         end,
     },
 }
@@ -83,7 +83,7 @@ return packer.startup(function(use)
     use "neovim/nvim-lspconfig" -- Enable native LSP (language servers)
     use "williamboman/nvim-lsp-installer" -- Simple to use language server installer
     use "mfussenegger/nvim-dap" -- DAP (debugging servers)
-    use "theHamsta/nvim-dap-virtual-text" -- Local variables are displayed through virtual text comments
+    use "theHamsta/nvim-dap-virtual-text" -- Local variables are displayed through virtual text
     -- use "t-troebst/perfanno.nvim" -- Annotate source code with profiling information from perf
 
     -- Treesitter (syntax highlighting)
