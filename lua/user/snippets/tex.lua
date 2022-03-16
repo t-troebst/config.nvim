@@ -16,7 +16,7 @@ local item_rec
 item_rec = function(_, _, _, depth)
     return s(nil, c(1, {
         s(nil, {t("\\item "), r(1, "item" .. tostring(depth), i(1, "\\TODO"))}),
-        s(nil, {t{"\\item "}, r(1, "item" .. tostring(depth)), t{"", "\t"}, d(2, item_rec, {}, depth + 1)})
+        s(nil, {t{"\\item "}, r(1, "item" .. tostring(depth)), t{"", "\t"}, d(2, item_rec, {}, {user_args = {depth + 1}})})
     }))
 end
 
@@ -43,10 +43,10 @@ return {
     ls.parser.parse_snippet("proof", "\\begin{proof}\n\t${0:\\TODO}\n\\end{proof}"),
     ls.parser.parse_snippet("frame", "\\begin{frame}{${1:\\TODO: Title}}\n\t${0:\\TODO}\n\\end{frame}"),
     snippet("enum", {
-        t{"\\begin{enumerate}", "\t\\item "}, i(1, "\\TODO"), t{"", "\t"}, d(2, item_rec, {}, 1), t{"", "\\end{enumerate}"}
+        t{"\\begin{enumerate}", "\t\\item "}, i(1, "\\TODO"), t{"", "\t"}, d(2, item_rec, {}, {user_args = {1}}), t{"", "\\end{enumerate}"}
     }),
     snippet("item", {
-        t{"\\begin{itemize}", "\t\\item "}, i(1, "\\TODO"), t{"", "\t"}, d(2, item_rec, {}, 1), t{"", "\\end{itemize}"}
+        t{"\\begin{itemize}", "\t\\item "}, i(1, "\\TODO"), t{"", "\t"}, d(2, item_rec, {}, {user_args = {1}}), t{"", "\\end{itemize}"}
     }),
 
     -- Figures and tables
@@ -65,5 +65,6 @@ return {
         s(nil, {t"\\left(", i(1), t"\\right)"}),
         s(nil, {t"\\left{", i(1), t"\\right}"}),
         s(nil, {t"\\left[", i(1), t"\\right]"})
-    }))
+    })),
+    ls.parser.parse_snippet("s", "\\sum_{$1}^{$2}{$3}")
 }
