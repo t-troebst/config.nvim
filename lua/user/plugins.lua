@@ -55,11 +55,11 @@ return packer.startup(function(use)
     use "lewis6991/gitsigns.nvim" -- Git signs
     use "tpope/vim-fugitive" -- Git integration
     use "stevearc/dressing.nvim" -- Nicer select / input windows
+    use "kyazdani42/nvim-tree.lua" -- File browser
 
     -- Fuzzy searching
     use "nvim-telescope/telescope.nvim" -- Telescope
     use "natecraddock/telescope-zf-native.nvim" -- Better matches for files
-    use "nvim-telescope/telescope-file-browser.nvim" -- Nice file browser for Telescope
 
     -- Colorscheme
     use {"rose-pine/neovim", as = "rose-pine.nvim"}
@@ -84,7 +84,7 @@ return packer.startup(function(use)
     use "williamboman/nvim-lsp-installer" -- Simple to use language server installer
     use "mfussenegger/nvim-dap" -- DAP (debugging servers)
     use "theHamsta/nvim-dap-virtual-text" -- Local variables are displayed through virtual text
-    -- use "t-troebst/perfanno.nvim" -- Annotate source code with profiling information from perf
+    use "t-troebst/perfanno.nvim" -- Annotate source code with profiling information from perf
 
     -- Treesitter (syntax highlighting)
     use {
@@ -95,7 +95,7 @@ return packer.startup(function(use)
     use "JoosepAlviste/nvim-ts-context-commentstring" -- Correct comments for sub-languages
 
     -- Plugin Development
-    use "~/Documents/Projects/perfanno.nvim"
+    --  use "~/Documents/Projects/perfanno.nvim"
     use "nvim-treesitter/playground" -- Useful for debugging of treesitter
     use "dstein64/vim-startuptime" -- Measure startup time of neovim
 

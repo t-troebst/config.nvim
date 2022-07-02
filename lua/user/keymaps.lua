@@ -40,7 +40,7 @@ keymap("n", "<LEADER><SPACE>", ":nohlsearch<CR>", opts)
 
 -- Plugins
 
-keymap("n", "<C-n>", ":Telescope file_browser path=%:p:h<CR>", opts)
+keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 keymap("n", "s", ":HopChar1<CR>", opts)
 keymap("n", "<S-s>", ":HopChar2<CR>", opts)
