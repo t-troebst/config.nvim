@@ -21,6 +21,7 @@ item_rec = function(_, _, _, depth)
 end
 
 return {
+    ls.parser.parse_snippet("pack", "\\usepackage{$1}"),
     ls.parser.parse_snippet("env", "\\begin{$1}$2\n\t${0:\\TODO}\n\\end{$1}"),
 
     ls.parser.parse_snippet("ct", "\\cite{$1}"),
@@ -63,7 +64,7 @@ return {
     ls.parser.parse_snippet("fr", "\\frac{$1}{$2}"),
     snippet("lr", c(1, {
         s(nil, {t"\\left(", i(1), t"\\right)"}),
-        s(nil, {t"\\left{", i(1), t"\\right}"}),
+        s(nil, {t"\\left\\{", i(1), t"\\right\\}"}),
         s(nil, {t"\\left[", i(1), t"\\right]"})
     })),
     ls.parser.parse_snippet("s", "\\sum_{$1}^{$2}{$3}")
