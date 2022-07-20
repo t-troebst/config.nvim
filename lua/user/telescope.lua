@@ -4,3 +4,4 @@ if not status_ok then
 end
 
 telescope.load_extension("zf-native")
+telescope.load_extension("workspaces")

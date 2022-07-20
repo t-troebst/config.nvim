@@ -93,6 +93,7 @@ keymap("n", "<LEADER>lr", ":lua require('telescope.builtin').lsp_references()<CR
 keymap("n", "<LEADER>li", ":lua require('telescope.builtin').lsp_implementations()<CR>", opts)
 keymap("n", "<LEADER>ld", ":lua require('telescope.builtin').lsp_definitions()<CR>", opts)
 keymap("n", "<LEADER>lt", ":lua require('telescope.builtin').lsp_type_definitions()<CR>", opts)
+keymap("n", "<LEADER>lw", ":Telescope workspaces<CR>", opts)
 keymap("n", "<LEADER>lf", ":lua vim.lsp.buf.formatting()<CR>", opts)
 
 -- Fuzzy searching

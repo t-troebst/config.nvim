@@ -56,6 +56,7 @@ return packer.startup(function(use)
     use "tpope/vim-fugitive" -- Git integration
     use "stevearc/dressing.nvim" -- Nicer select / input windows
     use "kyazdani42/nvim-tree.lua" -- File browser
+    use "natecraddock/workspaces.nvim" -- Workspace management
 
     -- Fuzzy searching
     use "nvim-telescope/telescope.nvim" -- Telescope
