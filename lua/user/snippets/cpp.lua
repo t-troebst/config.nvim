@@ -204,7 +204,7 @@ return {
         s(nil, {t("auto const& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";")}),
         s(nil, {t("auto&& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";")}),
     })}, {stored = {bindings = i(1, "bindings"), value = i(2, "value")}}),
-    ls.parser.parse_snippet("main", "int main(${1|,int const argc\\, char const* const* const argv}) {\n\t$0\n}"),
+    ls.parser.parse_snippet("main", "int main(${1|,int const argc\\, char const* const* const argv }) {\n\t$0\n}"),
     snippet("inc", {
         t("#include "), c(1, {
             s(nil, {t("<"), r(1, "header"), t(">")}),
