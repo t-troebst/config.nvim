@@ -82,6 +82,7 @@ return packer.startup(function(use)
 
     -- Language features
     use "neovim/nvim-lspconfig" -- Enable native LSP (language servers)
+    use "jose-elias-alvarez/null-ls.nvim" -- Integrate linters / formatters / etc.
     use "williamboman/mason.nvim" -- Installer for language servers etc.
     use "williamboman/mason-lspconfig.nvim" -- Integration of Mason with LspConfig
     use "mfussenegger/nvim-dap" -- DAP (debugging servers)
