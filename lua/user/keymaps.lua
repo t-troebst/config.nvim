@@ -86,15 +86,15 @@ keymap("n", "<LEADER>ss", ":source ~/.config/nvim/lua/user/snippets/init.lua<CR>
 keymap("n", "<LEADER>h", ":lua vim.lsp.buf.hover()<CR>", opts)
 keymap("n", "<LEADER>d", ':lua vim.diagnostic.open_float({ border = "rounded", focus = false })<CR>', opts)
 keymap("n", "<LEADER>ln", ":lua vim.lsp.buf.rename()<CR>", opts)
-keymap("n", "<LEADER>la", ":lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
+keymap("n", "<LEADER>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
 keymap("n", "<LEADER>lb", ":lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
 keymap("n", "<LEADER>ls", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>", opts)
 keymap("n", "<LEADER>lr", ":lua require('telescope.builtin').lsp_references()<CR>", opts)
 keymap("n", "<LEADER>li", ":lua require('telescope.builtin').lsp_implementations()<CR>", opts)
 keymap("n", "<LEADER>ld", ":lua require('telescope.builtin').lsp_definitions()<CR>", opts)
 keymap("n", "<LEADER>lt", ":lua require('telescope.builtin').lsp_type_definitions()<CR>", opts)
-keymap("n", "<LEADER>lw", ":Telescope workspaces<CR>", opts)
 keymap("n", "<LEADER>lf", ":lua vim.lsp.buf.formatting()<CR>", opts)
+keymap("n", "<LEADER>lh", ":ClangdSwitchSourceHeader<CR>", opts)
 
 -- Fuzzy searching
 
@@ -105,11 +105,14 @@ keymap("n", "<LEADER>fc", ":lua require('telescope.builtin').git_status()<CR>", 
 keymap("n", "<LEADER>fb", ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", opts)
 keymap("n", "<LEADER>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)
 keymap("n", "<LEADER>ft", ":lua require('telescope.builtin').treesitter()<CR>", opts)
+keymap("n", "<LEADER>fw", ":Telescope workspaces<CR>", opts)
 
 -- Git
 
 keymap("n", "<LEADER>gb", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "<LEADER>gh", ":Gitsigns stage_hunk<CR>", opts)
+keymap("n", "<LEADER>gd", ":Gitsigns diff_this<CR>", opts)
+keymap("n", "<LEADER>ghr", ":Gitsigns reset_hunk<CR>", opts)
 keymap("n", "<LEADER>gc", ":Git commit<CR>", opts)
 keymap("n", "<LEADER>gr", ":Gitsigns reset_buffer<CR>", opts)
 
