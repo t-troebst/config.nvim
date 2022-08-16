@@ -1,137 +1,154 @@
 -- Keymaps
-
-local opts = {noremap = true, silent = true}
-local keymap = vim.api.nvim_set_keymap
+local which_key_ok, which_key = pcall(require, "which-key")
+if not which_key_ok then return end
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ";"
 
--- Basics
+which_key.setup{}
 
-keymap("n", "j", "gj", opts)
-keymap("n", "k", "gk", opts)
+which_key.register({
+    j = {"gj", "Down"},
+    k = {"gk", "Up"},
+    ["<S-j>"] = {"10j", "Down 10 lines"},
+    ["<S-k>"] = {"10k", "Up 10 lines"},
 
-keymap("n", "<S-b>", "^", opts)
-keymap("n", "<S-e>", "$", opts)
-keymap("x", "<S-b>", "^", opts)
-keymap("x", "<S-e>", "$", opts)
+    ["<C-h>"] = {"<C-w>h", "Window left"},
+    ["<C-j>"] = {"<C-w>j", "Window down"},
+    ["<C-k>"] = {"<C-w>k", "Window up"},
+    ["<C-l>"] = {"<C-w>l", "Window right"},
 
-keymap("n", "<S-j>", "10j", opts)
-keymap("n", "<S-k>", "10k", opts)
-keymap("v", "<S-j>", "10j", opts)
-keymap("v", "<S-k>", "10k", opts)
+    ["<S-h>"] = {"<CMD>bprev<CR>", "Previous buffer"},
+    ["<S-l>"] = {"<CMD>bnext<CR>", "Next buffer"},
+    ["<S-q>"] = {"<CMD>bd<CR>", "Delete buffer"},
 
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+    ["<TAB>"] = {"%", "Matching character: '()', '{}', '[]'"},
 
-keymap("n", "<S-h>", ":bprev<CR>", opts)
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-q>", ":bd<CR>", opts)
+    ["<C-n>"] = {"<CMD>NvimTreeToggle<CR>", "Toggle file browser"},
 
-keymap("n", "<TAB>", "%", opts)
-keymap("v", "<TAB>", "%", opts)
+    s = {"<CMD>HopChar1<CR>", "Search character"},
+    ["<S-s>"] = {"<CMD>HopChar2<CR>", "Search 2 characters"},
 
-keymap("i", "jk", "<ESC>", opts)
-keymap("s", "jk", "<ESC>", opts)
+    ["<C-\\>"] = {"Open terminal"},
 
-keymap("n", "<LEADER><SPACE>", ":nohlsearch<CR>", opts)
+    ["<LEADER>"] = {
+        ["<SPACE>"] = {"<CMD:nohlsearch<CR>", "Clear search highlights"},
 
--- Plugins
+        b = {
+            name = "Debugging",
+            c = {"<CMD>lua require('dap').continue()<CR>", "Run / continue"},
+            b = {"<CMD>lua require('dap').toggle_breakpoint()<CR>", "Toggle breakpoint"},
+            s = {"<CMD>lua require('dap').step_over()<CR>", "Step over"},
+            i = {"<CMD>lua require('dap').step_into()<CR>", "Step into"},
+            o = {"<CMD>lua require('dap').step_out()<CR>", "Step out"},
+            q = {"<CMD>lua require('dap').terminate()<CR><CMD>DapVirtualTextForceRefresh<CR>", "Quit"},
+            h = {"<CMD>lua require('dap.ui.widgets').hover()<CR>", "Hover"},
+            r = {"<CMD>lua require('dap').repl.open()<CR>", "Open REPL"},
+        },
 
-keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
+        s = {
+            name = "Snippets",
+            e = {"<CMD>execute 'edit ~/.config/nvim/lua/user/snippets/' . &ft . '.lua'<CR>", "Edit snippets"},
+            s = {"<CMD>source ~/.config/nvim/lua/user/snippets/init.lua<CR>", "Reload snippets"},
+        },
 
-keymap("n", "s", ":HopChar1<CR>", opts)
-keymap("n", "<S-s>", ":HopChar2<CR>", opts)
-keymap("x", "s", "<CMD>HopChar1<CR>", opts)
-keymap("x", "<S-s>", "<CMD>HopChar2<CR>", opts)
+        h = {"<CMD>lua vim.lsp.buf.hover()<CR>", "Hover"},
+        d = {"<CMD>lua vim.diagnostic.open_float({border = 'rounded', focus = false})<CR>", "Diagnostics"},
+        l = {
+            name = "LSP",
+            n = {"<CMD>lua vim.lsp.buf.rename()<CR>", "Rename"},
+            a = {"<CMD>lua vim.lsp.buf.code_action()<CR>", "Code actions"},
+            b = {"<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Document symbols"},
+            s = {"<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace symbols"},
+            r = {"<CMD>lua require('telescope.builtin').lsp_references()<CR>", "References"},
+            i = {"<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", "Implementations"},
+            d = {"<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions"},
+            t = {"<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>", "Type definitions"},
+            f = {"<CMD>lua vim.lsp.buf.formatting()<CR>", "Format"},
+            h = {"<CMD>ClangdSwitchSourceHeader<CR>", "Switch source/header"},
+        },
 
--- Debugging keybinds
+        f = {
+            name = "Telescope",
+            d = {"<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics"},
+            f = {"<CMD>lua require('telescope.builtin').find_files()<CR>", "Files"},
+            g = {"<CMD>lua require('telescope.builtin').live_grep()<CR>", "Live grep"},
+            b = {"<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Buffer fuzzy find"},
+            h = {"<CMD>lua require('telescope.builtin').help_tags()<CR>", "Help"},
+            w = {"<CMD>Telescope workspaces<CR>", "Workspaces"},
+        },
 
-keymap("n", "<F5>", ":lua require('dap').continue()<CR>", opts)
-keymap("n", "<F6>", ":lua require('dap').toggle_breakpoint()<CR>", opts)
-keymap("n", "<F7>", ":lua require('dap').step_over()<CR>", opts)
-keymap("n", "<F8>", ":lua require('dap').step_into()<CR>", opts)
-keymap("n", "<F9>", ":lua require('dap').step_out()<CR>", opts)
+        g = {
+            name = "Git",
+            s = {
+                name = "Stage",
+                f = {"<CMD>lua require('telescope.builtin').git_status()<CR>", "Files"},
+                b = {"<CMD>Gitsigns stage_buffer<CR>", "Buffer"},
+                h = {"<CMD>Gitsigns stage_hunk<CR>", "Hunk"},
+            },
+            r = {
+                name = "Reset",
+                b = {"<CMD>Gitsigns reset_buffer<CR>", "Buffer"},
+                h = {"<CMD>Gitsigns reset_hunk<CR>", "Hunk"},
+            },
+            b = {"<CMD>Git blame<CR>", "Blame"},
+            u = {"<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk"},
+            n = {"<CMD>Gitsigns next_hunk<CR>", "Next hunk"},
+            p = {"<CMD>Gitsigns prev_hunk<CR>", "Previous hunk"},
+            c = {"<CMD>Git commit<CR>", "Commit"},
+            d = {"<CMD>Gitsigns diffthis<CR>", "Diff"}
+        },
 
-keymap("n", "<LEADER>bc", ":lua require('dap').continue()<CR>", opts)
-keymap("n", "<LEADER>bb", ":lua require('dap').toggle_breakpoint()<CR>", opts)
-keymap("n", "<LEADER>bs", ":lua require('dap').step_over()<CR>", opts)
-keymap("n", "<LEADER>bi", ":lua require('dap').step_into()<CR>", opts)
-keymap("n", "<LEADER>bo", ":lua require('dap').step_out()<CR>", opts)
+        p = {
+            name = "Profiling",
+            l = {
+                name = "Load",
+                f = {"<CMD>PerfLoadFlat<CR>", "Perf flat"},
+                g = {"<CMD>PerfLoadCallGraph<CR>", "Perf w/ call graph"},
+                o = {"<CMD>PerfLoadFlameGraph<CR>", "Flame graph"},
+            },
+            e = {"<CMD>PerfPickEvent<CR>", "Pick event"},
+            a = {"<CMD>PerfAnnotate<CR>", "Annotate"},
+            f = {"<CMD>PerfAnnotateFunction<CR>", "Annotate function"},
+            h = {"<CMD>PerfHottestLines<CR>", "Hottest lines"},
+            s = {"<CMD>PerfHottestSymbols<CR>", "Hottest symbols"},
+            c = {"<CMD>PerfHottestCallersFunction<CR>", "Hottest callers"},
+        }
+    }
+})
 
-keymap("n", "<LEADER>bq", ":lua require('dap').terminate()<CR>:DapVirtualTextForceRefresh<CR>", opts)
-keymap("n", "<LEADER>bh", ":lua require('dap.ui.widgets').hover()<CR>", opts)
-keymap("n", "<LEADER>br", ":lua require('dap').repl.open()<CR>", opts)
+which_key.register({
+    ["<S-j>"] = {"10j", "Down 10 lines"},
+    ["<S-k>"] = {"10k", "Up 10 lines"},
 
--- Snippets
+    ["<TAB>"] = {"%", "Matching character: '()', '{}', '[]'"},
 
-local ls_opts = {silent = true}
+    ["<LEADER>"] = {
+        p = {
+            name = "Profiling",
+            a = {"<CMD>PerfAnnotate<CR>", "Annotate"},
+            c = {"<CMD>PerfHottestCallersSelection<CR>", "Hottest callers"},
+        }
+    }
+}, {mode = "v"})
 
-keymap("i", "<C-k>", "<Plug>luasnip-expand-or-jump", ls_opts)
-keymap("s", "<C-k>", "<Plug>luasnip-expand-or-jump", ls_opts)
+which_key.register({
+    jk = {"<ESC>", "Normal mode"},
 
-keymap("i", "<C-j>", "<Plug>luasnip-jump-prev", ls_opts)
-keymap("s", "<C-j>", "<Plug>luasnip-jump-prev", ls_opts)
+    ["<C-k>"] = {"<Plug>luasnip-expand-or-jump", "Expand / continue snippet"},
+    ["<C-j>"] = {"<Plug>luasnip-jump-prev", "Previous snippet position"},
+    ["<C-l>"] = {"<Plug>luasnip-next-choice", "Next snippet choice"},
+}, {mode = "i"})
 
-keymap("i", "<C-l>", "<Plug>luasnip-next-choice", ls_opts)
-keymap("s", "<C-l>", "<Plug>luasnip-next-choice", ls_opts)
+which_key.register({
+    jk = {"<ESC>", "Normal mode"},
 
-keymap("n", "<LEADER>se", ":execute \"edit ~/.config/nvim/lua/user/snippets/\" . &ft . \".lua\"<CR>", opts)
-keymap("n", "<LEADER>ss", ":source ~/.config/nvim/lua/user/snippets/init.lua<CR>", opts)
+    ["<C-k>"] = {"<Plug>luasnip-expand-or-jump", "Expand / continue snippet"},
+    ["<C-j>"] = {"<Plug>luasnip-jump-prev", "Previous snippet position"},
+    ["<C-l>"] = {"<Plug>luasnip-next-choice", "Next snippet choice"},
+}, {mode = "s"})
 
--- LSP
-
-keymap("n", "<LEADER>h", ":lua vim.lsp.buf.hover()<CR>", opts)
-keymap("n", "<LEADER>d", ':lua vim.diagnostic.open_float({ border = "rounded", focus = false })<CR>', opts)
-keymap("n", "<LEADER>ln", ":lua vim.lsp.buf.rename()<CR>", opts)
-keymap("n", "<LEADER>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
-keymap("n", "<LEADER>lb", ":lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
-keymap("n", "<LEADER>ls", ":lua require('telescope.builtin').lsp_workspace_symbols()<CR>", opts)
-keymap("n", "<LEADER>lr", ":lua require('telescope.builtin').lsp_references()<CR>", opts)
-keymap("n", "<LEADER>li", ":lua require('telescope.builtin').lsp_implementations()<CR>", opts)
-keymap("n", "<LEADER>ld", ":lua require('telescope.builtin').lsp_definitions()<CR>", opts)
-keymap("n", "<LEADER>lt", ":lua require('telescope.builtin').lsp_type_definitions()<CR>", opts)
-keymap("n", "<LEADER>lf", ":lua vim.lsp.buf.formatting()<CR>", opts)
-keymap("n", "<LEADER>lh", ":ClangdSwitchSourceHeader<CR>", opts)
-
--- Fuzzy searching
-
-keymap("n", "<LEADER>fd", ":lua require('telescope.builtin').diagnostics()<CR>", opts)
-keymap("n", "<LEADER>ff", ":lua require('telescope.builtin').find_files()<CR>", opts)
-keymap("n", "<LEADER>fg", ":lua require('telescope.builtin').live_grep()<CR>", opts)
-keymap("n", "<LEADER>fc", ":lua require('telescope.builtin').git_status()<CR>", opts)
-keymap("n", "<LEADER>fb", ":lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", opts)
-keymap("n", "<LEADER>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)
-keymap("n", "<LEADER>ft", ":lua require('telescope.builtin').treesitter()<CR>", opts)
-keymap("n", "<LEADER>fw", ":Telescope workspaces<CR>", opts)
-
--- Git
-
-keymap("n", "<LEADER>gb", ":Gitsigns stage_buffer<CR>", opts)
-keymap("n", "<LEADER>gh", ":Gitsigns stage_hunk<CR>", opts)
-keymap("n", "<LEADER>gd", ":Gitsigns diff_this<CR>", opts)
-keymap("n", "<LEADER>ghr", ":Gitsigns reset_hunk<CR>", opts)
-keymap("n", "<LEADER>gc", ":Git commit<CR>", opts)
-keymap("n", "<LEADER>gr", ":Gitsigns reset_buffer<CR>", opts)
-
--- Perf Annotations
-
-keymap("n", "<LEADER>plf", ":PerfLoadFlat<CR>", opts)
-keymap("n", "<LEADER>plg", ":PerfLoadCallGraph<CR>", opts)
-keymap("n", "<LEADER>plo", ":PerfLoadFlameGraph<CR>", opts)
-
-keymap("n", "<LEADER>pe", ":PerfPickEvent<CR>", opts)
-
-keymap("n", "<LEADER>pa", ":PerfAnnotate<CR>", opts)
-keymap("n", "<LEADER>pf", ":PerfAnnotateFunction<CR>", opts)
-keymap("v", "<LEADER>pa", ":PerfAnnotateSelection<CR>", opts)
-
-keymap("n", "<LEADER>pt", ":PerfToggleAnnotations<CR>", opts)
-
-keymap("n", "<LEADER>ph", ":PerfHottestLines<CR>", opts)
-keymap("n", "<LEADER>ps", ":PerfHottestSymbols<CR>", opts)
-keymap("n", "<LEADER>pc", ":PerfHottestCallersFunction<CR>", opts)
-keymap("v", "<LEADER>pc", ":PerfHottestCallersSelection<CR>", opts)
-
+which_key.register({
+    s = {"<CMD>HopChar1<CR>", "Search character"},
+    ["<S-s>"] = {"<CMD>HopChar2<CR>", "Search 2 characters"},
+}, {mode = "x"})
