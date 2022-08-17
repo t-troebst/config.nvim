@@ -5,5 +5,5 @@ end
 
 dressing.setup({
     -- Doesn't work too well for me...
-    input = {enabled = false},
+    input = { enabled = false },
 })

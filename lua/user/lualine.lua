@@ -1,6 +1,6 @@
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
-	return
+    return
 end
 
 local ft_fmt = function(str)
@@ -18,64 +18,64 @@ local filetype = {
 }
 
 local diagnostics = {
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	sections = { "error", "warn" },
-	symbols = { error = " ", warn = " " },
-	colored = false,
-	update_in_insert = false,
-	always_visible = true,
+    "diagnostics",
+    sources = { "nvim_diagnostic" },
+    sections = { "error", "warn" },
+    symbols = { error = " ", warn = " " },
+    colored = false,
+    update_in_insert = false,
+    always_visible = true,
 }
 
 local branch = {
-	"branch",
-	icons_enabled = true,
-	icon = "",
+    "branch",
+    icons_enabled = true,
+    icon = "",
 }
 
 -- cool function for progress
 local progress = function()
-	local current_line = vim.fn.line(".")
-	local total_lines = vim.fn.line("$")
-	local chars = {  "  ", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-	local line_ratio = current_line / total_lines
-	local index = math.ceil(line_ratio * #chars)
-	return chars[index]
+    local current_line = vim.fn.line(".")
+    local total_lines = vim.fn.line("$")
+    local chars = { "  ", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+    local line_ratio = current_line / total_lines
+    local index = math.ceil(line_ratio * #chars)
+    return chars[index]
 end
 
 lualine.setup({
-	options = {
-		icons_enabled = true,
-		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		disabled_filetypes = { "dashboard", "NvimTree", "Outline" },
-		always_divide_middle = true,
-	},
-	sections = {
+    options = {
+        icons_enabled = true,
+        theme = "auto",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = { "dashboard", "NvimTree", "Outline" },
+        always_divide_middle = true,
+    },
+    sections = {
         lualine_a = {
             { "mode", separator = { left = "" }, right_padding = 2 },
         },
         lualine_b = { diagnostics, branch },
-        lualine_c = {  },
+        lualine_c = {},
         lualine_x = {},
         lualine_y = { filetype, progress },
         lualine_z = {
             { "location", separator = { right = "" }, left_padding = 2 },
         },
-	},
-	inactive_sections = {
+    },
+    inactive_sections = {
         lualine_a = {
             { "mode", separator = { left = "" }, right_padding = 2 },
         },
         lualine_b = { diagnostics, branch },
-        lualine_c = {  },
+        lualine_c = {},
         lualine_x = {},
         lualine_y = { filetype, progress },
         lualine_z = {
             { "location", separator = { right = "" }, left_padding = 2 },
         },
-	},
-	tabline = {},
-	extensions = {},
+    },
+    tabline = {},
+    extensions = {},
 })

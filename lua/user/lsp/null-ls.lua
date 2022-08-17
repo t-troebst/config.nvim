@@ -7,7 +7,7 @@ null_ls.setup({
             extra_args = function(params)
                 local file = vim.fn.findfile("flake8.ini", ".;")
                 if file ~= "" then
-                    return {"--append-config", file}
+                    return { "--append-config", file }
                 end
             end
         }),
@@ -15,7 +15,7 @@ null_ls.setup({
             extra_args = function(params)
                 local file = vim.fn.findfile("mypy.ini", ".;")
                 if file ~= "" then
-                    return {"--config-file", file}
+                    return { "--config-file", file }
                 end
             end
         })

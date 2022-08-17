@@ -73,7 +73,7 @@ cmp.setup {
     },
 
     completion = {
-        autocomplete = false  -- We use the debouncing method.
+        autocomplete = false -- We use the debouncing method.
     }
 }
 

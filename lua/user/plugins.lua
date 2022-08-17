@@ -34,7 +34,7 @@ end
 packer.init {
     display = {
         open_fn = function()
-            return require("packer.util").float{border = "rounded"}
+            return require("packer.util").float { border = "rounded" }
         end,
     },
 }
@@ -47,11 +47,11 @@ return packer.startup(function(use)
 
     -- Basic editor functionality
     use "nvim-lualine/lualine.nvim" -- Fancy status line
-    use {"akinsho/bufferline.nvim", branch = "main"} -- Buffer line
+    use { "akinsho/bufferline.nvim", branch = "main" } -- Buffer line
     use "kyazdani42/nvim-web-devicons" -- Nice icons for Nvim tree and other plugins
     use "numToStr/Comment.nvim" -- Automatic commenting
     use "phaazon/hop.nvim" -- Character jumping ala EasyMotion
-    use {"akinsho/toggleterm.nvim", branch = "main"} -- Terminal support
+    use { "akinsho/toggleterm.nvim", branch = "main" } -- Terminal support
     use "lewis6991/gitsigns.nvim" -- Git signs
     use "tpope/vim-fugitive" -- Git integration
     use "stevearc/dressing.nvim" -- Nicer select / input windows
@@ -64,7 +64,7 @@ return packer.startup(function(use)
     use "natecraddock/telescope-zf-native.nvim" -- Better matches for files
 
     -- Colorscheme
-    use {"rose-pine/neovim", as = "rose-pine.nvim"}
+    use { "rose-pine/neovim", as = "rose-pine.nvim" }
 
     -- Completion
     use "hrsh7th/nvim-cmp" -- Basic completions

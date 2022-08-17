@@ -31,7 +31,7 @@ vo.splitbelow = true
 vo.splitright = true
 
 vo.textwidth = 100
-vo.colorcolumn = {101}
+vo.colorcolumn = { 101 }
 
 vo.shiftwidth = 4
 vo.tabstop = 4
