@@ -32,7 +32,7 @@ which_key.register({
     ["<C-\\>"] = {"Open terminal"},
 
     ["<LEADER>"] = {
-        ["<SPACE>"] = {"<CMD:nohlsearch<CR>", "Clear search highlights"},
+        ["<SPACE>"] = {"<CMD>nohlsearch<CR>", "Clear search highlights"},
 
         b = {
             name = "Debugging",
