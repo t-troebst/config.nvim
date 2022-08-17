@@ -57,8 +57,8 @@ lualine.setup({
             { "mode", separator = { left = "" }, right_padding = 2 },
         },
         lualine_b = { diagnostics, branch },
-        lualine_c = {},
-        lualine_x = {},
+        lualine_c = { "filename" },
+        lualine_x = { "filesize" },
         lualine_y = { filetype, progress },
         lualine_z = {
             { "location", separator = { right = "" }, left_padding = 2 },
@@ -69,8 +69,8 @@ lualine.setup({
             { "mode", separator = { left = "" }, right_padding = 2 },
         },
         lualine_b = { diagnostics, branch },
-        lualine_c = {},
-        lualine_x = {},
+        lualine_c = { "filename" },
+        lualine_x = { "filesize" },
         lualine_y = { filetype, progress },
         lualine_z = {
             { "location", separator = { right = "" }, left_padding = 2 },
@@ -79,3 +79,6 @@ lualine.setup({
     tabline = {},
     extensions = {},
 })
+
+-- Activate global status line
+vim.opt.laststatus = 3
