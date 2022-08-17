@@ -28,28 +28,31 @@ local function is_chromium()
     end
 end
 
+local function set_sw_tw(sw, tw)
+    if tw then
+        vim.opt_local.textwidth = tw
+        vim.opt_local.colorcolumn = { tw + 1 }
+    end
+    if sw then
+        vim.opt_local.shiftwidth = sw
+        vim.opt_local.tabstop = sw
+    end
+end
+
 vim.api.nvim_create_autocmd(
     "FileType",
     {
         pattern = { "cpp" },
         callback = function()
-            local clang_format = get_clang_format()
-            local tw = tonumber(clang_format.ColumnLimit)
-            local sw = tonumber(clang_format.IndentWidth)
-
             if is_chromium() then
-                tw = 80
-                sw = 2
+                set_sw_tw(2, 80)
+                return
             end
 
-            if tw then
-                vim.opt_local.textwidth = tw
-                vim.opt_local.colorcolumn = { tw + 1 }
-            end
-            if sw then
-                vim.opt_local.shiftwidth = sw
-                vim.opt_local.tabstop = sw
-            end
+            local clang_format = get_clang_format()
+            local sw = tonumber(clang_format.IndentWidth)
+            local tw = tonumber(clang_format.ColumnLimit)
+            set_sw_tw(sw, tw)
         end
     }
 )
