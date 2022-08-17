@@ -1,8 +1,9 @@
 return {
     extra_args = function()
-        local file = vim.fn.findfile("flake8.ini", ".;")
+        local file = vim.fn.findfile("mypy.ini", ".;")
+        local full_path = vim.fn.fnamemodify(file, ":p")
         if file ~= "" then
-            return { "--append-config", file }
+            return { "--config-file", full_path }
         end
     end
 }
