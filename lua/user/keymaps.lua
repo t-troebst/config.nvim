@@ -73,7 +73,7 @@ which_key.register({
             d = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Diagnostics" },
             f = { "<CMD>lua require('telescope.builtin').find_files()<CR>", "Files" },
             g = { "<CMD>lua require('telescope.builtin').live_grep()<CR>", "Live grep" },
-            b = { "<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Buffer fuzzy find" },
+            b = { "<CMD>lua require('telescope.builtin').buffers()<CR>", "Buffers" },
             h = { "<CMD>lua require('telescope.builtin').help_tags()<CR>", "Help" },
             w = { "<CMD>Telescope workspaces<CR>", "Workspaces" },
         },
