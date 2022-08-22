@@ -97,7 +97,13 @@ which_key.register({
             p = { "<CMD>Gitsigns prev_hunk<CR>", "Previous hunk" },
             c = { "<CMD>Git commit<CR>", "Commit" },
             h = { "<CMD>Telescope git_bcommits<CR>", "History" },
-            d = { "<CMD>Gitsigns diffthis<CR>", "Diff" }
+            d = { "<CMD>Gitsigns diffthis<CR>", "Diff" },
+            o = {
+                name = "Origin",
+                u = { "<CMD>Git push<CR>", "Upload changes" },
+                d = { "<CMD>Git pull<CR>", "Download changes" },
+                r = { "<CMD>Git rebase<CR>", "Rebase" },
+            },
         },
 
         p = {
