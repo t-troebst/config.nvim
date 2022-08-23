@@ -39,10 +39,13 @@ local function set_sw_tw(sw, tw)
     end
 end
 
+local augroup = vim.api.nvim_create_augroup("UserFileTypes", { clear = true })
+
 vim.api.nvim_create_autocmd(
     "FileType",
     {
         pattern = { "cpp" },
+        group = augroup,
         callback = function()
             if is_chromium() then
                 set_sw_tw(2, 80)
