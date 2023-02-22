@@ -33,7 +33,7 @@ end
 ls.add_snippets(nil, {
     all = reload_snips("all"),
     cpp = reload_snips("cpp"),
-    latex = reload_snips("tex"),
+    tex = reload_snips("tex"),
     lua = reload_snips("lua"),
     markdown = reload_snips("markdown"),
     python = reload_snips("python")
