@@ -109,6 +109,9 @@ return {
     ls.parser.parse_snippet("up", "std:unique_ptr<${1:T}>"),
     ls.parser.parse_snippet("sp", "std:shared_ptr<${1:T}>"),
 
+    -- Attributes
+    ls.parser.parse_snippet("nd", "[[nodiscard]]"),
+
     -- Special member declarations
     snippet("consd", {d(1, function(_, snip)
         local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
