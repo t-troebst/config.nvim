@@ -3,12 +3,12 @@ if not snip_status_ok then
     return
 end
 
-ls.config.set_config {
+ls.setup {
     -- Allows reentering old snippets
     history = true,
 
     -- Update snippets dynamically while typing
-    updateevents = "TextChanged,TextChangedI",
+    update_events = {"TextChanged", "TextChangedI"},
 
     -- Delete snippets from history when appropriate
     delete_check_events = "InsertLeave",
