@@ -46,11 +46,7 @@ which_key.register({
             r = { "<CMD>lua require('dap').repl.open()<CR>", "Open REPL" },
         },
 
-        s = {
-            name = "Snippets",
-            e = { "<CMD>execute 'edit ~/.config/nvim/lua/user/snippets/' . &ft . '.lua'<CR>", "Edit snippets" },
-            s = { "<CMD>source ~/.config/nvim/lua/user/snippets/init.lua<CR>", "Reload snippets" },
-        },
+        s = { "<CMD>lua require('luasnip.loaders').edit_snippet_files()<CR>", "Edit snippets" },
 
         h = { "<CMD>lua vim.lsp.buf.hover()<CR>", "Hover" },
         d = { "<CMD>lua vim.diagnostic.open_float({border = 'rounded', focus = false})<CR>", "Diagnostics" },

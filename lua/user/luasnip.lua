@@ -22,20 +22,4 @@ ls.setup {
 
 -- Set up actual snippets, TODO: lazy loading
 
---- Reloads snippets for a given language, useful for editing snippets without restarting.
--- @param lang Language / filetype name.
--- @return Module containing the snippets.
-local function reload_snips(lang)
-    package.loaded["user.snippets." .. lang] = nil
-    return require("user.snippets." .. lang)
-end
-
-ls.add_snippets(nil, {
-    all = reload_snips("all"),
-    cpp = reload_snips("cpp"),
-    tex = reload_snips("tex"),
-    lua = reload_snips("lua"),
-    markdown = reload_snips("markdown"),
-    python = reload_snips("python")
-})
-
+require("luasnip.loaders.from_lua").load {paths = "./lua/user/snippets"}
