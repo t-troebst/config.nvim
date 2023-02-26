@@ -96,7 +96,6 @@ return packer.startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
     }
-    use "p00f/nvim-ts-rainbow" -- Rainbow brackets
     use "JoosepAlviste/nvim-ts-context-commentstring" -- Correct comments for sub-languages
 
     -- Plugin Development
