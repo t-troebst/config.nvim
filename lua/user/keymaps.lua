@@ -37,6 +37,7 @@ which_key.register({
         b = {
             name = "Debugging",
             c = { "<CMD>lua require('dap').continue()<CR>", "Run / continue" },
+            e = { ":e .debug_args.lua<CR>", "Edit config" },
             b = { "<CMD>lua require('dap').toggle_breakpoint()<CR>", "Toggle breakpoint" },
             s = { "<CMD>lua require('dap').step_over()<CR>", "Step over" },
             i = { "<CMD>lua require('dap').step_into()<CR>", "Step into" },
