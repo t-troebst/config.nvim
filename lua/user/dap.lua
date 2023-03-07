@@ -4,8 +4,35 @@ if not status_ok then
     return
 end
 
-vim.fn.sign_define("DapBreakpoint", { text = '', texthl = 'Breakpoint', linehl = '', numhl = 'Breakpoint' })
+vim.fn.sign_define("DapBreakpoint", { text = '🅱', texthl = 'Breakpoint', linehl = '', numhl = 'Breakpoint' })
+vim.fn.sign_define("DapBreakpointCondition", { text = '🅲', texthl = 'Breakpoint', linehl = '', numhl = 'Breakpoint' })
 vim.fn.sign_define("DapStopped", { text = '', texthl = 'Continue', linehl = '', numhl = '' })
+vim.fn.sign_define("DapLogPoint", { text = '🅻', texthl = 'Logpoint', linehl = '', numhl = 'Logpoint' })
+vim.fn.sign_define("DapBreakpointRejected", { text = '✗', texthl = 'Continue', linehl = '', numhl = 'Breakpoint' })
+
+local function conditional_breakpoint()
+    vim.ui.input({prompt = "Condition: "}, function(value)
+        dap.set_breakpoint(value)
+    end)
+end
+
+local function logpoint()
+    vim.ui.input({prompt = "Log: "}, function(log)
+        dap.set_breakpoint(nil, nil, log .. "\n")
+    end)
+end
+
+local function conditional_logpoint()
+    vim.ui.input({prompt = "Log: "}, function(log)
+        vim.ui.input({prompt = "Condition: "}, function(condition)
+            dap.set_breakpoint(condition, nil, log .. "\n")
+        end)
+    end)
+end
+
+vim.api.nvim_create_user_command("DapConditionalBreakpoint", conditional_breakpoint, {})
+vim.api.nvim_create_user_command("DapLogpoint", logpoint, {})
+vim.api.nvim_create_user_command("DapConditionalLogpoint", conditional_logpoint, {})
 
 local lldb_executable = function()
     local args = vim.fn.findfile(".debug_args.lua", ".;")
