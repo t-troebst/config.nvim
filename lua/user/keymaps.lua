@@ -10,6 +10,9 @@ which_key.setup {}
 which_key.register({
     j = { "gj", "Down" },
     k = { "gk", "Up" },
+
+    ["<M-j>"] = { "<S-J>", "Join lines" },
+    ["<M-k>"] = { "<S-K>", "Look up help" },
     ["<S-j>"] = { "10j", "Down 10 lines" },
     ["<S-k>"] = { "10k", "Up 10 lines" },
 
@@ -20,6 +23,7 @@ which_key.register({
 
     ["<S-h>"] = { "<CMD>bprev<CR>", "Previous buffer" },
     ["<S-l>"] = { "<CMD>bnext<CR>", "Next buffer" },
+    ["<M-q>"] = { "<S-q>", "Repeat last recorded register" },
     ["<S-q>"] = { "<CMD>bd<CR>", "Delete buffer" },
 
     ["<TAB>"] = { "%", "Matching character: '()', '{}', '[]'" },
@@ -133,6 +137,7 @@ which_key.register({
 })
 
 which_key.register({
+    ["<M-j>"] = { "<S-j>", "Join lines" },
     ["<S-j>"] = { "10j", "Down 10 lines" },
     ["<S-k>"] = { "10k", "Up 10 lines" },
 
