@@ -34,22 +34,25 @@ vim.api.nvim_create_user_command("DapConditionalBreakpoint", conditional_breakpo
 vim.api.nvim_create_user_command("DapLogpoint", logpoint, {})
 vim.api.nvim_create_user_command("DapConditionalLogpoint", conditional_logpoint, {})
 
+local projects_ok, projects = pcall(require, "user.projects")
+if not projects_ok then return end
+
 local lldb_executable = function()
-    local args = vim.fn.findfile(".debug_args.lua", ".;")
-    if args == "" then
+    local target = projects.get_target()
+    if not target then
         return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     else
-        return dofile(args).program
+        return target.run
     end
 end
 
 local lldb_args = function()
-    local args = vim.fn.findfile(".debug_args.lua", ".;")
-    if args == "" then
+    local target = projects.get_target()
+    if not target then
         -- We could ask the user for args but for now lets assume there are none
         return {}
     else
-        return dofile(args).args
+        return target.args
     end
 end
 

@@ -120,6 +120,14 @@ which_key.register({
             h = { "<CMD>PerfHottestLines<CR>", "Hottest lines" },
             s = { "<CMD>PerfHottestSymbols<CR>", "Hottest symbols" },
             c = { "<CMD>PerfHottestCallersFunction<CR>", "Hottest callers" },
+        },
+
+        r = {
+            name = "Run project",
+            r = { "<CMD>ProjectRun<CR>", "Build & run" },
+            b = { "<CMD>ProjectBuild<CR>", "Build" },
+            t = { "<CMD>ProjectTarget<CR>", "Select target" },
+            c = { "<CMD>ProjectConfig<CR>", "Open config" }
         }
     }
 })
