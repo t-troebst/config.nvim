@@ -1,4 +1,4 @@
--- Simple project module / code runner 
+-- Simple project module / code runner
 
 local M = {}
 
@@ -44,7 +44,12 @@ local function ensure_target(project, continuation)
     continuation(project.targets[target])
 end
 
-local function run_command(cmd, args, exit_on_success, on_success, on_failure)
+local function run_command(cmd, args, detach, exit_on_success, on_success, on_failure)
+    if detach then
+        vim.fn.jobstart(cmd, { detach = true })
+        return
+    end
+
     vim.api.nvim_command("botright split new")
     vim.api.nvim_win_set_height(0, 30)
     local buf_handle = vim.api.nvim_win_get_buf(0)
@@ -62,7 +67,6 @@ local function run_command(cmd, args, exit_on_success, on_success, on_failure)
     vim.fn.termopen(cmd, { on_exit = on_exit })
 end
 
-
 function M.build()
     ensure_project(function(project)
         ensure_target(project, function(target)
@@ -75,13 +79,13 @@ function M.run()
     ensure_project(function(project)
         ensure_target(project, function(target)
             if target.build then
-                run_command(target.build, nil, true, function()
+                run_command(target.build, nil, false, true, function()
                     if target.run then
-                        run_command(target.run, target.args, false)
+                        run_command(target.run, target.args, target.detach, false)
                     end
                 end)
             elseif target.run then
-                run_command(target.run, target.args, false)
+                run_command(target.run, target.args, target.detach, false)
             end
         end)
     end)
