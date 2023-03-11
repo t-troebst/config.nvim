@@ -70,7 +70,7 @@ end
 function M.build()
     ensure_project(function(project)
         ensure_target(project, function(target)
-            run_command(target.build, nil, true)
+            run_command(target.build, nil, false, true)
         end)
     end)
 end
