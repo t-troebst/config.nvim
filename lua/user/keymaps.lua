@@ -57,7 +57,7 @@ which_key.register({
         s = { "<CMD>lua require('luasnip.loaders').edit_snippet_files()<CR>", "Edit snippets" },
 
         h = { "<CMD>lua vim.lsp.buf.hover()<CR>", "Hover" },
-        d = { "<CMD>lua vim.diagnostic.open_float({border = 'rounded', focus = false})<CR>", "Diagnostics" },
+        d = { "<CMD>lua require('lsp_lines').toggle()<CR>", "Toggle diagnostics" },
         l = {
             name = "LSP",
             n = { "<CMD>lua vim.lsp.buf.rename()<CR>", "Rename" },
