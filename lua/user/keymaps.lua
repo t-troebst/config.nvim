@@ -68,7 +68,7 @@ which_key.register({
             i = { "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", "Implementations" },
             d = { "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions" },
             t = { "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>", "Type definitions" },
-            f = { "<CMD>lua vim.lsp.buf.formatting()<CR>", "Format" },
+            f = { "<CMD>lua vim.lsp.buf.format{async = true}<CR>", "Format" },
             h = { "<CMD>ClangdSwitchSourceHeader<CR>", "Switch source/header" },
         },
 
