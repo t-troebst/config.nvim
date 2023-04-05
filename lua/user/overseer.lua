@@ -143,3 +143,35 @@ overseer.register_template {
         end
     }
 }
+
+overseer.register_template {
+    name = "LaTeX Build",
+
+    generator = function(opts, cb)
+        local templates = {}
+
+        for name, type in vim.fs.dir(opts.dir) do
+            if type == "file" and name:match(".*%.tex") then
+                local priority = 40
+                if name == "ms.tex" or name == "main.tex" then
+                    priority = 35
+                end
+
+                table.insert(templates, {
+                    name = "Latex Build (" .. vim.fs.basename(name) .. ")",
+                    builder = function()
+                        return {
+                            cmd = {"latexmk"},
+                            args = {"-pdf", name},
+                            cwd = opts.dir
+                        }
+                    end,
+                    tags = { overseer.TAG.BUILD },
+                    priority = priority
+                })
+            end
+        end
+
+        cb(templates)
+    end,
+}
