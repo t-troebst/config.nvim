@@ -221,6 +221,5 @@ return {
             s(nil, {t("\""), r(1, "header"), t("\"")}),
         }),
     }, {stored = {header = i(1, "header")}}),
-    ls.parser.parse_snippet("cinit", "auto const $1 = [&] {\n\t$0\n}();"),
-
+    ls.parser.parse_snippet("cinit", "auto const $1 = [&] {\n\t$0\n}();")
 }
