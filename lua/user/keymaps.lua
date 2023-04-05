@@ -126,12 +126,11 @@ which_key.register({
             c = { "<CMD>PerfHottestCallersFunction<CR>", "Hottest callers" },
         },
 
-        r = {
-            name = "Run project",
-            r = { "<CMD>ProjectRun<CR>", "Build & run" },
-            b = { "<CMD>ProjectBuild<CR>", "Build" },
-            t = { "<CMD>ProjectTarget<CR>", "Select target" },
-            c = { "<CMD>ProjectConfig<CR>", "Open config" }
+        o = {
+            name = "Overseer",
+
+            r = { "<CMD>OverseerRun<CR>", "Run task" },
+            t = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
         }
     }
 })

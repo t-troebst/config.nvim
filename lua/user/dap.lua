@@ -34,26 +34,16 @@ vim.api.nvim_create_user_command("DapConditionalBreakpoint", conditional_breakpo
 vim.api.nvim_create_user_command("DapLogpoint", logpoint, {})
 vim.api.nvim_create_user_command("DapConditionalLogpoint", conditional_logpoint, {})
 
-local projects_ok, projects = pcall(require, "user.projects")
-if not projects_ok then return end
+local last_exe = nil
 
 local lldb_executable = function()
-    local target = projects.get_target()
-    if not target then
-        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    else
-        return target.run
-    end
+    -- TODO: get executable from some .dap.json type file
+    last_exe = vim.fn.input('Path to executable: ', last_exe or (vim.fn.getcwd() .. '/'), 'file')
+    return last_exe
 end
 
 local lldb_args = function()
-    local target = projects.get_target()
-    if not target then
-        -- We could ask the user for args but for now lets assume there are none
-        return {}
-    else
-        return target.args
-    end
+    return {}
 end
 
 -- C++/C/Rust

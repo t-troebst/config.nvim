@@ -59,6 +59,7 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua" -- File browser
     use "natecraddock/workspaces.nvim" -- Workspace management
     use "folke/which-key.nvim" -- Show keybinds
+    use "stevearc/overseer.nvim" -- Task runner
 
     -- Fuzzy searching
     use "nvim-telescope/telescope.nvim" -- Telescope
