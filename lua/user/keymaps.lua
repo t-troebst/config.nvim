@@ -131,6 +131,9 @@ which_key.register({
 
             r = { "<CMD>OverseerRun<CR>", "Run task" },
             t = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
+            b = { "<CMD>OverseerBuild<CR>", "Build task" },
+            l = { "<CMD>OverseerLoadBundle<CR>", "Load task bundle" },
+            s = { "<CMD>OverseerSaveBundle<CR>", "Save task bundle" }
         }
     }
 })
