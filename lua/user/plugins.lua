@@ -60,6 +60,7 @@ return packer.startup(function(use)
     use "natecraddock/workspaces.nvim" -- Workspace management
     use "folke/which-key.nvim" -- Show keybinds
     use "stevearc/overseer.nvim" -- Task runner
+    use "rcarriga/nvim-notify" -- Fancy notification manager
 
     -- Fuzzy searching
     use "nvim-telescope/telescope.nvim" -- Telescope
