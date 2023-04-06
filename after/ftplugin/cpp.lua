@@ -1,5 +1,3 @@
--- Autocommands for filetypes
-
 local function get_clang_format()
     local clang_format_file = vim.fn.findfile(".clang-format", ".;")
 
@@ -39,23 +37,12 @@ local function set_sw_tw(sw, tw)
     end
 end
 
-local augroup = vim.api.nvim_create_augroup("UserFileTypes", { clear = true })
+if is_chromium() then
+    set_sw_tw(2, 80)
+    return
+end
 
-vim.api.nvim_create_autocmd(
-    "FileType",
-    {
-        pattern = { "cpp" },
-        group = augroup,
-        callback = function()
-            if is_chromium() then
-                set_sw_tw(2, 80)
-                return
-            end
-
-            local clang_format = get_clang_format()
-            local sw = tonumber(clang_format.IndentWidth)
-            local tw = tonumber(clang_format.ColumnLimit)
-            set_sw_tw(sw, tw)
-        end
-    }
-)
+local clang_format = get_clang_format()
+local sw = tonumber(clang_format.IndentWidth)
+local tw = tonumber(clang_format.ColumnLimit)
+set_sw_tw(sw, tw)
