@@ -34,16 +34,53 @@ vim.api.nvim_create_user_command("DapConditionalBreakpoint", conditional_breakpo
 vim.api.nvim_create_user_command("DapLogpoint", logpoint, {})
 vim.api.nvim_create_user_command("DapConditionalLogpoint", conditional_logpoint, {})
 
-local last_exe = nil
+local function dap_config()
+    local config_file = vim.fs.find(".dap.json", { upward = true, type = "file" })[1]
+    if not config_file then
+        return {}
+    end
 
-local lldb_executable = function()
-    -- TODO: get executable from some .dap.json type file
-    last_exe = vim.fn.input('Path to executable: ', last_exe or (vim.fn.getcwd() .. '/'), 'file')
-    return last_exe
+    local config_json = ""
+    local config_handle = io.open(config_file)
+    if config_handle then
+        config_json = config_handle:read("a")
+        config_handle:close()
+    else
+        return {}
+    end
+
+    local ok, config = pcall(vim.json.decode, config_json)
+    if not ok then
+        vim.notify("Could not decode .dap.json", vim.log.levels.ERROR)
+        return {}
+    end
+
+    if not config.cwd then
+        config.cwd = vim.fs.dirname(config_file)
+    end
+
+    return config
 end
 
-local lldb_args = function()
-    return {}
+
+local function select_target(config)
+    if not config.targets then
+        return nil
+    else
+        local targets = {"Choose debug target:"}
+
+        for i, t in ipairs(config.targets) do
+            table.insert(targets, tostring(i) .. ". " .. (t.name or t.program))
+        end
+
+        local idx = vim.fn.inputlist(targets)
+
+        if idx <= 0 or idx > #targets then
+            return nil
+        else
+            return config.targets[idx]
+        end
+    end
 end
 
 -- C++/C/Rust
@@ -54,17 +91,34 @@ dap.adapters.lldb = {
     name = "lldb",
 }
 
+local cpp_config = {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    stopOnEntry = false,
+    runInTerminal = false,
+}
+
+setmetatable(cpp_config, {__call = function(conf)
+    local config = dap_config()
+    local target = select_target(config)
+
+    local new_conf = vim.deepcopy(conf)
+    new_conf.cwd = config.cwd or "${workspaceFolder}"
+
+    if not target then
+        new_conf.program = vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        new_conf.args = {}
+    else
+        new_conf.program = target.program
+        new_conf.args = target.args or {}
+    end
+
+    return new_conf
+end})
+
 dap.configurations.cpp = {
-    {
-        name = "Launch",
-        type = "lldb",
-        request = "launch",
-        program = lldb_executable,
-        cwd = '${workspaceFolder}',
-        stopOnEntry = false,
-        args = lldb_args,
-        runInTerminal = false,
-    },
+    cpp_config
 }
 
 dap.configurations.c = dap.configurations.cpp
