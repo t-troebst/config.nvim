@@ -77,9 +77,10 @@ cmp.setup {
     }
 }
 
-vim.cmd([[
-    augroup CmpDebounceAuGroup
-        au!
-        au TextChangedI * lua DebounceCMP(1000)
-    augroup end
-]])
+vim.api.nvim_create_autocmd("TextChangedI", {
+    group = vim.api.nvim_create_augroup("CmpDebounceAuGroup", {}),
+    pattern = "*",
+    callback = function()
+        DebounceCMP(1000)
+    end
+})
