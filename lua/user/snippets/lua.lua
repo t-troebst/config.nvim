@@ -15,8 +15,7 @@ if not ts_utils_ok then
     return {}
 end
 
-local query = require("vim.treesitter.query")
-local function_q = vim.treesitter.parse_query("lua",[[
+local function_q = vim.treesitter.query.parse("lua",[[
     [
         (function_declaration parameters: (parameters) @parms)
         (function_definition parameters: (parameters) @parms)
@@ -24,7 +23,7 @@ local function_q = vim.treesitter.parse_query("lua",[[
 ]])
 -- This only matches returns that actually return something, so early return can still be used for
 -- control flow!
-local return_q = vim.treesitter.parse_query("lua", "(return_statement (expression_list)) @ret")
+local return_q = vim.treesitter.query.parse("lua", "(return_statement (expression_list)) @ret")
 
 --- Obtains list of parameter names for the next lua function and whether it returns something.
 -- @param linenr Line number at which we start searching.
@@ -46,7 +45,7 @@ local function next_fun_parms(linenr)
             for parm, node_type in captures[1]:iter_children() do
                 -- Parameters are given via "name" nodes, other nodes might be comments etc.
                 if node_type == "name" then
-                    table.insert(parms, query.get_node_text(parm, bufnr))
+                    table.insert(parms, vim.treesitter.get_node_text(parm, bufnr))
                 end
             end
 

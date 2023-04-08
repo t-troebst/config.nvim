@@ -20,7 +20,7 @@ if not ts_utils_ok then
     return {}
 end
 
-local cpp_classes = vim.treesitter.parse_query("cpp", [[
+local cpp_classes = vim.treesitter.query.parse("cpp", [[
     [
         (struct_specifier name: [((type_identifier) @name) (template_type name: (type_identifier) @name)])
         (class_specifier name: [((type_identifier) @name) (template_type name: (type_identifier) @name)])
@@ -40,7 +40,7 @@ local function list_classes(linenr)
 
     for _, captures, _ in cpp_classes:iter_matches(root, bufnr) do
         local lbegin, _, lend, _ = ts_utils.get_vim_range({captures[2]:range()})
-        local name = query.get_node_text(captures[1], bufnr)
+        local name = vim.treesitter.get_node_text(captures[1], bufnr)
         table.insert(result, {lbegin, lend, name})
     end
 
