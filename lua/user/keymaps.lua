@@ -16,6 +16,8 @@ which_key.register({
     ["<S-j>"] = { "10j", "Down 10 lines" },
     ["<S-k>"] = { "10k", "Up 10 lines" },
 
+    ["<C-s>"] = { "<CMD>vsplit<CR>", "Split window vertically" },
+
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
