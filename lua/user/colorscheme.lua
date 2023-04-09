@@ -5,6 +5,10 @@ if not palette_ok then return end
 
 vim.cmd [[colorscheme rose-pine]]
 
+-- Semantic highlighting
+
+vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary", { link = "" })
+
 -- Custom highlights for DAP
 
 vim.api.nvim_set_hl(0, "Breakpoint", { fg = palette.love })
