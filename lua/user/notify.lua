@@ -1,5 +1,4 @@
-local notify_ok, notify = pcall(require, "notify")
-if not notify_ok then return end
+local notify = require("notify")
 
 notify.setup {
     render = "minimal",

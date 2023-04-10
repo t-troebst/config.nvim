@@ -1,9 +1,6 @@
-local snip_status_ok, ls = pcall(require, "luasnip")
-if not snip_status_ok then
-    return
-end
+local luasnip = require("luasnip")
 
-ls.setup {
+luasnip.setup {
     -- Allows reentering old snippets
     history = true,
 

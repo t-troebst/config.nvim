@@ -1,10 +1,6 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-local lspkind_ok, lspkind = pcall(require, "lspkind")
-
-if not (cmp_status_ok and snip_status_ok and lspkind_ok) then
-    return
-end
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+local lspkind = require("lspkind")
 
 local timer = vim.loop.new_timer()
 

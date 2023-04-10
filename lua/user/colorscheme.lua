@@ -1,7 +1,6 @@
 -- Colorscheme
 
-local palette_ok, palette = pcall(require, "rose-pine.palette")
-if not palette_ok then return end
+local palette = require("rose-pine.palette")
 
 vim.cmd [[colorscheme rose-pine]]
 

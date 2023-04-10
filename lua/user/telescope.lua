@@ -1,7 +1,4 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-    return
-end
+local telescope = require("telescope")
 
 telescope.load_extension("zf-native")
 telescope.load_extension("workspaces")

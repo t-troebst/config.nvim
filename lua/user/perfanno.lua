@@ -1,12 +1,6 @@
-local status_ok, perfanno = pcall(require, "perfanno")
-if not status_ok then
-    return
-end
-
+local perfanno = require("perfanno")
 local util = require("perfanno.util")
-
-local palette_ok, palette = pcall(require, "rose-pine.palette")
-if not palette_ok then return end
+local palette = require("rose-pine.palette")
 
 local bgcolor = vim.fn.synIDattr(vim.fn.hlID("Normal"), "bg", "gui")
 

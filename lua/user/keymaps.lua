@@ -1,6 +1,5 @@
 -- Keymaps
-local which_key_ok, which_key = pcall(require, "which-key")
-if not which_key_ok then return end
+local which_key = require("which-key")
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ";"

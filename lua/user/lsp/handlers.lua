@@ -3,9 +3,9 @@ local M = {}
 M.setup = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn", text = "" },
-        { name = "DiagnosticSignHint", text = "" },
-        { name = "DiagnosticSignInfo", text = "" },
+        { name = "DiagnosticSignWarn",  text = "" },
+        { name = "DiagnosticSignHint",  text = "" },
+        { name = "DiagnosticSignInfo",  text = "" },
     }
 
     for _, sign in ipairs(signs) do
@@ -58,15 +58,8 @@ M.on_attach = function(client, bufnr)
     end
 end
 
-M.on_attach = function(client, _)
-    lsp_highlight_document(client)
-end
-
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if status_ok then
-    M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-end
+M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M

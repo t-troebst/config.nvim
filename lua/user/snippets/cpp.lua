@@ -14,11 +14,7 @@ local r = ls.restore_node
 local c = ls.choice_node
 local s = ls.snippet_node
 
--- Needed for fancy snippets
-local ts_utils_ok, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
-if not ts_utils_ok then
-    return {}
-end
+local ts_utils = require("nvim-treesitter.ts_utils")
 
 local cpp_classes = vim.treesitter.query.parse("cpp", [[
     [
