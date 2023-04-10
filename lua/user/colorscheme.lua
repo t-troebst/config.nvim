@@ -7,6 +7,7 @@ vim.cmd [[colorscheme rose-pine]]
 
 -- Semantic highlighting
 
+vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary.lua", { link = "@function.builtin" })
 vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary.cpp", { link = "@lsp" })
 vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary.cpp", { link = "@lsp" })
 
