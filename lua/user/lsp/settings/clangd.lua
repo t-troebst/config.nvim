@@ -5,4 +5,7 @@ return {
         "--header-insertion=iwyu",
         "--completion-style=detailed",
     },
+    fallbackFlags = {
+        "-std=c++20"
+    }
 }
