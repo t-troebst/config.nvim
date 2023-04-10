@@ -6,6 +6,16 @@ local function get_cmake_lists(opts)
     return vim.fs.find("CMakeLists.txt", { upward = true, type = "file", path = opts.dir })[1]
 end
 
+local function relative_file(file_cwd, file)
+    local cwd = vim.fs.dirname(file_cwd)
+    local norm = vim.fs.normalize(file)
+    if norm:match("^/") then
+        return norm
+    else
+        return cwd .. "/" .. norm
+    end
+end
+
 local function get_cmake_presets(file)
     local presets_json = ""
     local presets_handle = io.open(file)
@@ -20,7 +30,16 @@ local function get_cmake_presets(file)
     if not ok then
         return {}
     end
-    return presets["configurePresets"] or {}
+
+    local result = presets.configurePresets or {}
+
+    if presets.include then
+        for _, include_file in ipairs(presets.include) do
+            vim.list_extend(result, get_cmake_presets(relative_file(file, include_file)))
+        end
+    end
+
+    return result
 end
 
 local function get_cmake_builds(cwd)
