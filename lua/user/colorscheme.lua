@@ -7,11 +7,8 @@ vim.cmd [[colorscheme rose-pine]]
 
 -- Semantic highlighting
 
--- Custom highlight for non-readonly (experimental)
-vim.api.nvim_set_hl(0, "mutable", { underline = true })
-
-vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary", { link = "@lsp" })
-vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary", { link = "@lsp" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary.cpp", { link = "@lsp" })
+vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary.cpp", { link = "@lsp" })
 
 -- Custom highlights for DAP
 
