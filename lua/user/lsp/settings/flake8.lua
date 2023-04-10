@@ -5,5 +5,5 @@ return {
         if file ~= "" then
             return { "--append-config", full_path }
         end
-    end
+    end,
 }

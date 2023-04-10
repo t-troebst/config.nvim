@@ -1,10 +1,22 @@
 local dap = require("dap")
 
-vim.fn.sign_define("DapBreakpoint", { text = '🅱', texthl = 'Breakpoint', linehl = '', numhl = 'Breakpoint' })
-vim.fn.sign_define("DapBreakpointCondition", { text = '🅲', texthl = 'Breakpoint', linehl = '', numhl = 'Breakpoint' })
-vim.fn.sign_define("DapStopped", { text = '', texthl = 'Continue', linehl = '', numhl = '' })
-vim.fn.sign_define("DapLogPoint", { text = '🅻', texthl = 'Logpoint', linehl = '', numhl = 'Logpoint' })
-vim.fn.sign_define("DapBreakpointRejected", { text = '✗', texthl = 'Continue', linehl = '', numhl = 'Breakpoint' })
+vim.fn.sign_define(
+    "DapBreakpoint",
+    { text = "🅱", texthl = "Breakpoint", linehl = "", numhl = "Breakpoint" }
+)
+vim.fn.sign_define(
+    "DapBreakpointCondition",
+    { text = "🅲", texthl = "Breakpoint", linehl = "", numhl = "Breakpoint" }
+)
+vim.fn.sign_define("DapStopped", { text = "", texthl = "Continue", linehl = "", numhl = "" })
+vim.fn.sign_define(
+    "DapLogPoint",
+    { text = "🅻", texthl = "Logpoint", linehl = "", numhl = "Logpoint" }
+)
+vim.fn.sign_define(
+    "DapBreakpointRejected",
+    { text = "✗", texthl = "Continue", linehl = "", numhl = "Breakpoint" }
+)
 
 local function conditional_breakpoint()
     vim.ui.input({ prompt = "Condition: " }, function(value)
@@ -58,7 +70,6 @@ local function dap_config()
     return config
 end
 
-
 local function select_target(config)
     if not config.targets then
         return nil
@@ -70,7 +81,7 @@ local function select_target(config)
                 prompt = "Choose target:",
                 format_item = function(target)
                     return target.name or (target.program .. " " .. table.concat(target.args, " "))
-                end
+                end,
             }, function(target)
                 coroutine.resume(coro, target)
             end)
@@ -107,10 +118,13 @@ setmetatable(cpp_config, {
         if not target then
             local coro = coroutine.running()
             vim.schedule(function()
-                vim.ui.input({ prompt = "Path to executable:", completion = "file", default = vim.fn.getcwd() .. "/" },
-                    function(path)
-                        coroutine.resume(coro, path)
-                    end)
+                vim.ui.input({
+                    prompt = "Path to executable:",
+                    completion = "file",
+                    default = vim.fn.getcwd() .. "/",
+                }, function(path)
+                    coroutine.resume(coro, path)
+                end)
             end)
             new_conf.program = coroutine.yield()
             new_conf.args = {}
@@ -120,11 +134,11 @@ setmetatable(cpp_config, {
         end
 
         return new_conf
-    end
+    end,
 })
 
 dap.configurations.cpp = {
-    cpp_config
+    cpp_config,
 }
 
 dap.configurations.c = dap.configurations.cpp
@@ -133,15 +147,15 @@ dap.configurations.rust = dap.configurations.cpp
 -- Python
 
 dap.adapters.python = {
-    type = 'executable',
-    command = 'python',
-    args = { '-m', 'debugpy.adapter' },
+    type = "executable",
+    command = "python",
+    args = { "-m", "debugpy.adapter" },
 }
 
 dap.configurations.python = {
     {
-        type = 'python',
-        request = 'launch',
+        type = "python",
+        request = "launch",
         name = "Launch file",
         program = "${file}",
         pythonPath = function()
@@ -149,12 +163,12 @@ dap.configurations.python = {
             -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
             -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
             local cwd = vim.fn.getcwd()
-            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-                return cwd .. '/venv/bin/python'
-            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-                return cwd .. '/.venv/bin/python'
+            if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+                return cwd .. "/venv/bin/python"
+            elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+                return cwd .. "/.venv/bin/python"
             else
-                return '/usr/bin/python'
+                return "/usr/bin/python"
             end
         end,
     },

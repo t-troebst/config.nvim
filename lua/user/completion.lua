@@ -8,9 +8,13 @@ local timer = vim.loop.new_timer()
 -- @param delay Delay in milliseconds.
 function DebounceCMP(delay)
     timer:stop()
-    timer:start(delay, 0, vim.schedule_wrap(function()
-        cmp.complete({ reason = cmp.ContextReason.Auto })
-    end))
+    timer:start(
+        delay,
+        0,
+        vim.schedule_wrap(function()
+            cmp.complete { reason = cmp.ContextReason.Auto }
+        end)
+    )
 end
 
 cmp.setup {
@@ -22,9 +26,9 @@ cmp.setup {
         ["<C-e>"] = cmp.mapping.close(),
         ["<C-y>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
-            select = true
+            select = true,
         },
-        ["<C-space>"] = cmp.mapping.complete()
+        ["<C-space>"] = cmp.mapping.complete(),
     },
 
     sources = {
@@ -53,8 +57,8 @@ cmp.setup {
                 luasnip = "[snip]",
                 nvim_lsp = "[lsp]",
                 nvim_lua = "[api]",
-            }
-        }
+            },
+        },
     },
 
     window = {
@@ -69,8 +73,8 @@ cmp.setup {
     },
 
     completion = {
-        autocomplete = false -- We use the debouncing method.
-    }
+        autocomplete = false, -- We use the debouncing method.
+    },
 }
 
 vim.api.nvim_create_autocmd("TextChangedI", {
@@ -78,5 +82,5 @@ vim.api.nvim_create_autocmd("TextChangedI", {
     pattern = "*",
     callback = function()
         DebounceCMP(1000)
-    end
+    end,
 })

@@ -11,12 +11,15 @@ local s = ls.snippet_node
 
 local ts_utils = require("nvim-treesitter.ts_utils")
 
-local function_q = vim.treesitter.query.parse("lua",[[
+local function_q = vim.treesitter.query.parse(
+    "lua",
+    [[
     [
         (function_declaration parameters: (parameters) @parms)
         (function_definition parameters: (parameters) @parms)
     ] @fun
-]])
+]]
+)
 -- This only matches returns that actually return something, so early return can still be used for
 -- control flow!
 local return_q = vim.treesitter.query.parse("lua", "(return_statement (expression_list)) @ret")
@@ -31,7 +34,9 @@ local function next_fun_parms(linenr)
     -- TODO: Doesn't work if we land inside of a comment block because that's a different
     -- "language".
     local root = ts_utils.get_root_for_position(linenr - 1, 0)
-    if not root then return end
+    if not root then
+        return
+    end
 
     for _, captures, _ in function_q:iter_matches(root, bufnr) do
         local sline = captures[1]:range()
@@ -60,20 +65,22 @@ return {
     ls.parser.parse_snippet("ipairs", "for ${1:i}, ${2:value} in ipairs($3) do\n\t$0\nend"),
     ls.parser.parse_snippet("if", "if ${1:cond} then\n\t$0\nend"),
     ls.parser.parse_snippet("ifn", "if not ${1:cond} then\n\t$0\nend"),
-    snippet("req",
-        fmt("local {} = require(\"{}\")", {
+    snippet(
+        "req",
+        fmt('local {} = require("{}")', {
             l(l._1:match("[^.]*$"):gsub("[^%a]+", "_"), 1),
-            i(1, "module")
+            i(1, "module"),
         })
     ),
-    snippet("preq",
-        fmt("local {1}_ok, {1} = pcall(require, \"{}\")\nif not {1}_ok then return end", {
+    snippet(
+        "preq",
+        fmt('local {1}_ok, {1} = pcall(require, "{}")\nif not {1}_ok then return end', {
             l(l._1:match("[^.]*$"):gsub("[^%a]+", "_"), 1),
-            i(1, "module")
+            i(1, "module"),
         })
     ),
     snippet("doc", {
-        t"--- ",
+        t("--- "),
         i(1, "Function description."),
         d(2, function(_, snip)
             local parms, ret = next_fun_parms(tonumber(snip.env.TM_LINE_NUMBER))
@@ -81,16 +88,16 @@ return {
 
             local parm_nodes = {}
             for j, parm in ipairs(parms) do
-                table.insert(parm_nodes, t{"", "-- @param " .. parm .. " "})
+                table.insert(parm_nodes, t { "", "-- @param " .. parm .. " " })
                 table.insert(parm_nodes, i(j, "Parameter description."))
             end
 
             if ret then
-                table.insert(parm_nodes, t{"", "-- @return "})
+                table.insert(parm_nodes, t { "", "-- @return " })
                 table.insert(parm_nodes, i(#parms + 1, "Return description."))
             end
 
             return s(1, parm_nodes)
         end),
-    })
+    }),
 }

@@ -2,7 +2,7 @@
 
 local palette = require("rose-pine.palette")
 
-vim.cmd [[colorscheme rose-pine]]
+vim.cmd([[colorscheme rose-pine]])
 
 -- Semantic highlighting
 

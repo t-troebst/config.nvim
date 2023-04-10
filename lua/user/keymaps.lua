@@ -6,7 +6,7 @@ vim.g.maplocalleader = ";"
 
 which_key.setup {}
 
-which_key.register({
+which_key.register {
     j = { "gj", "Down" },
     k = { "gk", "Up" },
 
@@ -50,7 +50,10 @@ which_key.register({
             s = { "<CMD>lua require('dap').step_over()<CR>", "Step over" },
             i = { "<CMD>lua require('dap').step_into()<CR>", "Step into" },
             o = { "<CMD>lua require('dap').step_out()<CR>", "Step out" },
-            q = { "<CMD>lua require('dap').terminate()<CR><CMD>DapVirtualTextForceRefresh<CR>", "Quit" },
+            q = {
+                "<CMD>lua require('dap').terminate()<CR><CMD>DapVirtualTextForceRefresh<CR>",
+                "Quit",
+            },
             h = { "<CMD>lua require('dap.ui.widgets').hover()<CR>", "Hover" },
             r = { "<CMD>lua require('dap').repl.open()<CR>", "Open REPL" },
         },
@@ -63,12 +66,24 @@ which_key.register({
             name = "LSP",
             n = { "<CMD>lua vim.lsp.buf.rename()<CR>", "Rename" },
             a = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code actions" },
-            b = { "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Document symbols" },
-            s = { "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace symbols" },
+            b = {
+                "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>",
+                "Document symbols",
+            },
+            s = {
+                "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
+                "Workspace symbols",
+            },
             r = { "<CMD>lua require('telescope.builtin').lsp_references()<CR>", "References" },
-            i = { "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", "Implementations" },
+            i = {
+                "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>",
+                "Implementations",
+            },
             d = { "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", "Definitions" },
-            t = { "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>", "Type definitions" },
+            t = {
+                "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>",
+                "Type definitions",
+            },
             f = { "<CMD>lua vim.lsp.buf.format{async = true}<CR>", "Format" },
             h = { "<CMD>ClangdSwitchSourceHeader<CR>", "Switch source/header" },
         },
@@ -134,10 +149,10 @@ which_key.register({
             t = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
             b = { "<CMD>OverseerBuild<CR>", "Build task" },
             l = { "<CMD>OverseerLoadBundle<CR>", "Load task bundle" },
-            s = { "<CMD>OverseerSaveBundle<CR>", "Save task bundle" }
-        }
-    }
-})
+            s = { "<CMD>OverseerSaveBundle<CR>", "Save task bundle" },
+        },
+    },
+}
 
 which_key.register({
     ["<M-j>"] = { "<S-j>", "Join lines" },
@@ -151,8 +166,8 @@ which_key.register({
             name = "Profiling",
             a = { "<CMD>PerfAnnotate<CR>", "Annotate" },
             c = { "<CMD>PerfHottestCallersSelection<CR>", "Hottest callers" },
-        }
-    }
+        },
+    },
 }, { mode = "v" })
 
 which_key.register({

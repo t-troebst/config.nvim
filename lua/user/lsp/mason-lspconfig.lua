@@ -2,7 +2,7 @@ local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
 mason_lspconfig.setup()
-mason_lspconfig.setup_handlers({
+mason_lspconfig.setup_handlers {
     function(server_name)
         local opts = {
             on_attach = require("user.lsp.handlers").on_attach,
@@ -16,4 +16,4 @@ mason_lspconfig.setup_handlers({
             lspconfig[server_name].setup(opts)
         end
     end,
-})
+}

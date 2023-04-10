@@ -34,13 +34,14 @@ local branch = {
 local progress = function()
     local current_line = vim.fn.line(".")
     local total_lines = vim.fn.line("$")
-    local chars = { "  ", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+    local chars =
+        { "  ", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
     local line_ratio = current_line / total_lines
     local index = math.ceil(line_ratio * #chars)
     return chars[index]
 end
 
-lualine.setup({
+lualine.setup {
     options = {
         icons_enabled = true,
         theme = "auto",
@@ -75,7 +76,7 @@ lualine.setup({
     },
     tabline = {},
     extensions = {},
-})
+}
 
 -- Activate global status line
 vim.opt.laststatus = 3

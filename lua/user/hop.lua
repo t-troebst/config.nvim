@@ -1,5 +1,5 @@
 local hop = require("hop")
 
-hop.setup({
+hop.setup {
     extend_visual = true,
-})
+}

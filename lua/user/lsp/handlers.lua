@@ -3,9 +3,9 @@ local M = {}
 M.setup = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn",  text = "" },
-        { name = "DiagnosticSignHint",  text = "" },
-        { name = "DiagnosticSignInfo",  text = "" },
+        { name = "DiagnosticSignWarn", text = "" },
+        { name = "DiagnosticSignHint", text = "" },
+        { name = "DiagnosticSignInfo", text = "" },
     }
 
     for _, sign in ipairs(signs) do
@@ -46,14 +46,14 @@ end
 local augroup = vim.api.nvim_create_augroup("LspHighlighting", { clear = false })
 M.on_attach = function(client, bufnr)
     if client.server_capabilities.documentHighlightProvider then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
         vim.api.nvim_create_autocmd("CursorHold", {
             group = augroup,
-            callback = vim.lsp.buf.document_highlight
+            callback = vim.lsp.buf.document_highlight,
         })
         vim.api.nvim_create_autocmd("CursorMoved", {
             group = augroup,
-            callback = vim.lsp.buf.clear_references
+            callback = vim.lsp.buf.clear_references,
         })
     end
 end

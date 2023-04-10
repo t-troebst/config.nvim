@@ -46,9 +46,13 @@ local function cmake_setup_task(cwd)
         builder = function(params)
             return {
                 cmd = { "cmake" },
-                args = { "-DCMAKE_BUILD_TYPE=" .. params.build_type, "-B", params.dir,
-                    "-DCMAKE_EXPORT_COMPILE_COMMANDS=" .. cmake_boolean(params.compile_commands) },
-                cwd = cwd
+                args = {
+                    "-DCMAKE_BUILD_TYPE=" .. params.build_type,
+                    "-B",
+                    params.dir,
+                    "-DCMAKE_EXPORT_COMPILE_COMMANDS=" .. cmake_boolean(params.compile_commands),
+                },
+                cwd = cwd,
             }
         end,
         tags = { overseer.TAG.BUILD },
@@ -57,19 +61,19 @@ local function cmake_setup_task(cwd)
                 name = "Build Type",
                 type = "enum",
                 default = "Debug",
-                choices = { "Debug", "Release", "RelWithDebInfo", "MinSizeRel" }
+                choices = { "Debug", "Release", "RelWithDebInfo", "MinSizeRel" },
             },
             dir = {
                 name = "Build Directory",
-                default = "build"
+                default = "build",
             },
             compile_commands = {
                 name = "Export Compile Commands",
                 type = "boolean",
-                default = true
-            }
+                default = true,
+            },
         },
-        priority = 42
+        priority = 42,
     }
 end
 
@@ -83,13 +87,13 @@ local function cmake_preset_tasks(cwd)
             name = "CMake Preset (" .. preset.name .. ")",
             builder = function()
                 return {
-                    cmd = {"cmake"},
-                    args = {"--preset", preset.name},
-                    cwd = cwd
+                    cmd = { "cmake" },
+                    args = { "--preset", preset.name },
+                    cwd = cwd,
                 }
             end,
             tags = { overseer.TAG.BUILD },
-            priority = 41
+            priority = 41,
         })
     end
 
@@ -104,13 +108,13 @@ local function cmake_build_tasks(cwd)
             name = "CMake Build (" .. vim.fs.basename(build_dir) .. ")",
             builder = function()
                 return {
-                    cmd = {"cmake"},
-                    args = {"--build", build_dir},
-                    cwd = cwd
+                    cmd = { "cmake" },
+                    args = { "--build", build_dir },
+                    cwd = cwd,
                 }
             end,
             tags = { overseer.TAG.BUILD },
-            priority = 40
+            priority = 40,
         })
     end
 
@@ -124,7 +128,7 @@ overseer.register_template {
         local cmake_lists = get_cmake_lists(opts)
         local cwd = vim.fs.dirname(cmake_lists)
 
-        local tasks = {cmake_setup_task(cwd)}
+        local tasks = { cmake_setup_task(cwd) }
         vim.list_extend(tasks, cmake_preset_tasks(cwd))
         vim.list_extend(tasks, cmake_build_tasks(cwd))
         cb(tasks)
@@ -139,8 +143,8 @@ overseer.register_template {
                 return false, "No CMakeLists.txt found"
             end
             return true
-        end
-    }
+        end,
+    },
 }
 
 overseer.register_template {
@@ -160,13 +164,13 @@ overseer.register_template {
                     name = "Latex Build (" .. vim.fs.basename(name) .. ")",
                     builder = function()
                         return {
-                            cmd = {"latexmk"},
-                            args = {"-pdf", name},
-                            cwd = opts.dir
+                            cmd = { "latexmk" },
+                            args = { "-pdf", name },
+                            cwd = opts.dir,
                         }
                     end,
                     tags = { overseer.TAG.BUILD },
-                    priority = priority
+                    priority = priority,
                 })
             end
         end
