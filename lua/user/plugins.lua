@@ -107,7 +107,6 @@ return packer.startup(function(use)
 
     -- Plugin Development
     --  use "~/Documents/Projects/perfanno.nvim"
-    use("nvim-treesitter/playground") -- Useful for debugging of treesitter
     use("dstein64/vim-startuptime") -- Measure startup time of neovim
 
     -- Automatically set up configuration after cloning packer.nvim
