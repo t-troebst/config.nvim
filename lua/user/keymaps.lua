@@ -4,6 +4,16 @@ local which_key = require("which-key")
 vim.g.mapleader = ","
 vim.g.maplocalleader = ";"
 
+--- Close window if there multiple, otherwise close buffer.
+local function smart_close()
+    local wins = vim.api.nvim_list_wins()
+    if #wins > 1 then
+        vim.api.nvim_win_close(0, {})
+    else
+        vim.api.nvim_buf_delete(0, {})
+    end
+end
+
 which_key.setup {}
 
 which_key.register {
@@ -25,7 +35,7 @@ which_key.register {
     ["<S-h>"] = { "<CMD>bprev<CR>", "Previous buffer" },
     ["<S-l>"] = { "<CMD>bnext<CR>", "Next buffer" },
     ["<M-q>"] = { "<S-q>", "Repeat last recorded register" },
-    ["<S-q>"] = { "<CMD>bd<CR>", "Delete buffer" },
+    ["<S-q>"] = { smart_close, "Smart close window/buffer" },
 
     ["<TAB>"] = { "%", "Matching character: '()', '{}', '[]'" },
 
