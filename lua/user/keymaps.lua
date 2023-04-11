@@ -95,7 +95,11 @@ which_key.register {
             g = { "<CMD>lua require('telescope.builtin').live_grep()<CR>", "Live grep" },
             b = { "<CMD>lua require('telescope.builtin').buffers()<CR>", "Buffers" },
             h = { "<CMD>lua require('telescope.builtin').help_tags()<CR>", "Help" },
-            w = { "<CMD>Telescope workspaces<CR>", "Workspaces" },
+            w = {
+                "<CMD>lua require('telescope').extensions.project.project{display_type = 'full'}<CR>",
+                "Workspaces",
+            },
+            r = { "<CMD>Telescope frecency<CR>", "Recent files" },
         },
 
         g = {

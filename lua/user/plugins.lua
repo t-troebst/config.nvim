@@ -57,7 +57,6 @@ return packer.startup(function(use)
     use("tpope/vim-fugitive") -- Git integration
     use("stevearc/dressing.nvim") -- Nicer select / input windows
     use("kyazdani42/nvim-tree.lua") -- File browser
-    use("natecraddock/workspaces.nvim") -- Workspace management
     use("folke/which-key.nvim") -- Show keybinds
     use("stevearc/overseer.nvim") -- Task runner
     use("rcarriga/nvim-notify") -- Fancy notification manager
@@ -65,6 +64,11 @@ return packer.startup(function(use)
     -- Fuzzy searching
     use("nvim-telescope/telescope.nvim") -- Telescope
     use("natecraddock/telescope-zf-native.nvim") -- Better matches for files
+    use {
+        "nvim-telescope/telescope-frecency.nvim", -- Recently used files
+        requires = { "kkharji/sqlite.lua" },
+    }
+    use("nvim-telescope/telescope-project.nvim") -- Projects
 
     -- Colorscheme
     use { "rose-pine/neovim", as = "rose-pine.nvim" }
