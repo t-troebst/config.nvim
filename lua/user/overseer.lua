@@ -166,6 +166,59 @@ overseer.register_template {
     },
 }
 
+local cpp_default_args = {
+    "--std=c++20",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-g",
+}
+
+overseer.register_template {
+    name = "C++ Build File",
+
+    generator = function(opts, cb)
+        local file = vim.fn.expand("%")
+
+        cb {
+            {
+                name = "C++ Build File (" .. file .. ")",
+                builder = function()
+                    return {
+                        cmd = { "g++" },
+                        args = {
+                            file,
+                            "-o",
+                            file .. ".out",
+                            unpack(cpp_default_args)
+                        },
+                        components = { { "on_output_quickfix", open_on_match = true }, "default" },
+                    }
+                end,
+                tags = { overseer.TAG.BUILD },
+                priority = 44
+            },
+            {
+                name = "C++ Run File (" .. file .. ")",
+                builder = function()
+                    return {
+                        cmd = { vim.fn.fnamemodify(file .. ".out", ":p") },
+                        components = {
+                            { "dependencies", task_names = { "C++ Build File (" .. file .. ")" } },
+                            "default",
+                        },
+                    }
+                end,
+                priority = 43
+            },
+        }
+    end,
+
+    condition = {
+        filetype = { "cpp" },
+    },
+}
+
 overseer.register_template {
     name = "LaTeX Build",
 
