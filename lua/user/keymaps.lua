@@ -150,6 +150,8 @@ which_key.register {
         o = {
             name = "Overseer",
 
+            a = { "<CMD>OverseerTaskAction<CR>", "Task action" },
+            q = { "<CMD>OverseerQuickAction<CR>", "Quick action" },
             r = { "<CMD>OverseerRun<CR>", "Run task" },
             t = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
             b = { "<CMD>OverseerBuild<CR>", "Build task" },
