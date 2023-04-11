@@ -190,13 +190,13 @@ overseer.register_template {
                             file,
                             "-o",
                             file .. ".out",
-                            unpack(cpp_default_args)
+                            unpack(cpp_default_args),
                         },
                         components = { { "on_output_quickfix", open_on_match = true }, "default" },
                     }
                 end,
                 tags = { overseer.TAG.BUILD },
-                priority = 44
+                priority = 44,
             },
             {
                 name = "C++ Run File (" .. file .. ")",
@@ -209,7 +209,7 @@ overseer.register_template {
                         },
                     }
                 end,
-                priority = 43
+                priority = 43,
             },
         }
     end,
@@ -249,4 +249,18 @@ overseer.register_template {
 
         cb(templates)
     end,
+}
+
+overseer.register_template {
+    name = "Python Run",
+    builder = function()
+        return {
+            cmd = { "python" },
+            args = { vim.fn.expand("%") },
+        }
+    end,
+    priority = 43,
+    condition = {
+        filetype = "python",
+    },
 }
