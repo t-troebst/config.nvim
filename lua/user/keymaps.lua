@@ -30,6 +30,7 @@ which_key.register {
     ["<TAB>"] = { "%", "Matching character: '()', '{}', '[]'" },
 
     ["<C-n>"] = { "<CMD>NvimTreeToggle<CR>", "Toggle file browser" },
+    ["<C-t>"] = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
 
     s = { "<CMD>HopChar1<CR>", "Search character" },
     ["<S-s>"] = { "<CMD>HopChar2<CR>", "Search 2 characters" },
