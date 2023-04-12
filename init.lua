@@ -1,3 +1,6 @@
+-- Enable experimental byte-cached Lua loader
+vim.loader.enable()
+
 local function protected_load(name)
     local status, error = pcall(require, name)
 
