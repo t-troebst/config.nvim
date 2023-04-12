@@ -70,12 +70,5 @@ bufferline.setup {
         --     -- add custom logic
         --     return buffer_a.modified > buffer_b.modified
         -- end
-        custom_filter = function(buf, buf_nums)
-            if vim.bo[buf].filetype == "qf" then
-                return false
-            end
-
-            return true
-        end
     },
 }
