@@ -72,6 +72,8 @@ return {
     snippet("for", {
         t("for ("),
         c(1, {
+            s(nil, { t("const auto& "), r(1, "elem"), t(" : "), r(2, "range") }),
+            s(nil, { t("auto& "), r(1, "elem"), t(" : "), r(2, "range") }),
             s(nil, {
                 t("std::size_t "),
                 i(1, "i"),
@@ -81,11 +83,9 @@ return {
                 rep(1),
                 t(" < "),
                 i(3, "n"),
-                t("; "),
+                t("; ++"),
                 rep(1),
             }),
-            s(nil, { t("const auto& "), r(1, "elem"), t(" : "), r(2, "range") }),
-            s(nil, { t("auto&& "), r(1, "elem"), t(" : "), r(2, "range") }),
         }),
         t { ") {", "\t" },
         i(0),
