@@ -104,6 +104,7 @@ return packer.startup(function(use)
         run = ":TSUpdate",
     }
     use("JoosepAlviste/nvim-ts-context-commentstring") -- Correct comments for sub-languages
+    use("nvim-treesitter/nvim-treesitter-textobjects") -- Textobjects based on treesitter
 
     -- Plugin Development
     --  use "~/Documents/Projects/perfanno.nvim"
