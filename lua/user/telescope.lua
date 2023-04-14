@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 
 telescope.load_extension("zf-native")
-telescope.load_extension("frecency")
 telescope.load_extension("project")
 
 telescope.setup {

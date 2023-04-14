@@ -121,7 +121,6 @@ which_key.register {
                 "<CMD>lua require('telescope').extensions.project.project{display_type = 'full'}<CR>",
                 "Workspaces",
             },
-            r = { "<CMD>Telescope frecency<CR>", "Recent files" },
         },
 
         g = {

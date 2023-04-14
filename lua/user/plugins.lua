@@ -65,10 +65,6 @@ return packer.startup(function(use)
     -- Fuzzy searching
     use("nvim-telescope/telescope.nvim") -- Telescope
     use("natecraddock/telescope-zf-native.nvim") -- Better matches for files
-    use {
-        "nvim-telescope/telescope-frecency.nvim", -- Recently used files
-        requires = { "kkharji/sqlite.lua" },
-    }
     use("nvim-telescope/telescope-project.nvim") -- Projects
 
     -- Colorscheme
