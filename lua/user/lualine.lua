@@ -41,6 +41,15 @@ local progress = function()
     return chars[index]
 end
 
+
+local grapple = require("grapple")
+local grapple_key = {
+    function()
+        return "[" .. grapple.key() .. "]"
+    end,
+    cond = grapple.exists
+}
+
 lualine.setup {
     options = {
         icons_enabled = true,
@@ -55,7 +64,7 @@ lualine.setup {
             { "mode", separator = { left = "" }, right_padding = 2 },
         },
         lualine_b = { diagnostics, branch },
-        lualine_c = { "filename" },
+        lualine_c = { "filename", grapple_key },
         lualine_x = { "filesize" },
         lualine_y = { filetype, progress },
         lualine_z = {

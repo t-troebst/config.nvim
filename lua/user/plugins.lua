@@ -60,6 +60,7 @@ return packer.startup(function(use)
     use("folke/which-key.nvim") -- Show keybinds
     use("stevearc/overseer.nvim") -- Task runner
     use("rcarriga/nvim-notify") -- Fancy notification manager
+    use("cbochs/grapple.nvim") -- Quick switching to buffers
 
     -- Fuzzy searching
     use("nvim-telescope/telescope.nvim") -- Telescope

@@ -50,6 +50,17 @@ which_key.register {
     ["<LEADER>"] = {
         ["<SPACE>"] = { "<CMD>nohlsearch<CR>", "Clear search highlights" },
 
+        ["1"] = { "<CMD>GrappleSelect key=1<CR>", "Jump to file 1" },
+        ["2"] = { "<CMD>GrappleSelect key=2<CR>", "Jump to file 2" },
+        ["3"] = { "<CMD>GrappleSelect key=3<CR>", "Jump to file 3" },
+        ["4"] = { "<CMD>GrappleSelect key=4<CR>", "Jump to file 4" },
+
+        m = {
+            name = "Grapple",
+            t = { "<CMD>GrappleToggle<CR>", "Toggle" },
+            m = { "<CMD>GrapplePopup tags<CR>", "Show menu" },
+        },
+
         b = {
             name = "Debugging",
             c = { "<CMD>lua require('dap').continue()<CR>", "Run / continue" },
