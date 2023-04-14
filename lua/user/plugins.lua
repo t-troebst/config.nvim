@@ -95,6 +95,7 @@ return packer.startup(function(use)
     use("jose-elias-alvarez/null-ls.nvim") -- Integrate linters / formatters / etc.
     use("williamboman/mason.nvim") -- Installer for language servers etc.
     use("williamboman/mason-lspconfig.nvim") -- Integration of Mason with LspConfig
+    use("j-hui/fidget.nvim") -- Show LSP status information
     use("mfussenegger/nvim-dap") -- DAP (debugging servers)
     use("theHamsta/nvim-dap-virtual-text") -- Local variables are displayed through virtual text
     use("t-troebst/perfanno.nvim") -- Annotate source code with profiling information from perf
