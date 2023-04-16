@@ -80,8 +80,7 @@ return packer.startup(function(use)
     use("hrsh7th/cmp-nvim-lsp-signature-help") -- Display signature while typing
     use("saadparwaiz1/cmp_luasnip") -- Snippet completions
     use("onsails/lspkind-nvim") -- Kind icons for lsp completions
-    -- TODO: look into this one
-    -- use "hrsh7th/cmp-cmdline" -- Command line completions
+    use "hrsh7th/cmp-cmdline" -- Command line completions
 
     -- Snippets
     use("L3MON4D3/LuaSnip") --snippet engine

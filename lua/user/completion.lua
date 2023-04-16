@@ -17,19 +17,21 @@ function DebounceCMP(delay)
     )
 end
 
-cmp.setup {
-    mapping = {
-        ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
-        ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-        ["<C-e>"] = cmp.mapping.close(),
-        ["<C-y>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        },
-        ["<C-space>"] = cmp.mapping.complete(),
+local mappings = {
+    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-y>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
     },
+    ["<C-space>"] = cmp.mapping.complete(),
+}
+
+cmp.setup {
+    mapping = mappings,
 
     sources = {
         { name = "nvim_lua" },
@@ -77,10 +79,19 @@ cmp.setup {
     },
 }
 
+cmp.setup.cmdline(":", {
+    mapping = mappings,
+    sources = cmp.config.sources {
+        { name = "path" },
+        { name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
+    },
+})
+
+local augroup = vim.api.nvim_create_augroup("CmpDebounce", { clear = true })
 vim.api.nvim_create_autocmd("TextChangedI", {
-    group = vim.api.nvim_create_augroup("CmpDebounceAuGroup", {}),
+    group = augroup,
     pattern = "*",
     callback = function()
-        DebounceCMP(1000)
+        DebounceCMP(500)
     end,
 })
