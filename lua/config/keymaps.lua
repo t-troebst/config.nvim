@@ -1,9 +1,6 @@
 -- Keymaps
 local which_key = require("which-key")
 
-vim.g.mapleader = ","
-vim.g.maplocalleader = ";"
-
 --- Close window if there multiple, otherwise close buffer.
 local function smart_close()
     local wins = vim.api.nvim_list_wins()
@@ -42,8 +39,8 @@ which_key.register {
     ["<C-n>"] = { "<CMD>NvimTreeToggle<CR>", "Toggle file browser" },
     ["<C-t>"] = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
 
-    s = { "<Plug>(leap-forward-to)", "Search character" },
-    ["<S-s>"] = { "<Plug>(leap-backward-to)", "Search characters (backwards)" },
+    s = { "<CMD>lua require('leap').leap{}<CR>", "Search character" },
+    ["<S-s>"] = { "<CMD>lua require('leap').leap{backward=true}<CR>", "Search characters (backwards)" },
 
     ["<C-\\>"] = { "Open terminal" },
 
