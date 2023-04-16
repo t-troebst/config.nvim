@@ -125,13 +125,19 @@ local function cmake_build_tasks(cwd)
     for _, build_dir in ipairs(get_cmake_builds(cwd)) do
         table.insert(build_tasks, {
             name = "CMake Build (" .. vim.fs.basename(build_dir) .. ")",
-            builder = function()
+            builder = function(params)
                 return {
                     cmd = { "cmake" },
-                    args = { "--build", build_dir },
+                    args = { "--build", build_dir, "--target", params.target },
                     cwd = cwd,
                 }
             end,
+            params = {
+                target = {
+                    name = "Target",
+                    default = "all",
+                },
+            },
             tags = { overseer.TAG.BUILD },
             priority = 40,
         })
