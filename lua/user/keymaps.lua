@@ -42,8 +42,8 @@ which_key.register {
     ["<C-n>"] = { "<CMD>NvimTreeToggle<CR>", "Toggle file browser" },
     ["<C-t>"] = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
 
-    s = { "<CMD>HopChar1<CR>", "Search character" },
-    ["<S-s>"] = { "<CMD>HopChar2<CR>", "Search 2 characters" },
+    s = { "<Plug>(leap-forward-to)", "Search character" },
+    ["<S-s>"] = { "<Plug>(leap-backward-to)", "Search characters (backwards)" },
 
     ["<C-\\>"] = { "Open terminal" },
 
@@ -214,6 +214,6 @@ which_key.register({
 }, { mode = "s" })
 
 which_key.register({
-    s = { "<CMD>HopChar1<CR>", "Search character" },
-    ["<S-s>"] = { "<CMD>HopChar2<CR>", "Search 2 characters" },
+    s = { "<Plug>(leap-forward-to)", "Search character" },
+    ["<S-s>"] = { "<Plug>(leap-backward-to)", "Search character (backward)" },
 }, { mode = "x" })

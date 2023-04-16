@@ -51,7 +51,8 @@ return packer.startup(function(use)
     use { "akinsho/bufferline.nvim", branch = "main" } -- Buffer line
     use("kyazdani42/nvim-web-devicons") -- Nice icons for Nvim tree and other plugins
     use("numToStr/Comment.nvim") -- Automatic commenting
-    use("phaazon/hop.nvim") -- Character jumping ala EasyMotion
+    -- use("phaazon/hop.nvim") -- Character jumping ala EasyMotion
+    use("ggandor/leap.nvim") -- Character jumping on speed
     use { "akinsho/toggleterm.nvim", branch = "main" } -- Terminal support
     use("lewis6991/gitsigns.nvim") -- Git signs
     use("tpope/vim-fugitive") -- Git integration
