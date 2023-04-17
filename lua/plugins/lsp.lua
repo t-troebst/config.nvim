@@ -8,7 +8,7 @@ local function get_config(name)
 end
 
 return {
-    { "williamboman/mason.nvim",           build = ":MasonUpdate", config = true },
+    { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
     { "williamboman/mason-lspconfig.nvim", config = true },
     {
         "jose-elias-alvarez/null-ls.nvim",
@@ -38,6 +38,11 @@ return {
         end,
     },
     {
+        "folke/neodev.nvim",
+        config = true,
+        lazy = true,
+    },
+    {
         "neovim/nvim-lspconfig",
         opts = {
             diagnostics = {
@@ -47,9 +52,9 @@ return {
                 signs = {
                     active = {
                         { name = "DiagnosticSignError", text = "" },
-                        { name = "DiagnosticSignWarn",  text = "" },
-                        { name = "DiagnosticSignHint",  text = "" },
-                        { name = "DiagnosticSignInfo",  text = "" },
+                        { name = "DiagnosticSignWarn", text = "" },
+                        { name = "DiagnosticSignHint", text = "" },
+                        { name = "DiagnosticSignInfo", text = "" },
                     },
                 },
                 update_in_insert = false,
@@ -103,6 +108,7 @@ return {
             },
         },
         config = function(_, opts)
+            require("neodev").setup {}
             local nvim_lspconfig = require("lspconfig")
 
             for _, sign in ipairs(opts.diagnostics.signs.active) do
