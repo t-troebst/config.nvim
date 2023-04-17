@@ -1,19 +1,5 @@
 --- Provides snippets for C++.
 
-local ls = require("luasnip")
-local query = require("vim.treesitter.query")
-local snippet = ls.snippet
-local l = require("luasnip.extras").lambda
-local rep = require("luasnip.extras").rep
-local i = ls.insert_node
-local d = ls.dynamic_node
-local n = require("luasnip.extras").nonempty
-local f = ls.function_node
-local t = ls.text_node
-local r = ls.restore_node
-local c = ls.choice_node
-local s = ls.snippet_node
-
 local ts_utils = require("nvim-treesitter.ts_utils")
 
 local cpp_classes = vim.treesitter.query.parse(
@@ -69,12 +55,12 @@ local function get_surrounding_class(linenr)
 end
 
 return {
-    snippet("for", {
+    s("for", {
         t("for ("),
         c(1, {
-            s(nil, { t("const auto& "), r(1, "elem"), t(" : "), r(2, "range") }),
-            s(nil, { t("auto& "), r(1, "elem"), t(" : "), r(2, "range") }),
-            s(nil, {
+            sn(nil, { t("const auto& "), r(1, "elem"), t(" : "), r(2, "range") }),
+            sn(nil, { t("auto& "), r(1, "elem"), t(" : "), r(2, "range") }),
+            sn(nil, {
                 t("std::size_t "),
                 i(1, "i"),
                 t(" = "),
@@ -91,80 +77,80 @@ return {
         i(0),
         t { "", "}" },
     }, { stored = { elem = i(1, "elem"), range = i(2, "range") } }),
-    ls.parser.parse_snippet("while", "while (${1:cond}) {\n\t$0\n}"),
-    ls.parser.parse_snippet("do", "do {\n\t$0\n} while (${1:cond});"),
-    snippet("if", {
+    parse("while", "while (${1:cond}) {\n\t$0\n}"),
+    parse("do", "do {\n\t$0\n} while (${1:cond});"),
+    s("if", {
         t("if ("),
         c(1, {
             r(1, "cond"),
-            s(nil, { i(1, "init"), t("; "), r(2, "cond") }),
+            sn(nil, { i(1, "init"), t("; "), r(2, "cond") }),
         }),
         t { ") {", "\t" },
         i(0),
         t { "", "}" },
     }, { stored = { cond = i(1, "cond") } }),
-    snippet("ifc", {
+    s("ifc", {
         t("if constexpr ("),
         c(1, {
             r(1, "cond"),
-            s(nil, { i(1, "init"), t("; "), r(2, "cond") }),
+            sn(nil, { i(1, "init"), t("; "), r(2, "cond") }),
         }),
         t { ") {", "\t" },
         i(0),
         t { "", "}" },
     }, { stored = { cond = i(1, "cond") } }),
-    ls.parser.parse_snippet("e", "else {\n\t$0\n}"),
-    ls.parser.parse_snippet("ei", "else if ($1) {\n\t$0\n}"),
-    ls.parser.parse_snippet("eic", "else if constexpr ($1) {\n\t$0\n}"),
+    parse("e", "else {\n\t$0\n}"),
+    parse("ei", "else if ($1) {\n\t$0\n}"),
+    parse("eic", "else if constexpr ($1) {\n\t$0\n}"),
 
     -- Standard library types / containers
-    ls.parser.parse_snippet("vec", "std::vector<${1:T}>"),
-    ls.parser.parse_snippet("map", "std::unordered_map<${1:Key}, ${2:Value}>"),
-    ls.parser.parse_snippet("imap", "std::map<${1:Key}, ${2:Value}>"),
-    ls.parser.parse_snippet("str", "std::string"),
-    ls.parser.parse_snippet("up", "std:unique_ptr<${1:T}>"),
-    ls.parser.parse_snippet("sp", "std:shared_ptr<${1:T}>"),
+    parse("vec", "std::vector<${1:T}>"),
+    parse("map", "std::unordered_map<${1:Key}, ${2:Value}>"),
+    parse("imap", "std::map<${1:Key}, ${2:Value}>"),
+    parse("str", "std::string"),
+    parse("up", "std:unique_ptr<${1:T}>"),
+    parse("sp", "std:shared_ptr<${1:T}>"),
 
     -- Attributes
-    ls.parser.parse_snippet("nd", "[[nodiscard]]"),
+    parse("nd", "[[nodiscard]]"),
 
     -- Special member declarations
-    snippet("consd", {
+    s("consd", {
         d(1, function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
             assert(cname, "Could not get surrounding class!")
-            return s(nil, { t(cname), t("("), i(1), t(");") })
+            return sn(nil, { t(cname), t("("), i(1), t(");") })
         end),
     }),
-    snippet("cconsd", {
+    s("cconsd", {
         f(function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
             assert(cname, "Could not get surrounding class!")
             return cname .. "(" .. cname .. " const& other);"
         end),
     }),
-    snippet("mconsd", {
+    s("mconsd", {
         f(function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
             assert(cname, "Could not get surrounding class!")
             return cname .. "(" .. cname .. "&& other) noexcept;"
         end),
     }),
-    snippet("cassd", {
+    s("cassd", {
         f(function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
             assert(cname, "Could not get surrounding class!")
             return cname .. "& operator=(" .. cname .. " const& other);"
         end),
     }),
-    snippet("massd", {
+    s("massd", {
         f(function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
             assert(cname, "Could not get surrounding class!")
             return cname .. "& operator=(" .. cname .. "&& other) noexcept;"
         end),
     }),
-    snippet("desd", {
+    s("desd", {
         f(function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
             assert(cname, "Could not get surrounding class!")
@@ -173,12 +159,12 @@ return {
     }),
 
     -- Special member definitions
-    snippet("consi", {
+    s("consi", {
         d(1, function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
 
             if cname then
-                return s(nil, {
+                return sn(nil, {
                     t(cname .. "("),
                     i(1),
                     t(")"),
@@ -189,7 +175,7 @@ return {
                     t { "", "}" },
                 })
             else
-                return s(nil, {
+                return sn(nil, {
                     i(1, "Class"),
                     t("::"),
                     rep(1),
@@ -205,18 +191,18 @@ return {
             end
         end),
     }),
-    snippet("cconsi", {
+    s("cconsi", {
         d(1, function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
 
             if cname then
-                return s(nil, {
+                return sn(nil, {
                     t { cname .. "(" .. cname .. " const& other) {", "\t" },
                     i(1),
                     t { "", "}" },
                 })
             else
-                return s(nil, {
+                return sn(nil, {
                     i(1, "Class"),
                     t("::"),
                     l(l._1:match("([^<]*)"), 1),
@@ -229,18 +215,18 @@ return {
             end
         end),
     }),
-    snippet("mconsi", {
+    s("mconsi", {
         d(1, function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
 
             if cname then
-                return s(nil, {
+                return sn(nil, {
                     t { cname .. "(" .. cname .. "&& other) noexcept {", "\t" },
                     i(1),
                     t { "", "}" },
                 })
             else
-                return s(nil, {
+                return sn(nil, {
                     i(1, "Class"),
                     t("::"),
                     l(l._1:match("([^<]*)"), 1),
@@ -253,18 +239,18 @@ return {
             end
         end),
     }),
-    snippet("cassi", {
+    s("cassi", {
         d(1, function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
 
             if cname then
-                return s(nil, {
+                return sn(nil, {
                     t { cname .. "& operator=(" .. cname .. " const& other) {", "\t" },
                     i(1),
                     t { "", "\treturn *this;", "}" },
                 })
             else
-                return s(nil, {
+                return sn(nil, {
                     i(1, "Class"),
                     t("& "),
                     rep(1),
@@ -277,18 +263,18 @@ return {
             end
         end),
     }),
-    snippet("massi", {
+    s("massi", {
         d(1, function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
 
             if cname then
-                return s(nil, {
+                return sn(nil, {
                     t { cname .. "& operator=(" .. cname .. "&& other) noexcept {", "\t" },
                     i(1),
                     t { "", "\treturn *this;", "}" },
                 })
             else
-                return s(nil, {
+                return sn(nil, {
                     i(1, "Class"),
                     t("& "),
                     rep(1),
@@ -301,14 +287,14 @@ return {
             end
         end),
     }),
-    snippet("desi", {
+    s("desi", {
         d(1, function(_, snip)
             local cname = get_surrounding_class(tonumber(snip.env.TM_LINE_NUMBER))
 
             if cname then
-                return s(nil, { t { "~" .. cname .. "() {", "\t" }, i(1), t { "", "}" } })
+                return sn(nil, { t { "~" .. cname .. "() {", "\t" }, i(1), t { "", "}" } })
             else
-                return s(nil, {
+                return sn(nil, {
                     i(1, "Class"),
                     t("::~"),
                     l(l._1:match("([^<]*)"), 1),
@@ -321,15 +307,15 @@ return {
     }),
 
     -- Other
-    ls.parser.parse_snippet("ip", "${1:range}.begin(), $1.end()"),
-    ls.parser.parse_snippet("print", "std::cout << $1 << '\\n';"),
-    snippet("bind", {
+    parse("ip", "${1:range}.begin(), $1.end()"),
+    parse("print", "std::cout << $1 << '\\n';"),
+    s("bind", {
         c(1, {
-            s(nil, { t("auto const& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";") }),
-            s(nil, { t("auto&& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";") }),
+            sn(nil, { t("auto const& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";") }),
+            sn(nil, { t("auto&& ["), r(1, "bindings"), t("] = "), r(2, "value"), t(";") }),
         }),
     }, { stored = { bindings = i(1, "bindings"), value = i(2, "value") } }),
-    snippet("main", {
+    s("main", {
         t("int main("),
         c(1, {
             t(""),
@@ -339,12 +325,12 @@ return {
         i(0),
         t { "", "}" },
     }),
-    snippet("inc", {
+    s("inc", {
         t("#include "),
         c(1, {
-            s(nil, { t("<"), r(1, "header"), t(">") }),
-            s(nil, { t('"'), r(1, "header"), t('"') }),
+            sn(nil, { t("<"), r(1, "header"), t(">") }),
+            sn(nil, { t('"'), r(1, "header"), t('"') }),
         }),
     }, { stored = { header = i(1, "header") } }),
-    ls.parser.parse_snippet("cinit", "auto const $1 = [&] {\n\t$0\n}();"),
+    parse("cinit", "auto const $1 = [&] {\n\t$0\n}();"),
 }
