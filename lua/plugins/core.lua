@@ -1,6 +1,6 @@
 return {
-    { "nvim-tree/nvim-web-devicons", module = true },
-    { "nvim-lua/plenary.nvim", module = true },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
+    { "nvim-lua/plenary.nvim", lazy = true },
     "folke/which-key.nvim",
     "cbochs/grapple.nvim",
     { "ggandor/leap.nvim", lazy = true },
