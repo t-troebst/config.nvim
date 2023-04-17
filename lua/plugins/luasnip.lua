@@ -18,7 +18,7 @@ local function setup()
         ft_func = require("luasnip.extras.filetype_functions").from_pos_or_filetype,
     }
 
-    require("luasnip.loaders.from_lua").load { paths = "snippets" }
+    require("luasnip.loaders.from_lua").load { paths = "./snippets" }
 end
 
 return {
