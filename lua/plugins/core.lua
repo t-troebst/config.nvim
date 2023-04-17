@@ -6,4 +6,5 @@ return {
     { "ggandor/leap.nvim", lazy = true },
     { "numToStr/Comment.nvim", config = true },
     { "lewis6991/gitsigns.nvim", config = true },
+    { "tpope/vim-fugitive" },
 }
