@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     group = vim.api.nvim_create_augroup("ColorColumnUpdate", {}),
     callback = function()
         local tw = vim.opt.textwidth:get()
-        vim.opt_local.colorcolumn = { tw }
+        vim.opt_local.colorcolumn = { tw + 1 }
     end,
 })
 
