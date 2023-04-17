@@ -31,17 +31,11 @@ vo.splitbelow = true
 vo.splitright = true
 
 vo.textwidth = 100
-vo.colorcolumn = { 101 }
-
-vim.api.nvim_create_autocmd("OptionSet", {
-    pattern = "textwidth",
+vim.api.nvim_create_autocmd("BufWinEnter", {
     group = vim.api.nvim_create_augroup("ColorColumnUpdate", {}),
     callback = function()
-        if vim.v.option_type == "global" then
-            vim.opt.colorcolumn = { vim.v.option_new }
-        else
-            vim.opt_local.colorcolumn = { vim.v.option_new }
-        end
+        local tw = vim.opt.textwidth:get()
+        vim.opt_local.colorcolumn = { tw }
     end,
 })
 
