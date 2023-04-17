@@ -85,6 +85,7 @@ return {
                         Lua = {
                             diagnostics = {
                                 globals = { "vim" },
+                                disable = { "missing-parameter" },
                             },
                             workspace = {
                                 library = {
