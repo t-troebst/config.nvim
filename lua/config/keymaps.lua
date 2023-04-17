@@ -3,8 +3,15 @@ local which_key = require("which-key")
 
 --- Close window if there multiple, otherwise close buffer.
 local function smart_close()
-    local wins = vim.api.nvim_list_wins()
-    if #wins > 1 then
+    local wins = 0
+
+    for _, win in pairs(vim.api.nvim_list_wins()) do
+        if vim.api.nvim_win_get_config(win).relative == "" then
+            wins = wins + 1
+        end
+    end
+
+    if wins > 1 then
         vim.api.nvim_win_close(0, {})
     else
         vim.api.nvim_buf_delete(0, {})
