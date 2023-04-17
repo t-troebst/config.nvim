@@ -25,7 +25,7 @@ local function setup()
     }
 
     for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign)
+        vim.fn.sign_define(unpack(sign))
     end
 
     local function conditional_breakpoint()
