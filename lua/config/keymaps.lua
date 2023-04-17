@@ -52,8 +52,7 @@ which_key.register {
     ["<C-n>"] = { "<CMD>NvimTreeToggle<CR>", "Toggle file browser" },
     ["<C-t>"] = { "<CMD>OverseerToggle<CR>", "Toggle task list" },
 
-    s = { "<CMD>lua require('leap').leap{}<CR>", "Search character" },
-    ["<S-s>"] = { "<CMD>lua require('leap').leap{backward=true}<CR>", "Search characters (backwards)" },
+    s = { "<CMD>HopChar1<CR>", "Search character" },
 
     ["<C-\\>"] = { "Open terminal" },
 

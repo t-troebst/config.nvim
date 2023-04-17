@@ -3,7 +3,7 @@ return {
     { "nvim-lua/plenary.nvim", lazy = true },
     "folke/which-key.nvim",
     "cbochs/grapple.nvim",
-    { "ggandor/leap.nvim", lazy = true },
+    { "phaazon/hop.nvim", config = true, lazy = true, cmd = { "HopChar1" } },
     { "numToStr/Comment.nvim", config = true },
     { "lewis6991/gitsigns.nvim", config = true },
     { "tpope/vim-fugitive" },
