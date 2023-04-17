@@ -44,3 +44,8 @@ vim.cmd([[hi! link NonText Normal]])
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ";"
+
+vim.diagnostic.config {
+    virtual_text = true,
+    virtual_lines = false,
+}
