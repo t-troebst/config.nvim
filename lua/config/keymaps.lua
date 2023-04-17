@@ -3,8 +3,14 @@ local which_key = require("which-key")
 
 --- Close window if there multiple, otherwise close buffer.
 local function smart_close()
-    local wins = 0
+    -- Current window is floating
+    if vim.api.nvim_win_get_config(0).relative ~= "" then
+        vim.api.nvim_win_close(0, {})
+        return
+    end
 
+    -- Count non-floating windows
+    local wins = 0
     for _, win in pairs(vim.api.nvim_list_wins()) do
         if vim.api.nvim_win_get_config(win).relative == "" then
             wins = wins + 1
