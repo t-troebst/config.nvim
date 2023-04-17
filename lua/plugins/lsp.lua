@@ -71,8 +71,7 @@ return {
             },
             servers = {
                 clangd = {
-                    cmd = {
-                        "clangd",
+                    arguments = {
                         "--clang-tidy",
                         "--header-insertion=iwyu",
                         "--completion-style=detailed",
