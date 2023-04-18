@@ -71,7 +71,8 @@ return {
             },
             servers = {
                 clangd = {
-                    arguments = {
+                    cmd = {
+                        vim.env.HOME .. "/.local/bin/clangd",
                         "--clang-tidy",
                         "--header-insertion=iwyu",
                         "--completion-style=detailed",
