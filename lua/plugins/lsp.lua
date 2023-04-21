@@ -25,6 +25,9 @@ return {
                         end,
                     },
                     null_ls.builtins.diagnostics.mypy.with {
+                        condition = function()
+                            return has_config("mypy.ini")
+                        end,
                         extra_args = function()
                             local file = get_config("mypy.ini")
                             if file ~= "" then
@@ -106,6 +109,7 @@ return {
                         },
                     },
                 },
+                texlab = {},
             },
         },
         config = function(_, opts)
