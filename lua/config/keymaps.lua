@@ -226,3 +226,10 @@ which_key.register({
     s = { "<Plug>(leap-forward-to)", "Search character" },
     ["<S-s>"] = { "<Plug>(leap-backward-to)", "Search character (backward)" },
 }, { mode = "x" })
+
+which_key.register({
+    ["<ESC>"] = { "<C-\\><C-n>", "Enter normal mode" },
+    ["jk"] = { "<C-\\><C-n>", "Enter normal mode" },
+    ["<PageUp>"] = { "<C-\\><C-n><PageUp>", "Page up" },
+    ["<PageDown>"] = { "<C-\\><C-n><PageDown>", "Page down" },
+}, { mode = "t" })
