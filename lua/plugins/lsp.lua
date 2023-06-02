@@ -9,7 +9,11 @@ end
 
 return {
     { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
-    { "williamboman/mason-lspconfig.nvim", config = true },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = true,
+        dependencies = { "williamboman/mason.nvim" },
+    },
     {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
@@ -76,13 +80,10 @@ return {
             servers = {
                 clangd = {
                     cmd = {
-                        vim.env.HOME .. "/.local/bin/clangd",
+                        "clangd",
                         "--clang-tidy",
                         "--header-insertion=iwyu",
                         "--completion-style=detailed",
-                    },
-                    fallbackFlags = {
-                        "-std=c++20",
                     },
                 },
                 lua_ls = {
@@ -157,6 +158,7 @@ return {
                 nvim_lspconfig[server].setup(vim.tbl_deep_extend("force", settings, ext))
             end
         end,
+        dependencies = { "williamboman/mason-lspconfig.nvim" },
     },
     {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
