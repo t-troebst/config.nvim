@@ -60,9 +60,9 @@ return {
                 signs = {
                     active = {
                         { name = "DiagnosticSignError", text = "" },
-                        { name = "DiagnosticSignWarn", text = "" },
-                        { name = "DiagnosticSignHint", text = "" },
-                        { name = "DiagnosticSignInfo", text = "" },
+                        { name = "DiagnosticSignWarn",  text = "" },
+                        { name = "DiagnosticSignHint",  text = "" },
+                        { name = "DiagnosticSignInfo",  text = "" },
                     },
                 },
                 update_in_insert = false,
@@ -90,13 +90,14 @@ return {
                     settings = {
                         Lua = {
                             diagnostics = {
-                                globals = { "vim" },
+                                globals = { "vim", "awesome", "client", "root" },
                                 disable = { "missing-parameter" },
                             },
                             workspace = {
                                 library = {
                                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                                     [vim.fn.stdpath("config") .. "/lua"] = true,
+                                    ["/usr/share/awesome/lib"] = true,
                                 },
                                 checkThirdParty = false,
                             },
