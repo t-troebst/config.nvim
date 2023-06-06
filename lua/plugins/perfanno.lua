@@ -15,7 +15,7 @@ return {
     cmd = {
         "PerfCacheDelete",
         "PerfCacheLoad",
-        "PerfLoadCallgraph",
+        "PerfLoadCallGraph",
         "PerfLoadFlamegraph",
         "PerfLoadFlat",
         "PerfLuaProfileStart"
