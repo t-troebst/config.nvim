@@ -90,7 +90,7 @@ return {
                     settings = {
                         Lua = {
                             diagnostics = {
-                                globals = { "vim", "awesome", "client", "root" },
+                                globals = { "vim", "awesome", "client", "root", "screen" },
                                 disable = { "missing-parameter" },
                             },
                             workspace = {
