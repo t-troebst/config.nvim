@@ -168,6 +168,7 @@ return {
     },
     {
         "j-hui/fidget.nvim",
+        tag = "legacy", -- pending rewrite
         event = "LspAttach",
         config = true,
     },
