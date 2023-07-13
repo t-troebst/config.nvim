@@ -6,12 +6,6 @@ local function setup()
 
     telescope.setup {
         extensions = {
-            frecency = {
-                workspaces = {
-                    cfg = vim.fn.stdpath("config"),
-                },
-            },
-
             project = {
                 sync_with_nvim_tree = true,
             },
