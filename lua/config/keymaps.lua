@@ -68,6 +68,10 @@ which_key.register {
             name = "Grapple",
             t = { "<CMD>GrappleToggle<CR>", "Toggle" },
             m = { "<CMD>GrapplePopup tags<CR>", "Show menu" },
+            ["1"] = { "<CMD>GrappleTag key=1<CR>", "Tag as file 1" },
+            ["2"] = { "<CMD>GrappleTag key=2<CR>", "Tag as file 2" },
+            ["3"] = { "<CMD>GrappleTag key=3<CR>", "Tag as file 3" },
+            ["4"] = { "<CMD>GrappleTag key=4<CR>", "Tag as file 4" },
         },
 
         b = {
