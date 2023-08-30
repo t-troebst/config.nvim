@@ -1,7 +1,5 @@
 local function setup()
     local nvim_tree = require("nvim-tree")
-    local config = require("nvim-tree.config")
-    local tree_cb = config.nvim_tree_callback
 
     nvim_tree.setup {
         disable_netrw = true,
