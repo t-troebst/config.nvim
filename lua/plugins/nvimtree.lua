@@ -31,7 +31,6 @@ local function setup()
         },
         view = {
             width = 30,
-            hide_root_folder = false,
             side = "right",
             number = false,
             relativenumber = false,
