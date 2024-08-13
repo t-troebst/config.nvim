@@ -20,7 +20,7 @@ local function smart_close()
     if wins > 1 then
         vim.api.nvim_win_close(0, false)
     else
-        vim.api.nvim_buf_delete(0)
+        vim.api.nvim_buf_delete(0, {})
     end
 end
 
