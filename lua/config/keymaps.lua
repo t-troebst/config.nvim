@@ -5,7 +5,7 @@ local which_key = require("which-key")
 local function smart_close()
     -- Current window is floating
     if vim.api.nvim_win_get_config(0).relative ~= "" then
-        vim.api.nvim_win_close(0, {})
+        vim.api.nvim_win_close(0, false)
         return
     end
 
@@ -18,9 +18,9 @@ local function smart_close()
     end
 
     if wins > 1 then
-        vim.api.nvim_win_close(0, {})
+        vim.api.nvim_win_close(0, false)
     else
-        vim.api.nvim_buf_delete(0, {})
+        vim.api.nvim_buf_delete(0)
     end
 end
 
