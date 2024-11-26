@@ -27,6 +27,9 @@ lazy.setup({
     ui = {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
+    dev = {
+        path = "~/Projects"
+    }
 })
 
 require("config.keymaps")
