@@ -59,11 +59,6 @@ which_key.add {
         desc = "Split window vertically",
     },
     {
-        "<C-t>",
-        "<CMD>OverseerToggle<CR>",
-        desc = "Toggle task list",
-    },
-    {
         "<LEADER>1",
         "<CMD>GrappleSelect key=1<CR>",
         desc = "Jump to file 1",
@@ -87,67 +82,6 @@ which_key.add {
         "<LEADER><SPACE>",
         "<CMD>nohlsearch<CR>",
         desc = "Clear search highlights",
-    },
-    { "<LEADER>b", group = "Debugging" },
-    {
-        "<LEADER>bB",
-        "<CMD>DapConditionalBreakpoint<CR>",
-        desc = "Set conditional breakpoint",
-    },
-    {
-        "<LEADER>bL",
-        "<CMD>DapConditionalLogpoint<CR>",
-        desc = "Set conditional logpoint",
-    },
-    {
-        "<LEADER>bb",
-        "<CMD>lua require('dap').toggle_breakpoint()<CR>",
-        desc = "Toggle breakpoint",
-    },
-    {
-        "<LEADER>bc",
-        "<CMD>lua require('dap').continue()<CR>",
-        desc = "Run / continue",
-    },
-    {
-        "<LEADER>be",
-        ":e .debug_args.lua<CR>",
-        desc = "Edit config",
-    },
-    {
-        "<LEADER>bh",
-        "<CMD>lua require('dap.ui.widgets').hover()<CR>",
-        desc = "Hover",
-    },
-    {
-        "<LEADER>bi",
-        "<CMD>lua require('dap').step_into()<CR>",
-        desc = "Step into",
-    },
-    {
-        "<LEADER>bl",
-        "<CMD>DapLogpoint<CR>",
-        desc = "Set logpoint",
-    },
-    {
-        "<LEADER>bo",
-        "<CMD>lua require('dap').step_out()<CR>",
-        desc = "Step out",
-    },
-    {
-        "<LEADER>bq",
-        "<CMD>lua require('dap').terminate()<CR><CMD>DapVirtualTextForceRefresh<CR>",
-        desc = "Quit",
-    },
-    {
-        "<LEADER>br",
-        "<CMD>lua require('dap').repl.open()<CR>",
-        desc = "Open REPL",
-    },
-    {
-        "<LEADER>bs",
-        "<CMD>lua require('dap').step_over()<CR>",
-        desc = "Step over",
     },
     { "<LEADER>d", group = "Diagnostics" },
     {
@@ -351,42 +285,6 @@ which_key.add {
         "<LEADER>mt",
         "<CMD>GrappleToggle<CR>",
         desc = "Toggle",
-    },
-    { "<LEADER>o", group = "Overseer" },
-    {
-        "<LEADER>oa",
-        "<CMD>OverseerTaskAction<CR>",
-        desc = "Task action",
-    },
-    {
-        "<LEADER>ob",
-        "<CMD>OverseerBuild<CR>",
-        desc = "Build task",
-    },
-    {
-        "<LEADER>ol",
-        "<CMD>OverseerLoadBundle<CR>",
-        desc = "Load task bundle",
-    },
-    {
-        "<LEADER>oq",
-        "<CMD>OverseerQuickAction<CR>",
-        desc = "Quick action",
-    },
-    {
-        "<LEADER>or",
-        "<CMD>OverseerRun<CR>",
-        desc = "Run task",
-    },
-    {
-        "<LEADER>os",
-        "<CMD>OverseerSaveBundle<CR>",
-        desc = "Save task bundle",
-    },
-    {
-        "<LEADER>ot",
-        "<CMD>OverseerToggle<CR>",
-        desc = "Toggle task list",
     },
     { "<LEADER>p", group = "Profiling" },
     {
