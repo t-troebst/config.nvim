@@ -222,7 +222,7 @@ which_key.add {
     },
     {
         "<LEADER>lf",
-        "<CMD>lua vim.lsp.buf.format{async = true}<CR>",
+        "<CMD>lua require('conform').format({ async = true, lsp_format = 'fallback' })<CR>",
         desc = "Format",
     },
     {

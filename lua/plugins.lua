@@ -34,4 +34,39 @@ return {
     },
     { "nvim-lualine/lualine.nvim", config = true },
     { "akinsho/bufferline.nvim", config = true },
+
+    { "williamboman/mason.nvim",
+        config = true,
+    },
+    { "williamboman/mason-lspconfig.nvim" },
+
+    { "stevearc/conform.nvim",
+        config = {
+            formatters = {
+                lua = { "stylua" },
+            },
+        },
+        format_on_save = {
+            async = true,
+            lsp_format = "fallback",
+        },
+    },
+
+    { "mfussenegger/nvim-lint",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            local lint = require("lint")
+
+            lint.linters_by_ft = {
+                lua = { "selene" },
+                python = { "ruff" },
+            }
+
+            vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
+                callback = function()
+                    lint.try_lint()
+                end,
+            })
+        end,
+    }
 }
