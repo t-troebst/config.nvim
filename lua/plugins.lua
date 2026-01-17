@@ -38,7 +38,14 @@ return {
     { "williamboman/mason.nvim",
         config = true,
     },
-    { "williamboman/mason-lspconfig.nvim" },
+    { "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
 
     { "stevearc/conform.nvim",
         config = {
@@ -58,7 +65,6 @@ return {
             local lint = require("lint")
 
             lint.linters_by_ft = {
-                lua = { "selene" },
                 python = { "ruff" },
             }
 

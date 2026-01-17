@@ -33,3 +33,4 @@ lazy.setup({
 })
 
 require("keymaps")
+require("lsp")
