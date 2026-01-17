@@ -17,4 +17,5 @@ return {
     },
     { "nvim-lualine/lualine.nvim", config = true },
     { "akinsho/bufferline.nvim", config = true },
+    { "rose-pine/neovim", name = "rose-pine", priority = 1000 },
 }
