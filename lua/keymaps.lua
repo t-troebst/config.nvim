@@ -227,7 +227,7 @@ which_key.add {
     },
     {
         "<LEADER>lh",
-        "<CMD>ClangdSwitchSourceHeader<CR>",
+        "<CMD>LspClangdSwitchSourceHeader<CR>",
         desc = "Switch source/header",
     },
     {
