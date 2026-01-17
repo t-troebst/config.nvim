@@ -48,7 +48,11 @@ return {
     },
     { "nvim-lualine/lualine.nvim", opts = {} },
     { "akinsho/bufferline.nvim", opts = {} },
-
+    {
+        "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        build = ":TSUpdate",
+    },
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {},
@@ -56,6 +60,12 @@ return {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
         },
+    },
+    {
+        "saghen/blink.cmp",
+        version = "1.*",
+        opts = {},
+        dependencies = { "rafamadriz/friendly-snippets" },
     },
     {
         "folke/lazydev.nvim",
