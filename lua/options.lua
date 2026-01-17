@@ -25,7 +25,7 @@ vo.fileencoding = "utf-8"
 vo.gdefault = true
 vo.ignorecase = true
 vo.smartcase = true
-
+vo.smoothscroll = true
 vo.smartindent = true
 
 vo.splitbelow = true
