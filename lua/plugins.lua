@@ -20,9 +20,9 @@ return {
         },
     },
     { "cbochs/grapple.nvim" },
-    { "phaazon/hop.nvim", config = true, cmd = { "HopChar1" } },
-    { "numToStr/Comment.nvim", config = true },
-    { "lewis6991/gitsigns.nvim", config = true },
+    { "phaazon/hop.nvim", opts = {}, cmd = { "HopChar1" } },
+    { "numToStr/Comment.nvim", opts = {} },
+    { "lewis6991/gitsigns.nvim", opts = {} },
     { "tpope/vim-fugitive" },
     { "ibhagwan/fzf-lua",
         lazy = false,
@@ -42,11 +42,11 @@ return {
             },
         },
     },
-    { "nvim-lualine/lualine.nvim", config = true },
-    { "akinsho/bufferline.nvim", config = true },
+    { "nvim-lualine/lualine.nvim", opts = {} },
+    { "akinsho/bufferline.nvim", opts = {} },
 
     { "mason-org/mason-lspconfig.nvim",
-        config = true,
+        opts = {},
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig"
