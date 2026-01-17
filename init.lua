@@ -19,7 +19,7 @@ if not lazy_ok then
     return
 end
 
-require("config.options")
+require("options")
 
 lazy.setup({
     { import = "plugins" },
@@ -32,4 +32,4 @@ lazy.setup({
     }
 })
 
-require("config.keymaps")
+require("keymaps")
