@@ -13,10 +13,6 @@ vim.lsp.config.lua_ls = {
     }
 }
 
--- Enable lua_ls for Lua files
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "lua",
-    callback = function()
-        vim.lsp.enable("lua_ls")
-    end,
+vim.lsp.enable({
+    "lua_ls",
 })
