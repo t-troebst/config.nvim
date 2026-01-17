@@ -6,6 +6,7 @@ vo.signcolumn = "yes"
 vo.number = true
 vo.relativenumber = true
 vo.cursorline = true
+vo.laststatus = 3
 
 vo.mouse = "a"
 vo.clipboard = "unnamedplus"
