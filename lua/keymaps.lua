@@ -258,32 +258,32 @@ which_key.add {
     { "<LEADER>m", group = "Grapple" },
     {
         "<LEADER>m1",
-        "<CMD>GrappleTag key=1<CR>",
+        "<CMD>Grapple tag index=1<CR>",
         desc = "Tag as file 1",
     },
     {
         "<LEADER>m2",
-        "<CMD>GrappleTag key=2<CR>",
+        "<CMD>Grapple tag index=2<CR>",
         desc = "Tag as file 2",
     },
     {
         "<LEADER>m3",
-        "<CMD>GrappleTag key=3<CR>",
+        "<CMD>Grapple tag index=3<CR>",
         desc = "Tag as file 3",
     },
     {
         "<LEADER>m4",
-        "<CMD>GrappleTag key=4<CR>",
+        "<CMD>Grapple tag index=4<CR>",
         desc = "Tag as file 4",
     },
     {
         "<LEADER>mm",
-        "<CMD>GrapplePopup tags<CR>",
+        "<CMD>Grapple open_tags<CR>",
         desc = "Show menu",
     },
     {
         "<LEADER>mt",
-        "<CMD>GrappleToggle<CR>",
+        "<CMD>Grapple toggle<CR>",
         desc = "Toggle",
     },
     { "<LEADER>p", group = "Profiling" },
