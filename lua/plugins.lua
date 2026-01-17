@@ -45,8 +45,12 @@ return {
     { "nvim-lualine/lualine.nvim", config = true },
     { "akinsho/bufferline.nvim", config = true },
 
-    { "williamboman/mason.nvim",
+    { "mason-org/mason-lspconfig.nvim",
         config = true,
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig"
+        },
     },
     { "folke/lazydev.nvim",
         ft = "lua",
