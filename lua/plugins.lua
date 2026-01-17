@@ -2,16 +2,18 @@ return {
     { "nvim-tree/nvim-web-devicons" },
     { "nvim-lua/plenary.nvim" },
 
-    { "rose-pine/neovim",
+    {
+        "rose-pine/neovim",
         name = "rose-pine",
         priority = 1000,
-        config = function ()
+        config = function()
             vim.cmd.colorscheme("rose-pine")
         end,
     },
 
     { "folke/which-key.nvim" },
-    { "folke/snacks.nvim",
+    {
+        "folke/snacks.nvim",
         lazy = false,
         opts = {
             indent = { enabled = true },
@@ -24,7 +26,8 @@ return {
     { "numToStr/Comment.nvim", opts = {} },
     { "lewis6991/gitsigns.nvim", opts = {} },
     { "tpope/vim-fugitive" },
-    { "ibhagwan/fzf-lua",
+    {
+        "ibhagwan/fzf-lua",
         lazy = false,
         opts = {
             keymap = {
@@ -35,7 +38,8 @@ return {
             },
         },
     },
-    { "nvim-tree/nvim-tree.lua",
+    {
+        "nvim-tree/nvim-tree.lua",
         config = {
             view = {
                 side = "right",
@@ -45,14 +49,16 @@ return {
     { "nvim-lualine/lualine.nvim", opts = {} },
     { "akinsho/bufferline.nvim", opts = {} },
 
-    { "mason-org/mason-lspconfig.nvim",
+    {
+        "mason-org/mason-lspconfig.nvim",
         opts = {},
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
-            "neovim/nvim-lspconfig"
+            "neovim/nvim-lspconfig",
         },
     },
-    { "folke/lazydev.nvim",
+    {
+        "folke/lazydev.nvim",
         ft = "lua",
         opts = {
             library = {
@@ -61,19 +67,21 @@ return {
         },
     },
 
-    { "stevearc/conform.nvim",
-        config = {
-            formatters = {
+    {
+        "stevearc/conform.nvim",
+        opts = {
+            formatters_by_ft = {
                 lua = { "stylua" },
             },
-        },
-        format_on_save = {
-            async = true,
-            lsp_format = "fallback",
+            format_on_save = {
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            },
         },
     },
 
-    { "mfussenegger/nvim-lint",
+    {
+        "mfussenegger/nvim-lint",
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             local lint = require("lint")
@@ -88,5 +96,5 @@ return {
                 end,
             })
         end,
-    }
+    },
 }
