@@ -160,36 +160,31 @@ which_key.add {
         "<CMD>lua require('lsp_lines').toggle()<CR>",
         desc = "Toggle diagnostic lines",
     },
-    { "<LEADER>f", group = "Telescope" },
+    { "<LEADER>f", group = "fzf-lua" },
     {
         "<LEADER>fb",
-        "<CMD>lua require('telescope.builtin').buffers()<CR>",
+        "<CMD>lua require('fzf-lua').buffers()<CR>",
         desc = "Buffers",
     },
     {
         "<LEADER>fd",
-        "<CMD>lua require('telescope.builtin').diagnostics()<CR>",
+        "<CMD>lua require('fzf_lua').diagnostics_document()<CR>",
         desc = "Diagnostics",
     },
     {
         "<LEADER>ff",
-        "<CMD>lua require('telescope.builtin').find_files()<CR>",
+        "<CMD>lua require('fzf-lua').files()<CR>",
         desc = "Files",
     },
     {
         "<LEADER>fg",
-        "<CMD>lua require('telescope.builtin').live_grep()<CR>",
+        "<CMD>lua require('fzf-lua').grep()<CR>",
         desc = "Live grep",
     },
     {
         "<LEADER>fh",
-        "<CMD>lua require('telescope.builtin').help_tags()<CR>",
+        "<CMD>lua require('fzf-lua').helptags()<CR>",
         desc = "Help",
-    },
-    {
-        "<LEADER>fw",
-        "<CMD>lua require('telescope').extensions.project.project{display_type = 'full'}<CR>",
-        desc = "Workspaces",
     },
     { "<LEADER>g", group = "Git" },
     {
@@ -209,7 +204,7 @@ which_key.add {
     },
     {
         "<LEADER>gh",
-        "<CMD>Telescope git_bcommits<CR>",
+        "<CMD>lua require('fzf-lua').git_bcommits()<CR>",
         desc = "History",
     },
     {
@@ -257,7 +252,7 @@ which_key.add {
     },
     {
         "<LEADER>gsf",
-        "<CMD>lua require('telescope.builtin').git_status()<CR>",
+        "<CMD>lua require('fzf-lua').git_status()<CR>",
         desc = "Files",
     },
     {
@@ -283,12 +278,12 @@ which_key.add {
     },
     {
         "<LEADER>lb",
-        "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>",
+        "<CMD>lua require('fzf-lua').lsp_document_symbols()<CR>",
         desc = "Document symbols",
     },
     {
         "<LEADER>ld",
-        "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>",
+        "<CMD>lua require('fzf-lua').lsp_definitions()<CR>",
         desc = "Definitions",
     },
     {
@@ -303,7 +298,7 @@ which_key.add {
     },
     {
         "<LEADER>li",
-        "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>",
+        "<CMD>lua require('fzf-lua').lsp_implementations()<CR>",
         desc = "Implementations",
     },
     {
@@ -313,17 +308,17 @@ which_key.add {
     },
     {
         "<LEADER>lr",
-        "<CMD>lua require('telescope.builtin').lsp_references()<CR>",
+        "<CMD>lua require('fzf-lua').lsp_references()<CR>",
         desc = "References",
     },
     {
         "<LEADER>ls",
-        "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>",
+        "<CMD>lua require('fzf-lua').lsp_workspace_symbols()<CR>",
         desc = "Workspace symbols",
     },
     {
         "<LEADER>lt",
-        "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>",
+        "<CMD>lua require('fzf-lua').lsp_typedefs()<CR>",
         desc = "Type definitions",
     },
     { "<LEADER>m", group = "Grapple" },
