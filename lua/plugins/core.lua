@@ -8,4 +8,11 @@ return {
     { "lewis6991/gitsigns.nvim", config = true },
     { "tpope/vim-fugitive" },
     { "ibhagwan/fzf-lua" },
+    { "nvim-tree/nvim-tree.lua",
+        config = {
+            view = {
+                side = "right",
+            },
+        },
+    },
 }
