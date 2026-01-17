@@ -24,7 +24,17 @@ return {
     { "numToStr/Comment.nvim", config = true },
     { "lewis6991/gitsigns.nvim", config = true },
     { "tpope/vim-fugitive" },
-    { "ibhagwan/fzf-lua" },
+    { "ibhagwan/fzf-lua",
+        lazy = false,
+        opts = {
+            keymap = {
+                fzf = {
+                    ["ctrl-d"] = "down",
+                    ["ctrl-u"] = "up",
+                },
+            },
+        },
+    },
     { "nvim-tree/nvim-tree.lua",
         config = {
             view = {
