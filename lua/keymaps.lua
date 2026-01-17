@@ -102,7 +102,7 @@ which_key.add {
     },
     {
         "<LEADER>fd",
-        "<CMD>lua require('fzf_lua').diagnostics_document()<CR>",
+        "<CMD>lua require('fzf-lua').diagnostics_document()<CR>",
         desc = "Diagnostics",
     },
     {
