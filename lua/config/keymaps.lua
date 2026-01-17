@@ -436,11 +436,6 @@ which_key.add {
         desc = "Hottest symbols",
     },
     {
-        "<LEADER>s",
-        "<CMD>lua require('luasnip.loaders').edit_snippet_files()<CR>",
-        desc = "Edit snippets",
-    },
-    {
         "<M-j>",
         "<S-J>",
         desc = "Join lines",
@@ -522,9 +517,6 @@ which_key.add {
 which_key.add {
     {
         mode = { "i" },
-        { "<C-j>", "<Plug>luasnip-jump-prev", desc = "Previous snippet position" },
-        { "<C-k>", "<Plug>luasnip-expand-or-jump", desc = "Expand / continue snippet" },
-        { "<C-l>", "<Plug>luasnip-next-choice", desc = "Next snippet choice" },
         { "jk", "<ESC>", desc = "Normal mode" },
     },
 }
@@ -532,9 +524,6 @@ which_key.add {
 which_key.add {
     {
         mode = { "s" },
-        { "<C-j>", "<Plug>luasnip-jump-prev", desc = "Previous snippet position" },
-        { "<C-k>", "<Plug>luasnip-expand-or-jump", desc = "Expand / continue snippet" },
-        { "<C-l>", "<Plug>luasnip-next-choice", desc = "Next snippet choice" },
         { "jk", "<ESC>", desc = "Normal mode" },
     },
 }
