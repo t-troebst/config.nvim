@@ -178,7 +178,7 @@ which_key.add {
     },
     {
         "<LEADER>fg",
-        "<CMD>lua require('fzf-lua').grep()<CR>",
+        "<CMD>lua require('fzf-lua').live_grep_native()<CR>",
         desc = "Live grep",
     },
     {
