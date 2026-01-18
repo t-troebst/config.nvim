@@ -30,22 +30,22 @@ which_key.add {
     { "<C-\\>", desc = "Open terminal" },
     {
         "<C-h>",
-        "<C-w>h",
+        "<CMD>TmuxNavigateLeft<CR>",
         desc = "Window left",
     },
     {
         "<C-j>",
-        "<C-w>j",
+        "<CMD>TmuxNavigateRight<CR>",
         desc = "Window down",
     },
     {
         "<C-k>",
-        "<C-w>k",
+        "<CMD>TmuxNavigateUp<CR>",
         desc = "Window up",
     },
     {
         "<C-l>",
-        "<C-w>l",
+        "<CMD>TmuxNavigateRight<CR>",
         desc = "Window right",
     },
     {
