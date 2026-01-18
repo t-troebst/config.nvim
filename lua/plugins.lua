@@ -28,7 +28,6 @@ return {
     { "tpope/vim-fugitive" },
     {
         "ibhagwan/fzf-lua",
-        lazy = false,
         opts = {
             keymap = {
                 fzf = {
