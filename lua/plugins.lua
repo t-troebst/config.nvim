@@ -67,7 +67,6 @@ return {
         opts = {
             signature = { enabled = true },
         },
-        dependencies = { "rafamadriz/friendly-snippets" },
     },
     {
         "folke/lazydev.nvim",
