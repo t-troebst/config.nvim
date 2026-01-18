@@ -66,6 +66,19 @@ return {
         version = "1.*",
         opts = {
             signature = { enabled = true },
+            completion = {
+                list = {
+                    selection = {
+                        preselect = true,
+                        auto_insert = false,
+                    },
+                },
+                menu = {
+                    draw = {
+                        columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+                    },
+                },
+            },
         },
     },
     {
