@@ -23,6 +23,7 @@ return {
     },
     { "cbochs/grapple.nvim" },
     { "phaazon/hop.nvim", opts = {}, cmd = { "HopChar1" } },
+    { "christoomey/vim-tmux-navigator", lazy = false },
     { "numToStr/Comment.nvim", opts = {} },
     { "lewis6991/gitsigns.nvim", opts = {} },
     { "tpope/vim-fugitive" },
