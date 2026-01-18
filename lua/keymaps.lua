@@ -399,7 +399,7 @@ which_key.add {
     {
         mode = { "v" },
         { "<LEADER>p", group = "Profiling" },
-        { "<LEADER>pa", "<CMD>PerfAnnotate<CR>", desc = "Annotate" },
+        { "<LEADER>pa", "<CMD>PerfAnnotateSelection<CR>", desc = "Annotate" },
         { "<LEADER>pc", "<CMD>PerfHottestCallersSelection<CR>", desc = "Hottest callers" },
         { "<M-j>", "<S-j>", desc = "Join lines" },
         { "<S-j>", "10j", desc = "Down 10 lines" },
