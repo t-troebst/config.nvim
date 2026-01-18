@@ -2,7 +2,7 @@
 vim.loader.enable()
 
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazy_path) then
+if not vim.uv.fs_stat(lazy_path) then
     vim.fn.system {
         "git",
         "clone",
@@ -19,7 +19,7 @@ if not lazy_ok then
     return
 end
 
-require("config.options")
+require("options")
 
 lazy.setup({
     { import = "plugins" },
@@ -28,8 +28,8 @@ lazy.setup({
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
     dev = {
-        path = "~/Projects"
-    }
+        path = "~/Projects",
+    },
 })
 
-require("config.keymaps")
+require("keymaps")

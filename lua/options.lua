@@ -6,6 +6,7 @@ vo.signcolumn = "yes"
 vo.number = true
 vo.relativenumber = true
 vo.cursorline = true
+vo.laststatus = 3
 
 vo.mouse = "a"
 vo.clipboard = "unnamedplus"
@@ -24,7 +25,7 @@ vo.fileencoding = "utf-8"
 vo.gdefault = true
 vo.ignorecase = true
 vo.smartcase = true
-
+vo.smoothscroll = true
 vo.smartindent = true
 
 vo.splitbelow = true
