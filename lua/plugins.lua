@@ -103,6 +103,10 @@ return {
                         auto_insert = false,
                     },
                 },
+                documentation = { auto_show = true },
+                trigger = {
+                    show_on_keyword = false,
+                },
                 menu = {
                     draw = {
                         columns = {
