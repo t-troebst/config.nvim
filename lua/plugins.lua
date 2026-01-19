@@ -63,6 +63,7 @@ return {
                 "vimdoc",
                 "query",
                 "markdown_inline",
+                "gitcommit",
             }
 
             require("nvim-treesitter").install(ensure_installed)
