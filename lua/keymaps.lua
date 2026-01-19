@@ -146,22 +146,6 @@ which_key.add {
         "<CMD>Gitsigns next_hunk<CR>",
         desc = "Next hunk",
     },
-    { "<LEADER>go", group = "Origin" },
-    {
-        "<LEADER>god",
-        "<CMD>Git pull<CR>",
-        desc = "Download changes",
-    },
-    {
-        "<LEADER>gor",
-        "<CMD>Git rebase<CR>",
-        desc = "Rebase",
-    },
-    {
-        "<LEADER>gou",
-        "<CMD>Git push<CR>",
-        desc = "Upload changes",
-    },
     {
         "<LEADER>gp",
         "<CMD>Gitsigns prev_hunk<CR>",
