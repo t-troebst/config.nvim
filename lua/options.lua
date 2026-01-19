@@ -54,3 +54,10 @@ vim.diagnostic.config {
     virtual_text = true,
     virtual_lines = false,
 }
+
+-- Remove LSP's buffer-local K mapping after it attaches, I'm using it!
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        pcall(vim.keymap.del, "n", "K", { buffer = args.buf })
+    end,
+})
