@@ -36,6 +36,7 @@ return {
                     ["ctrl-u"] = "up",
                 },
             },
+            ui_select = true,
         },
     },
     {
