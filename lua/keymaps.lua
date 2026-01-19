@@ -35,7 +35,7 @@ which_key.add {
     },
     {
         "<C-j>",
-        "<CMD>TmuxNavigateRight<CR>",
+        "<CMD>TmuxNavigateDown<CR>",
         desc = "Window down",
     },
     {
