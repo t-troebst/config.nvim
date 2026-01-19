@@ -18,7 +18,7 @@ return {
         opts = {
             indent = { enabled = true, animate = { enabled = false } },
             input = { enabled = true },
-            notifier = { enabled = true },
+            notifier = { enabled = true, top_down = false },
         },
     },
     { "cbochs/grapple.nvim" },
