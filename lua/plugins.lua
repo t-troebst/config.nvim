@@ -37,6 +37,11 @@ return {
                 },
             },
             ui_select = true,
+            winops = {
+                preview = {
+                    winopts = { cursorline = false },
+                },
+            },
         },
     },
     {
