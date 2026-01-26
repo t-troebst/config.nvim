@@ -52,7 +52,7 @@ vim.g.maplocalleader = ";"
 
 vim.diagnostic.config {
     virtual_text = true,
-    virtual_lines = false,
+    virtual_lines = { current_line = true },
 }
 
 -- Remove LSP's buffer-local K mapping after it attaches, I'm using it!

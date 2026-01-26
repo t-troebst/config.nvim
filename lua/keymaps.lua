@@ -90,9 +90,14 @@ which_key.add {
         desc = "Hover",
     },
     {
-        "<LEADER>dt",
-        "<CMD>lua require('lsp_lines').toggle()<CR>",
-        desc = "Toggle diagnostic lines",
+        "<LEADER>dn",
+        "<CMD>lua vim.diagnostic.jump({count=1, float=true})<CR>",
+        desc = "Next diagnostic",
+    },
+    {
+        "<LEADER>dp",
+        "<CMD>lua vim.diagnostic.jump({count=-1, float=true})<CR>",
+        desc = "Previous diagnostic",
     },
     { "<LEADER>f", group = "fzf-lua" },
     {
