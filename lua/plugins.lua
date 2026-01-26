@@ -175,6 +175,7 @@ return {
             perfanno.setup {
                 line_highlights = util.make_bg_highlights(nil, palette.love, 10),
                 vt_highlight = util.make_fg_highlight(palette.love),
+                thread_support = true,
             }
         end,
         dev = true,
