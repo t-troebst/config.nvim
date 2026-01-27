@@ -101,6 +101,14 @@ return {
         "saghen/blink.cmp",
         version = "1.*",
         opts = {
+            keymap = {
+                preset = "default",
+                ["<C-k>"] = {
+                    function(cmp)
+                        cmp.show()
+                    end,
+                },
+            },
             signature = { enabled = true },
             completion = {
                 list = {
