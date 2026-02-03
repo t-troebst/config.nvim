@@ -50,7 +50,7 @@ which_key.add {
     },
     {
         "<C-n>",
-        "<CMD>NvimTreeToggle<CR>",
+        "<CMD>NvimTreeFindFileToggle<CR>",
         desc = "Toggle file browser",
     },
     {
