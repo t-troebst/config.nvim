@@ -60,22 +60,22 @@ which_key.add {
     },
     {
         "<LEADER>1",
-        "<CMD>GrappleSelect key=1<CR>",
+        "<CMD>Grapple select index=1<CR>",
         desc = "Jump to file 1",
     },
     {
         "<LEADER>2",
-        "<CMD>GrappleSelect key=2<CR>",
+        "<CMD>Grapple select index=2<CR>",
         desc = "Jump to file 2",
     },
     {
         "<LEADER>3",
-        "<CMD>GrappleSelect key=3<CR>",
+        "<CMD>Grapple select index=3<CR>",
         desc = "Jump to file 3",
     },
     {
         "<LEADER>4",
-        "<CMD>GrappleSelect key=4<CR>",
+        "<CMD>Grapple select index=4<CR>",
         desc = "Jump to file 4",
     },
     {
